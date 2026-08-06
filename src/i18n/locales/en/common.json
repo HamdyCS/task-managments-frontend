@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "product": "Product",
+    "solutions": "Solutions",
+    "features": "Features",
+    "signIn": "Sign In",
+    "getStarted": "Get Started Free",
+    "menu": "Menu"
+  },
+  "hero": {
+    "badge": {
+      "smart": "Smart",
+      "text": "Task Management"
+    },
+    "title": "Manage your team's projects smarter with",
+    "description": "An all-in-one platform for project planning, task assignment, and progress tracking. Collaborate with your team more efficiently in one place.",
+    "cta": "Get Started Free"
+  },
+  "socialProof": {
+    "title": "TRUSTED BY OVER 500 TEAMS WORLDWIDE"
+  },
+  "stats": {
+    "activeTeams": "Active Teams",
+    "tasksCompleted": "Tasks Completed",
+    "uptime": "Uptime",
+    "productivity": "Productivity Increase"
+  },
+  "cta": {
+    "title": "Ready to organize your team's projects?",
+    "description": "Join leading teams and start working efficiently today.",
+    "button": "Get Started Free"
+  },
+  "footer": {
+    "description": "An all-in-one platform for project and task management for modern teams.",
+    "share": "Share",
+    "email": "Email",
+    "product": {
+      "title": "Product",
+      "features": "Features",
+      "integrations": "Integrations",
+      "pricing": "Pricing"
+    },
+    "resources": {
+      "title": "Resources",
+      "helpCenter": "Help Center",
+      "blog": "Blog",
+      "caseStudies": "Case Studies"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "careers": "Careers",
+      "contact": "Contact Us"
+    },
+    "privacy": "Privacy",
+    "terms": "Terms"
+  }
+}

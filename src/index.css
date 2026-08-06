@@ -3,6 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -27,53 +28,46 @@
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
 
+  /* Typography */
   --font-sans: var(--font-inter);
   --font-arabic: var(--font-cairo);
 
+  /* Border Radius */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
 
-  --shadow-xs: var(--shadow-xs-color);
-  --shadow-sm: var(--shadow-sm-color);
-  --shadow-md: var(--shadow-md-color);
-  --shadow-lg: var(--shadow-lg-color);
-  --shadow-card: var(--shadow-card-color);
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(16 16 20 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(16 16 20 / 0.06);
+  --shadow-md: 0 4px 12px -2px rgb(16 16 20 / 0.08);
+  --shadow-lg: 0 8px 24px -4px rgb(16 16 20 / 0.12);
+  --shadow-card: 0 1px 2px 0 rgb(16 16 20 / 0.05);
 
-  --animate-drawer-in: drawer-in 0.2s ease-out;
+  /* Animations */
   --animate-fade-in: fade-in 0.15s ease-out;
   --animate-scale-in: scale-in 0.15s ease-out;
+  --animate-drawer-in: drawer-in 0.2s ease-out;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
 
   @keyframes drawer-in {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  @keyframes scale-in {
-    from {
-      opacity: 0;
-      transform: scale(0.96);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
   }
 }
 
+/* Light Mode */
 :root {
   --background: #ffffff;
   --foreground: #101014;
@@ -101,18 +95,11 @@
 
   --radius: 0.5rem;
 
-  --shadow-xs-color: 0 1px 2px 0 rgb(16 16 20 / 0.05);
-  --shadow-sm-color: 0 1px 3px 0 rgb(16 16 20 / 0.06);
-  --shadow-md-color: 0 4px 12px -2px rgb(16 16 20 / 0.08);
-  --shadow-lg-color: 0 8px 24px -4px rgb(16 16 20 / 0.12);
-  --shadow-card-color: 0 1px 2px 0 rgb(16 16 20 / 0.05);
-
-  --font-inter: 'Inter', system-ui, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, sans-serif;
-  --font-cairo: 'Cairo', 'Inter', system-ui, 'Segoe UI', Roboto, Arial,
-    sans-serif;
+  --font-inter: 'Inter', system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-cairo: 'Cairo', 'Inter', system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
+/* Dark Mode */
 .dark {
   --background: #0b0b0d;
   --foreground: #f2f2f5;
@@ -138,13 +125,47 @@
   --input: #2c2c33;
   --ring: #6d68f4;
 
-  --shadow-xs-color: 0 1px 2px 0 rgb(0 0 0 / 0.4);
-  --shadow-sm-color: 0 1px 3px 0 rgb(0 0 0 / 0.45);
-  --shadow-md-color: 0 4px 12px -2px rgb(0 0 0 / 0.5);
-  --shadow-lg-color: 0 8px 24px -4px rgb(0 0 0 / 0.6);
-  --shadow-card-color: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.45);
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 8px 24px -4px rgb(0 0 0 / 0.6);
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.4);
 }
 
+/* Utility Styles */
+@layer utilities {
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgb(128 128 128 / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(128 128 128 / 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .dark .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  }
+
+  .glass-panel {
+    background: rgb(255 255 255 / 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgb(0 0 0 / 0.08);
+    box-shadow:
+      0 25px 50px -12px rgb(0 0 0 / 0.05),
+      0 0 0 1px rgb(0 0 0 / 0.02);
+  }
+
+  .dark .glass-panel {
+    background: rgb(16 32 52 / 0.6);
+    border: 1px solid rgb(255 255 255 / 0.08);
+    box-shadow:
+      0 25px 50px -12px rgb(0 0 0 / 0.5),
+      0 0 0 1px rgb(255 255 255 / 0.05);
+  }
+}
+
+/* Base Styles */
 @layer base {
   * {
     border-color: var(--border);
