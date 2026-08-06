@@ -1,0 +1,266 @@
+<!DOCTYPE html><html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>WorkPilot - إنشاء حساب</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#213145",
+                        "surface-variant": "#26364a",
+                        "on-primary-container": "#f3f3ff",
+                        "secondary": "#43f09c",
+                        "surface": "#031427",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-bright": "#2a3a4f",
+                        "secondary-fixed": "#56ffa9",
+                        "tertiary-fixed": "#ffdbcf",
+                        "outline": "#8c90a2",
+                        "surface-container-lowest": "#000f21",
+                        "surface-dim": "#031427",
+                        "background": "#031427",
+                        "primary-container": "#0062ff",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "surface-tint": "#b4c5ff",
+                        "tertiary": "#ffb59c",
+                        "tertiary-container": "#c84000",
+                        "surface-container-high": "#1b2b3f",
+                        "on-tertiary-fixed": "#390c00",
+                        "on-error": "#690005",
+                        "on-primary": "#002a78",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#00174b",
+                        "on-surface-variant": "#c2c6d9",
+                        "inverse-surface": "#d3e4fe",
+                        "secondary-fixed-dim": "#2ce28f",
+                        "on-surface": "#d3e4fe",
+                        "on-secondary-container": "#005531",
+                        "surface-container": "#102034",
+                        "primary-fixed": "#dbe1ff",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#0b1c30",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#0053da",
+                        "tertiary-fixed-dim": "#ffb59c",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline-variant": "#424656",
+                        "on-tertiary-container": "#fff1ed",
+                        "on-tertiary": "#5c1900",
+                        "on-secondary-fixed": "#002110",
+                        "on-tertiary-fixed-variant": "#832700",
+                        "on-secondary": "#00391f",
+                        "primary": "#b4c5ff",
+                        "on-background": "#d3e4fe",
+                        "secondary-container": "#01d382",
+                        "surface-container-highest": "#26364a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "display": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "arabic": ["Cairo"]
+                    },
+                    "fontSize": {}
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Cairo', sans-serif; }
+        .grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row antialiased">
+<!-- Right Side (Form) -->
+<div class="w-full md:w-1/2 flex items-center justify-center p-6 lg:p-12 order-2 md:order-1 relative z-10">
+<div class="w-full max-w-[460px] bg-surface-container rounded-xl shadow-lg border border-surface-container-high p-8">
+<div class="mb-8 text-center">
+<h1 class="text-3xl font-bold text-on-surface mb-2 font-arabic">إنشاء حساب</h1>
+<p class="text-on-surface-variant text-sm font-arabic">أنشئ حسابك وابدأ استخدام WorkPilot.</p>
+</div>
+<form action="#" class="space-y-5" method="POST">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-on-surface-variant font-arabic" for="firstName">الاسم الأول</label>
+<input class="w-full bg-surface-container-highest border border-outline-variant rounded-md px-3 py-2 text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm font-arabic placeholder-outline-variant/70" id="firstName" name="firstName" placeholder="أدخل الاسم الأول" type="text">
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-on-surface-variant font-arabic" for="lastName">اسم العائلة</label>
+<input class="w-full bg-surface-container-highest border border-outline-variant rounded-md px-3 py-2 text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm font-arabic placeholder-outline-variant/70" id="lastName" name="lastName" placeholder="أدخل اسم العائلة" type="text">
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-on-surface-variant font-arabic" for="email">البريد الإلكتروني</label>
+<input class="w-full bg-surface-container-highest border border-outline-variant rounded-md px-3 py-2 text-on-surface text-left focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm font-body placeholder-outline-variant/70" dir="ltr" id="email" name="email" placeholder="example@email.com" type="email">
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-on-surface-variant font-arabic" for="dob">تاريخ الميلاد</label>
+<input class="w-full bg-surface-container-highest border border-outline-variant rounded-md px-3 py-2 text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm font-body [color-scheme:dark]" id="dob" name="dob" type="date">
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-on-surface-variant font-arabic" for="password">كلمة المرور</label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border border-outline-variant rounded-md px-3 py-2 text-on-surface text-left focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm font-body tracking-widest placeholder-outline-variant/70 pr-10" dir="ltr" id="password" name="password" placeholder="••••••••" type="password">
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline-variant hover:text-on-surface transition-colors focus:outline-none" id="togglePassword" type="button">
+<span class="material-symbols-outlined text-[18px]" id="toggleIcon">visibility_off</span>
+</button>
+</div>
+<!-- Password Strength -->
+<div class="mt-2 text-xs font-arabic space-y-1">
+<div class="flex items-center gap-2 text-outline-variant" id="req-length">
+<span class="material-symbols-outlined text-[14px]">circle</span>
+<span class="">٨ أحرف على الأقل</span>
+</div>
+<div class="flex items-center gap-2 text-outline-variant" id="req-upper">
+<span class="material-symbols-outlined text-[14px]">circle</span>
+<span class="">حرف كبير واحد على الأقل</span>
+</div>
+<div class="flex items-center gap-2 text-outline-variant" id="req-number">
+<span class="material-symbols-outlined text-[14px]">circle</span>
+<span class="">رقم واحد على الأقل</span>
+</div>
+<div class="flex items-center gap-2 text-outline-variant" id="req-special">
+<span class="material-symbols-outlined text-[14px]">circle</span>
+<span class="">رمز خاص واحد على الأقل</span>
+</div>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-on-surface-variant font-arabic" for="confirmPassword">تأكيد كلمة المرور</label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border border-outline-variant rounded-md px-3 py-2 text-on-surface text-left focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm font-body tracking-widest placeholder-outline-variant/70" dir="ltr" id="confirmPassword" name="confirmPassword" placeholder="••••••••" type="password">
+</div>
+</div><button class="w-full bg-primary text-on-primary font-bold py-2.5 px-4 rounded-md hover:bg-primary-fixed-dim transition-all duration-150 transform hover:-translate-y-[1px] font-arabic mt-4" type="submit">
+                    إنشاء الحساب
+                </button>
+</form>
+<div class="mt-6 flex items-center justify-between">
+<span class="border-b border-surface-container-high w-1/5 lg:w-1/4"></span>
+<span class="text-xs text-center text-outline-variant font-arabic px-2 uppercase">أو</span>
+<span class="border-b border-surface-container-high w-1/5 lg:w-1/4"></span>
+</div>
+<div class="mt-6 space-y-3">
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-highest border border-outline-variant hover:border-outline text-on-surface font-medium py-2 px-4 rounded-md transition-colors font-body text-sm" type="button">
+<svg class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>
+                    Continue with Google
+                </button>
+</div>
+<p class="mt-8 text-center text-sm text-on-surface-variant font-arabic">
+                لديك حساب بالفعل؟
+                <a class="font-medium text-primary hover:text-primary-fixed hover:underline transition-colors mr-1" href="#">تسجيل الدخول</a>
+</p>
+</div>
+</div>
+<!-- Left Side (Branding/Illustration) -->
+<div class="hidden md:flex md:w-1/2 bg-surface-container-lowest relative overflow-hidden flex-col justify-center p-12 order-1 md:order-2 border-r border-surface-container-high grid-pattern">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-0 pointer-events-none"></div>
+<!-- Abstract Shapes -->
+<div class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-primary-container/20 rounded-full blur-[100px] z-0"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-secondary-container/10 rounded-full blur-[100px] z-0"></div>
+<div class="relative z-10 max-w-lg mb-12">
+<img alt="WorkPilot Logo" class="h-10 mb-8 object-contain object-right" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo2zD8zekHZ1W--fxzihVhecfOw5WNUN1gV42IhhtowawWHvwhKbWFjBcptuq4q-bVTTz84jpaMCqWx2QNNJOZtUUdpO1fHT-QsYSUeAcbCy2hgxGYHsLvY5FBbIwViXrcQH3h35lQgzvkMvv3ffDHgWFLClJwdqcSB4vUlBVfN9cTAI4VvBbzXf2mVF3SS9xkjOPlRzgPVfjVpJ6W8Hxxpyx-WMIJ1j1vq8p3c_aORae4HzSPC6zqFXY_HG-Gs20dDQ">
+<h2 class="text-4xl lg:text-5xl font-bold text-on-surface mb-6 leading-tight font-arabic tracking-tight">
+                ابدأ بتنظيم <span class="text-primary">مشاريع فريقك</span> اليوم
+            </h2>
+<p class="text-lg text-on-surface-variant font-arabic leading-relaxed">
+                أنشئ حسابًا مجانًا وابدأ إدارة المشاريع والمهام والتعاون مع فريقك في دقائق.
+            </p>
+</div>
+<!-- Dashboard Illustration Mockup -->
+<div class="relative z-10 w-full max-w-xl mx-auto mt-8 transform translate-x-8 translate-y-4 perspective-1000">
+<div class="bg-surface-container border border-surface-container-high rounded-xl shadow-[20px_20px_60px_rgba(0,0,0,0.5)] overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-500 ease-out">
+<div class="h-6 border-b border-surface-container-high bg-surface-container-highest flex items-center px-3 gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-error-container"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-secondary-container"></div>
+</div>
+<div class="p-4" data-alt="A highly detailed, ultra-realistic illustration of a modern SaaS dashboard interface in dark mode. The UI features a sleek Kanban board with task cards, a subtle analytics chart with glowing blue and green lines, and small circular avatars representing team members. The aesthetic is clean, professional, high-density, and heavily inspired by Linear or GitHub, rendered in a sophisticated dark theme with deep navy backgrounds and crisp text." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDUBbVQdK9-N5KsUN2_q3ZjaFtt-S0YgHQEhIA0xwtF1sQ8M0c6iIfx1Xrpv5v6QvRmeL33o4z22OgFa8hhCazvaYtVzpj-w0qD3gw5o26QtanykocvzZd9w7SFSEmca2nmW6AV0_3oHxKYOC9wo0MRefMpYdLldla13b9Hrqb2rqmLs0CfQm3hYguU6I_uHNfLKBaVGoUW0-0XZpvGsVjpaNGYjRSr6NPjepdezn3MTbnHfq9GBbwn&quot;);">
+<!-- Faux UI Elements to represent the dashboard -->
+<div class="flex gap-4 h-48 opacity-80 mix-blend-screen">
+<div class="w-1/3 bg-surface-variant rounded-md p-2 space-y-2 border border-outline-variant/30">
+<div class="h-2 w-1/2 bg-outline-variant rounded mb-4"></div>
+<div class="h-10 w-full bg-surface-bright rounded border border-outline-variant/20"></div>
+<div class="h-10 w-full bg-surface-bright rounded border border-outline-variant/20"></div>
+</div>
+<div class="w-1/3 bg-surface-variant rounded-md p-2 space-y-2 border border-outline-variant/30">
+<div class="h-2 w-1/2 bg-primary/40 rounded mb-4"></div>
+<div class="h-10 w-full bg-surface-bright rounded border border-outline-variant/20"></div>
+</div>
+<div class="w-1/3 bg-surface-variant rounded-md p-2 space-y-2 border border-outline-variant/30">
+<div class="h-2 w-1/2 bg-secondary/40 rounded mb-4"></div>
+<div class="h-10 w-full bg-surface-bright rounded border border-outline-variant/20"></div>
+<div class="h-10 w-full bg-surface-bright rounded border border-outline-variant/20"></div>
+<div class="h-10 w-full bg-surface-bright rounded border border-outline-variant/20"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Password Visibility Toggle
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const toggleIcon = document.getElementById('toggleIcon');
+
+        togglePassword.addEventListener('click', function (e) {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            toggleIcon.textContent = type === 'password' ? 'visibility_off' : 'visibility';
+        });
+
+        // Simple Password Strength Checklist
+        passwordInput.addEventListener('input', function(e) {
+            const val = e.target.value;
+            
+            const checks = {
+                length: val.length >= 8,
+                upper: /[A-Z]/.test(val),
+                number: /[0-9]/.test(val),
+                special: /[^A-Za-z0-9]/.test(val)
+            };
+
+            const updateCheck = (id, isValid) => {
+                const el = document.getElementById(id);
+                const icon = el.querySelector('.material-symbols-outlined');
+                if (isValid) {
+                    el.classList.remove('text-outline-variant');
+                    el.classList.add('text-secondary');
+                    icon.textContent = 'check_circle';
+                    icon.style.fontVariationSettings = "'FILL' 1";
+                } else {
+                    el.classList.add('text-outline-variant');
+                    el.classList.remove('text-secondary');
+                    icon.textContent = 'circle';
+                    icon.style.fontVariationSettings = "'FILL' 0";
+                }
+            };
+
+            updateCheck('req-length', checks.length);
+            updateCheck('req-upper', checks.upper);
+            updateCheck('req-number', checks.number);
+            updateCheck('req-special', checks.special);
+        });
+    </script>
+</body></html>

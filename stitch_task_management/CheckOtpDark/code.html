@@ -1,0 +1,257 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>WorkPilot - التحقق من البريد الإلكتروني</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#ffdbcf",
+                        "surface-bright": "#334155",
+                        "secondary-fixed": "#56ffa9",
+                        "on-surface": "#e2e8f0",
+                        "on-primary-fixed": "#dbe1ff",
+                        "surface-container-high": "#223246",
+                        "inverse-surface": "#e2e8f0",
+                        "surface-variant": "#424656",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-container": "#dbe1ff",
+                        "primary-container": "#003ea8",
+                        "tertiary-container": "#7a2400",
+                        "tertiary-fixed": "#ffdbcf",
+                        "background": "#0b1c30",
+                        "inverse-on-surface": "#0b1c30",
+                        "tertiary": "#ffb59c",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#b4c5ff",
+                        "outline": "#8c90a3",
+                        "surface-container": "#182436",
+                        "surface-tint": "#b4c5ff",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#424656",
+                        "inverse-primary": "#004cca",
+                        "surface": "#0b1c30",
+                        "on-secondary": "#00391f",
+                        "primary": "#004cca",
+                        "on-secondary-fixed-variant": "#2ce28f",
+                        "on-tertiary-container": "#ffdbcf",
+                        "on-background": "#e2e8f0",
+                        "surface-container-highest": "#2d3b4e",
+                        "on-tertiary-fixed-variant": "#ffb59c",
+                        "tertiary-fixed-dim": "#ffb59c",
+                        "secondary": "#2ce28f",
+                        "on-tertiary": "#551800",
+                        "surface-dim": "#0b1c30",
+                        "on-secondary-container": "#56ffa9",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#2ce28f",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-lowest": "#050d18",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface-variant": "#c2c6d9",
+                        "on-secondary-fixed": "#56ffa9",
+                        "surface-container-low": "#0f1e30",
+                        "secondary-container": "#00522f"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "sidebar-collapsed": "64px",
+                        "stack-sm": "8px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "sidebar-width": "260px"
+                    },
+                    fontFamily: {
+                        "arabic-body": ["Cairo"],
+                        display: ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "arabic-body": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+                        display: ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "title-md": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Cairo', sans-serif; }
+        .otp-input::-webkit-outer-spin-button,
+        .otp-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .otp-input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen m-0">
+<!-- Split Screen Container -->
+<div class="flex w-full min-h-screen bg-surface">
+<!-- Right Side: OTP Form (Visually Right in RTL) -->
+<div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-8 sm:p-12 md:p-16 relative bg-surface">
+<div class="w-full max-w-md">
+<!-- Mobile Logo (Visible only on mobile) -->
+<div class="flex lg:hidden items-center gap-2 mb-12 justify-center">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">work</span>
+<span class="font-bold text-2xl text-on-surface">WorkPilot</span>
+</div>
+<!-- Header -->
+<div class="text-center mb-10">
+<div class="w-16 h-16 bg-surface-container-highest rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">mark_email_read</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-3">التحقق من البريد الإلكتروني</h1>
+<p class="font-arabic-body text-arabic-body text-on-surface-variant">
+                        أدخل رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني.
+                    </p>
+</div>
+<!-- Form -->
+<form action="#" class="space-y-8" id="otpForm" method="POST">
+<!-- OTP Inputs -->
+<div class="flex justify-between gap-2 sm:gap-4" dir="ltr">
+<input class="otp-input w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" maxlength="1" required="" type="number">
+<input class="otp-input w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" maxlength="1" required="" type="number">
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-lg font-arabic-body text-arabic-body font-semibold hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2 active:scale-[0.98]" type="submit">
+<span>استمرار</span>
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+</form>
+<!-- Resend & Timer -->
+<div class="mt-8 text-center font-arabic-body text-arabic-body">
+<span class="text-on-surface-variant">لم تستلم الرمز؟</span>
+<button class="text-outline cursor-not-allowed mx-2 font-medium transition-colors" disabled="" id="resendBtn">
+                        إعادة إرسال الرمز
+                    </button>
+<span class="text-primary font-medium inline-block w-16 text-right" id="timer">58 ثانية</span>
+</div>
+<!-- Footer Link -->
+<div class="mt-12 text-center">
+<a class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-arabic-body text-arabic-body" href="#">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+<span>العودة لتسجيل الدخول</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Left Side: Brand Visual (Visually Left in RTL) -->
+<div class="hidden lg:flex w-1/2 bg-surface-container flex-col relative overflow-hidden border-r border-outline-variant/50">
+<!-- Decorative Elements -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/20 to-transparent"></div>
+<div class="relative z-10 p-12 flex flex-col h-full justify-between">
+<div>
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">work</span>
+<span class="font-bold text-2xl text-on-surface">WorkPilot</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-12 mb-4 leading-tight">قم بتأمين بيئة عملك</h2>
+<p class="font-arabic-body text-arabic-body text-on-surface-variant max-w-md text-lg">
+                        نحن نستخدم أحدث تقنيات التحقق لضمان بقاء بيانات فريقك آمنة وسهلة الوصول في نفس الوقت.
+                    </p>
+</div>
+<!-- Abstract Illustration Area -->
+<div class="flex-grow flex items-center justify-center">
+<img alt="Security Illustration" class="max-w-full h-auto object-contain p-8 opacity-90" data-alt="A modern, high-tech abstract 3D illustration representing digital security and data protection. Soft, bright lighting, light mode aesthetic, clean surfaces, geometric shapes floating gracefully. Subtle primary blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrThQCnxT3WYghCdmD-gGqpS74jzKb538biT6Hw0f7RfMXwNCIpYuj05CmnPH0vULmzHfxhNrqajGYvMOYAZrbFOVh8CqF2DuF_ngvAQdts124luw_cL3f39h5JRkjSP166j4Ns_4TkvrYLbUlaz_6taGHBVVo5M7FhX30TktEC9-4Xrnh4lnBFneO4HtXT_HAbqTiaGI_nHuTNumlgKGkqWN2MxA3GJy8BICErBspyNpS6EU8_j5K">
+</div>
+</div>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.otp-input');
+            const form = document.getElementById('otpForm');
+            const resendBtn = document.getElementById('resendBtn');
+            const timerDisplay = document.getElementById('timer');
+            let timeLeft = 60;
+            let timerId;
+
+            // OTP Input Logic
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    if (e.target.value.length > 1) {
+                        e.target.value = e.target.value.slice(0, 1);
+                    }
+                    if (e.target.value.length === 1) {
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !e.target.value) {
+                        if (index > 0) {
+                            inputs[index - 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Timer Logic
+            function startTimer() {
+                timeLeft = 60;
+                resendBtn.disabled = true;
+                resendBtn.classList.add('text-outline', 'cursor-not-allowed');
+                resendBtn.classList.remove('text-primary', 'hover:text-on-primary-fixed-variant');
+                
+                timerId = setInterval(() => {
+                    timeLeft--;
+                    timerDisplay.textContent = `${timeLeft} ثانية`;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerId);
+                        timerDisplay.textContent = '';
+                        resendBtn.disabled = false;
+                        resendBtn.classList.remove('text-outline', 'cursor-not-allowed');
+                        resendBtn.classList.add('text-primary', 'hover:text-on-primary-fixed-variant');
+                    }
+                }, 1000);
+            }
+
+            resendBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!resendBtn.disabled) {
+                    startTimer();
+                    // Add resend logic here
+                }
+            });
+
+            startTimer();
+        });
+    </script>
+</body></html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WorkPilot - إنشاء كلمة مرور جديدة</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#311000",
+                      "surface-bright": "#f8f9ff",
+                      "secondary-fixed": "#56ffa9",
+                      "on-surface": "#1a1b20",
+                      "on-primary-fixed": "#00174b",
+                      "surface-container-high": "#e6e8ee",
+                      "inverse-surface": "#2f3036",
+                      "surface-variant": "#e0e2ec",
+                      "primary-fixed": "#dbe1ff",
+                      "on-primary-container": "#00174b",
+                      "primary-container": "#dbe1ff",
+                      "tertiary-container": "#ffdbcf",
+                      "tertiary-fixed": "#ffdbcf",
+                      "background": "#f8f9ff",
+                      "inverse-on-surface": "#f0f0f7",
+                      "tertiary": "#984724",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "outline": "#74777f",
+                      "surface-container": "#eceef4",
+                      "surface-tint": "#0053da",
+                      "error": "#ba1a1a",
+                      "outline-variant": "#c4c6cf",
+                      "inverse-primary": "#b4c5ff",
+                      "surface": "#f8f9ff",
+                      "on-secondary": "#ffffff",
+                      "primary": "#0053da",
+                      "on-secondary-fixed-variant": "#00522f",
+                      "on-tertiary-container": "#351000",
+                      "on-background": "#1a1b20",
+                      "surface-container-highest": "#e0e2e8",
+                      "on-tertiary-fixed-variant": "#743314",
+                      "tertiary-fixed-dim": "#ffb59c",
+                      "secondary": "#006c40",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d8dae0",
+                      "on-secondary-container": "#002110",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#2ce28f",
+                      "on-error-container": "#410002",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "on-surface-variant": "#43474e",
+                      "on-secondary-fixed": "#002110",
+                      "surface-container-low": "#f2f3f9",
+                      "secondary-container": "#56ffa9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sidebar-collapsed": "64px",
+                      "stack-sm": "8px",
+                      "container-max": "1440px",
+                      "margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "stack-lg": "32px",
+                      "sidebar-width": "260px"
+              },
+              "fontFamily": {
+                      "arabic-body": [
+                              "Cairo"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "arabic-body": [
+                              "14px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body { font-family: 'Cairo', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+<!-- Right Form Section (Appears first in RTL DOM, rendering on the right) -->
+<div class="w-full lg:w-1/2 h-full flex flex-col items-center justify-center p-8 bg-surface">
+<div class="w-full max-w-md space-y-8 relative">
+<div class="text-center lg:text-right">
+<!-- Mobile Logo (Visible only on small screens) -->
+<div class="lg:hidden mb-6 text-center">
+<h2 class="font-headline-md text-headline-md text-primary font-bold">WorkPilot</h2>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-2">إنشاء كلمة مرور جديدة</h1>
+<p class="font-arabic-body text-arabic-body text-on-surface-variant">
+                    اختر كلمة مرور قوية لحسابك.
+                </p>
+</div>
+<form class="space-y-6 mt-8">
+<!-- New Password Field -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface font-medium text-right" for="new_password">
+                        كلمة المرور الجديدة
+                    </label>
+<div class="relative">
+<input class="w-full px-4 py-3 bg-surface border border-outline-variant rounded-lg font-arabic-body text-arabic-body text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all shadow-sm" id="new_password" name="new_password" placeholder="••••••••" required="" type="password"/>
+<span class="material-symbols-outlined absolute left-3 top-3.5 text-outline cursor-pointer hover:text-on-surface transition-colors">
+                            visibility_off
+                        </span>
+</div>
+</div>
+<!-- Confirm New Password Field -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface font-medium text-right" for="confirm_password">
+                        تأكيد كلمة المرور الجديدة
+                    </label>
+<div class="relative">
+<input class="w-full px-4 py-3 bg-surface border border-outline-variant rounded-lg font-arabic-body text-arabic-body text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all shadow-sm" id="confirm_password" name="confirm_password" placeholder="••••••••" required="" type="password"/>
+<span class="material-symbols-outlined absolute left-3 top-3.5 text-outline cursor-pointer hover:text-on-surface transition-colors">
+                            visibility_off
+                        </span>
+</div>
+</div>
+<!-- Password Requirements Hint Box -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">
+                        info
+                    </span>
+<p class="font-arabic-body text-arabic-body text-on-surface-variant text-sm text-right">
+                        8 أحرف على الأقل، حرف كبير واحد، حرف صغير واحد، رقم واحد، ورمز خاص واحد
+                    </p>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary font-arabic-body text-arabic-body font-semibold py-3 px-4 rounded-lg hover:bg-on-primary-fixed-variant transition-all hover:-translate-y-0.5 active:translate-y-0 shadow-sm flex items-center justify-center gap-2" type="submit">
+                    إعادة تعيين كلمة المرور
+                    <span class="material-symbols-outlined">arrow_back</span>
+</button>
+</form>
+<div class="mt-6 text-center">
+<a class="font-arabic-body text-arabic-body text-primary hover:text-on-primary-fixed-variant transition-colors flex items-center justify-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    العودة لتسجيل الدخول
+                </a>
+</div>
+</div>
+</div>
+<!-- Left Image Section (Appears second in RTL DOM, rendering on the left) -->
+<div class="hidden lg:flex lg:w-1/2 relative bg-surface-container-high h-full border-r border-outline-variant items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30" data-alt="A bright, modern abstract architectural space with soft, natural lighting. The scene features smooth white geometric surfaces, glass panels, and subtle reflections in a high-key light mode aesthetic. Hints of deep blue and crisp white create a professional, corporate yet inviting atmosphere, emphasizing productivity and focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoEWZaIoj4DWm5rVnZ6eYNJwkZIlmQlDEq28ZkJJa7vK9c-JVVzajsbSRIowRE1vUQJxC7f_iMOW3fxO0Pq-G4Z9yCITVuh-EGr8DCv3zUS93DnZ8KKHgU6G_SA0p6vWwxbC7JUSu5s0XK8mdUgZrvdBzxNMnXg1UfTZ4R25Cvd-MAX65giNvb8WNlGL-TZ17LTKbL8vuFg-lmeIXO4ZiT6imEGceoSRf4-nuK6iV7okDqn71xSeh8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-80"></div>
+</div>
+<div class="relative z-10 p-12 max-w-lg text-center backdrop-blur-md bg-surface-container-lowest/80 border border-outline-variant rounded-xl shadow-sm">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4 font-bold">WorkPilot</h2>
+<p class="font-arabic-body text-arabic-body text-on-surface-variant leading-relaxed">
+                منصة متكاملة لإدارة المهام والمشاريع المؤسسية. مصممة لرفع كفاءة فريقك وتنظيم العمليات المعقدة بكل سهولة.
+            </p>
+</div>
+</div>
+</body></html>
