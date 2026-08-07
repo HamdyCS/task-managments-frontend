@@ -43,6 +43,57 @@
       "button": "Start Now"
     }
   },
+  "features": {
+    "hero": {
+      "badge": "Powerful Features",
+      "title": "Everything you need to",
+      "titleHighlight": "manage projects efficiently",
+      "description": "Discover the tools that help your team collaborate, track progress, and deliver results faster. Built for productivity, designed for simplicity."
+    },
+    "grid": {
+      "title": "Built for modern teams",
+      "description": "Every feature is designed to help your team work smarter, not harder.",
+      "items": {
+        "kanban": {
+          "title": "Kanban Boards",
+          "description": "Visualize your workflow with drag-and-drop boards. Track tasks from start to finish with customizable columns."
+        },
+        "collaboration": {
+          "title": "Team Collaboration",
+          "description": "Work together seamlessly with real-time updates, comments, and shared workspaces."
+        },
+        "analytics": {
+          "title": "Advanced Analytics",
+          "description": "Gain insights into team performance with detailed reports and visual dashboards."
+        },
+        "calendar": {
+          "title": "Calendar View",
+          "description": "Plan and schedule tasks with an integrated calendar. Never miss a deadline again."
+        },
+        "automation": {
+          "title": "Task Automation",
+          "description": "Automate repetitive tasks and focus on what matters most. Set triggers and rules."
+        },
+        "notifications": {
+          "title": "Smart Notifications",
+          "description": "Stay informed with intelligent alerts. Get notified about what matters to you."
+        },
+        "security": {
+          "title": "Enterprise Security",
+          "description": "Your data is protected with industry-leading security standards and encryption."
+        },
+        "integrations": {
+          "title": "Integrations",
+          "description": "Connect with your favorite tools. Seamless integration with popular services."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to boost your team's productivity?",
+      "description": "Join thousands of teams already using WorkPilot to deliver better results.",
+      "button": "Get Started Free"
+    }
+  },
   "notFound": {
     "title": "Page Not Found",
     "description": "The page you're looking for doesn't exist or may have been moved. Let's get you back to managing your work.",

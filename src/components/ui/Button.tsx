@@ -23,9 +23,13 @@ export default function Button({
           onClick={onClick}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className={`bg-primary text-primary-foreground px-6 py-2 rounded-xl text-base font-semibold inline-flex items-center justify-center gap-2 shadow-lg shadow-primary/25 ${className} cursor-pointer`}
         >
-          <Link to={to}>{text}</Link>
+          <Link
+            to={to}
+            className={`bg-primary text-primary-foreground px-6 py-2 rounded-xl text-base font-semibold inline-flex items-center justify-center gap-2 shadow-lg shadow-primary/25 ${className} cursor-pointer`}
+          >
+            {text}
+          </Link>
         </motion.div>
       ) : (
         <motion.button

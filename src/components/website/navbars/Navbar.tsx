@@ -89,7 +89,12 @@ export function Navbar() {
 
               <div className="w-px h-6 bg-border mx-1" />
 
-              <Button text={t("nav.getStarted")} to="/sign-up" type="link" className="text-sm" />
+              <Button
+                text={t("nav.getStarted")}
+                to="/sign-up"
+                type="link"
+                className="text-sm"
+              />
             </div>
 
             <button
