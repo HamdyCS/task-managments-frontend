@@ -1,6 +1,7 @@
 import type { RouteObject } from "react-router-dom";
 import { HomePage } from "../../pages/HomePage";
 import { ProductPage } from "../../pages/ProductPage";
+import { SolutionsPage } from "../../pages/SolutionsPage";
 import { NotFoundPage } from "../../pages/NotFoundPage";
 import WebSiteLayout from "../../components/website/layout/WebSiteLayout";
 
@@ -16,6 +17,10 @@ const WebSiteRoutes: RouteObject[] = [
       {
         path: "product",
         element: <ProductPage />,
+      },
+      {
+        path: "solutions",
+        element: <SolutionsPage />,
       },
       {
         path: "*",

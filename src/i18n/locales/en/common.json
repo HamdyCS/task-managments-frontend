@@ -48,6 +48,45 @@
     "description": "The page you're looking for doesn't exist or may have been moved. Let's get you back to managing your work.",
     "backToHome": "Back to Home"
   },
+  "solutions": {
+    "hero": {
+      "title": "Integrated solutions for",
+      "titleHighlight": "modern",
+      "titleEnd": "work teams",
+      "description": "From major companies to startups, WorkPilot provides the tools you need to simplify your workflow, increase productivity, and achieve your goals faster.",
+      "cta1": "Start Free",
+      "cta2": "Book Demo"
+    },
+    "cards": {
+      "title": "Designed for every team",
+      "description": "Regardless of the nature of your team's work, we have custom solutions to help you excel.",
+      "explore": "Explore Solution",
+      "growing": {
+        "title": "For Growing Teams",
+        "description": "Scale your team's workflow with structured projects, clear ownership, and seamless collaboration as your business grows."
+      },
+      "engineering": {
+        "title": "For Product & Engineering",
+        "description": "Plan sprints, manage backlogs, track development progress, and deliver releases with complete visibility."
+      },
+      "clientBased": {
+        "title": "For Client-Based Businesses",
+        "description": "Organize client work, monitor project timelines, collaborate efficiently, and deliver every project on schedule."
+      },
+      "crossFunctional": {
+        "title": "For Cross-Functional Teams",
+        "description": "Keep design, development, marketing, and operations aligned in one shared workspace with real-time updates."
+      },
+      "remote": {
+        "title": "For Remote & Hybrid Teams",
+        "description": "Stay connected across locations with centralized communication, shared workspaces, and transparent progress tracking."
+      },
+      "enterprise": {
+        "title": "For Enterprise Organizations",
+        "description": "Manage multiple teams, workspaces, permissions, and reporting from a single scalable platform."
+      }
+    }
+  },
   "footer": {
     "description": "An all-in-one platform for project and task management for modern teams.",
     "share": "Share",

@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 
 const navLinks = [
   { key: "nav.product", href: "/product" },
-  { key: "nav.solutions", href: "#solutions" },
-  { key: "nav.features", href: "#features" },
+  { key: "nav.solutions", href: "/solutions" },
+  { key: "nav.features", href: "/features" },
 ];
 
 export function Navbar() {

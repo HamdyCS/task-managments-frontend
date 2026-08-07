@@ -9,7 +9,7 @@ export function NotFoundPage() {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div className="py-5">
       <NotFoundIllustration />
 
       {/* Text Content */}
