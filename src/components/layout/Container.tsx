@@ -1,15 +1,21 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 interface ContainerProps {
-  children: ReactNode
-  className?: string
-  as?: 'div' | 'section' | 'main' | 'article'
+  children: ReactNode;
+  className?: string;
+  as?: "div" | "section" | "main" | "article";
 }
 
-export function Container({ children, className = '', as: Tag = 'div' }: ContainerProps) {
+export function Container({
+  children,
+  className = "",
+  as: Tag = "div",
+}: ContainerProps) {
   return (
-    <Tag className={`mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>
+    <Tag
+      className={`mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8  ${className}`}
+    >
       {children}
     </Tag>
-  )
+  );
 }
