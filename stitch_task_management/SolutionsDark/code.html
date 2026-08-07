@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WorkPilot - Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#26364a",
+                        "primary": "#b4c5ff",
+                        "primary-container": "#0062ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface-variant": "#c2c6d9",
+                        "error": "#ffb4ab",
+                        "on-secondary-container": "#005531",
+                        "on-tertiary": "#5c1900",
+                        "secondary-container": "#01d382",
+                        "surface-container": "#102034",
+                        "tertiary-fixed": "#ffdbcf",
+                        "surface-container-lowest": "#000f21",
+                        "surface-container-high": "#1b2b3f",
+                        "surface": "#031427",
+                        "tertiary": "#ffb59c",
+                        "secondary-fixed": "#56ffa9",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#002110",
+                        "on-primary-container": "#f3f3ff",
+                        "error-container": "#93000a",
+                        "secondary": "#43f09c",
+                        "outline-variant": "#424656",
+                        "inverse-primary": "#0053da",
+                        "on-tertiary-container": "#fff1ed",
+                        "on-secondary": "#00391f",
+                        "secondary-fixed-dim": "#2ce28f",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb59c",
+                        "on-background": "#d3e4fe",
+                        "on-surface": "#d3e4fe",
+                        "surface-container-low": "#0b1c30",
+                        "surface-bright": "#2a3a4f",
+                        "on-primary": "#002a78",
+                        "inverse-on-surface": "#213145",
+                        "background": "#031427",
+                        "outline": "#8c90a2",
+                        "tertiary-container": "#c84000",
+                        "surface-tint": "#b4c5ff",
+                        "surface-container-highest": "#26364a",
+                        "on-tertiary-fixed": "#390c00",
+                        "surface-dim": "#031427",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-tertiary-fixed-variant": "#832700",
+                        "inverse-surface": "#d3e4fe",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "sidebar-collapsed": "64px",
+                        "sidebar-width": "260px",
+                        "stack-md": "16px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter", "sans-serif"],
+                        "arabic-body": ["Cairo"],
+                        "title-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "display": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"]
+                    },
+                    fontSize: {
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "arabic-body": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+                        "title-md": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "display": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body { direction: ltr; }
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md docked full-width top-0 sticky border-b border-outline-variant/30 dark:border-outline-variant/20 shadow-sm dark:shadow-none flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-16 z-50">
+<div class="flex items-center gap-gutter">
+<span class="text-title-md font-title-md font-bold tracking-tight text-on-surface dark:text-on-surface">WorkPilot</span>
+<nav class="hidden md:flex items-center gap-stack-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container-high dark:hover:bg-surface-variant/50 transition-all duration-200 px-3 py-2 rounded-md" href="#">Product</a>
+<a class="text-primary dark:text-primary-fixed font-semibold border-b-2 border-primary dark:border-primary-fixed pb-1 translate-y-px transition-transform px-3 py-2" href="#">Solutions</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container-high dark:hover:bg-surface-variant/50 transition-all duration-200 px-3 py-2 rounded-md" href="#">Pricing</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-surface-container-high dark:hover:bg-surface-variant/50 transition-all duration-200 px-3 py-2 rounded-md" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="flex gap-2">
+<button class="p-2 text-on-surface hover:text-primary hover:bg-surface-container-high transition-colors rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 text-on-surface hover:text-primary hover:bg-surface-container-high transition-colors rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<div class="hidden sm:flex gap-3">
+<button class="px-4 py-2 text-on-surface hover:bg-surface-container-high rounded-lg font-label-md text-label-md transition-colors border border-outline-variant/50">Sign In</button>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container hover:bg-primary-container/90 rounded-lg font-label-md text-label-md transition-colors shadow-sm">Get Started</button>
+</div>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small, circular avatar image of a professional person in a corporate setting. High quality, clear lighting, dark background to match the UI theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa77UD_aCEwl5jnrogTW1TN7rgHbu6HV-QOoqIdTGgmWyseAo6GY6oFFW07ztxJUJ8Geb_lebL9PVtQveBVHG7Q3ynhSm4vPbdwk8Ln7HAaVVaDZw93AOEAFovXRhJe9GwvIEfqUupTk9gGYJPOJ-v0iKvhVmW2eBFM99Rz0majhAPNWW3A-PfnBBE8rtt4sNKJNISpQBbfMcqwDEJYI3MckMJ5i6ySfSqJooAH3o7ZIZHnqcr4V7u"/>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative pt-32 pb-24 overflow-hidden">
+<div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/10 via-background to-background pointer-events-none"></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10 text-center">
+<h1 class="font-display text-display text-on-surface mb-6">Integrated solutions for <span class="text-primary">modern</span> work teams</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+                    From major companies to startups, WorkPilot provides the tools you need to simplify your workflow, increase productivity, and achieve your goals faster.
+                </p>
+<div class="flex flex-wrap justify-center gap-4 mb-16">
+<button class="px-8 py-3 bg-primary-container text-on-primary-container rounded-lg font-title-md text-title-md hover:bg-primary-container/90 transition-transform hover:-translate-y-1 shadow-lg shadow-primary/20">Start Free</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface border border-outline-variant/50 rounded-lg font-title-md text-title-md hover:bg-surface-variant transition-transform hover:-translate-y-1">Book Demo</button>
+</div>
+<!-- Dashboard Mockup -->
+<div class="relative max-w-5xl mx-auto rounded-xl border border-outline-variant/30 bg-surface-container/50 backdrop-blur-xl shadow-2xl overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+<div class="h-10 bg-surface-container-high border-b border-outline-variant/30 flex items-center px-4 gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<div class="w-3 h-3 rounded-full bg-secondary-container"></div>
+</div>
+<div class="p-2">
+<img alt="WorkPilot Dashboard Mockup" class="w-full rounded-lg object-cover border border-outline-variant/20 opacity-90 hover:opacity-100 transition-opacity" data-alt="A highly detailed, realistic, and premium SaaS dashboard interface mockup. The dashboard shows a Kanban board with tasks, colorful progress charts, user avatars, and analytical data widgets. The design uses a dark theme with blue and green accent colors, clean typography, and sleek modern UI elements. Soft lighting and glassmorphism effects give it a high-end corporate feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnrAhqiBenRJALjXa2T23vjko-SidLILKTLdLlVbvSfd51pBnJfbjMgX5JdMBJeqiaPAhN06C3V_sj-0Q89abg2dd2efUIu-KT4zDun-2ardSscjw7jKViDUjzMxy7wZewVHry7dvOocuRVM6hW3TVRzJgaaOzeEt3TWMvvvK8qMQALIL7oYujLQS72p1V3xdO8cW2sBgn3BxJ3kcLmfl9VClYFMtDMJAkUD-Sp3YpKOGchsC1DDF5"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Solution Cards -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Designed for every team</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">Regardless of the nature of your team's work, we have custom solutions to help you excel.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" dir="ltr">
+<!-- Card 1 -->
+<div class="bg-surface-container rounded-xl p-8 border border-outline-variant/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10 group flex flex-col h-full text-left">
+<div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">rocket_launch</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">For Growing Teams</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Scale your team's workflow with structured projects, clear ownership, and seamless collaboration as your business grows.</p>
+<a class="inline-flex items-center text-primary hover:text-primary-fixed-dim font-label-md text-label-md mt-auto w-fit" href="#">Explore Solution <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span></a>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container rounded-xl p-8 border border-outline-variant/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10 group flex flex-col h-full text-left">
+<div class="w-14 h-14 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary-container mb-6 group-hover:bg-secondary-container group-hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">code</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">For Product &amp; Engineering</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Plan sprints, manage backlogs, track development progress, and deliver releases with complete visibility.</p>
+<a class="inline-flex items-center text-primary hover:text-primary-fixed-dim font-label-md text-label-md mt-auto w-fit" href="#">Explore Solution <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span></a>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container rounded-xl p-8 border border-outline-variant/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10 group flex flex-col h-full text-left">
+<div class="w-14 h-14 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary mb-6 group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors">
+<span class="material-symbols-outlined text-3xl">business_center</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">For Client-Based Businesses</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Organize client work, monitor project timelines, collaborate efficiently, and deliver every project on schedule.</p>
+<a class="inline-flex items-center text-primary hover:text-primary-fixed-dim font-label-md text-label-md mt-auto w-fit" href="#">Explore Solution <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span></a>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container rounded-xl p-8 border border-outline-variant/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10 group flex flex-col h-full text-left">
+<div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">For Cross-Functional Teams</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Keep design, development, marketing, and operations aligned in one shared workspace with real-time updates.</p>
+<a class="inline-flex items-center text-primary hover:text-primary-fixed-dim font-label-md text-label-md mt-auto w-fit" href="#">Explore Solution <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span></a>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container rounded-xl p-8 border border-outline-variant/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10 group flex flex-col h-full text-left">
+<div class="w-14 h-14 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary-container mb-6 group-hover:bg-secondary-container group-hover:text-on-secondary-container transition-colors">
+<span class="material-symbols-outlined text-3xl">public</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">For Remote &amp; Hybrid Teams</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Stay connected across locations with centralized communication, shared workspaces, and transparent progress tracking.</p>
+<a class="inline-flex items-center text-primary hover:text-primary-fixed-dim font-label-md text-label-md mt-auto w-fit" href="#">Explore Solution <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span></a>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container rounded-xl p-8 border border-outline-variant/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10 group flex flex-col h-full text-left">
+<div class="w-14 h-14 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary mb-6 group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors">
+<span class="material-symbols-outlined text-3xl">domain</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">For Enterprise Organizations</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">Manage multiple teams, workspaces, permissions, and reporting from a single scalable platform.</p>
+<a class="inline-flex items-center text-primary hover:text-primary-fixed-dim font-label-md text-label-md mt-auto w-fit" href="#">Explore Solution <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-low full-width border-t border-outline-variant/20 dark:border-outline-variant/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-stack-lg w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto py-stack-lg">
+<div class="flex flex-col gap-4">
+<span class="text-title-md font-title-md font-bold text-on-surface dark:text-on-surface">WorkPilot</span>
+<p class="text-body-md font-body-md text-on-surface-variant">© 2026 WorkPilot Inc. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-label-md font-label-md text-primary dark:text-primary-fixed mb-2">Legal</span>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline decoration-primary/30 transition-all" href="#">Privacy Policy</a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline decoration-primary/30 transition-all" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-label-md font-label-md text-primary dark:text-primary-fixed mb-2">Support</span>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline decoration-primary/30 transition-all" href="#">Security</a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline decoration-primary/30 transition-all" href="#">Status</a>
+<a class="text-body-md font-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline decoration-primary/30 transition-all" href="#">Contact Us</a>
+</div>
+</footer>
+</body></html>
