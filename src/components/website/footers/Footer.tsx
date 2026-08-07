@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Container } from "../../components/layout/Container";
-import logo from "../../assets/logo.png";
+import { Container } from "../layout/Container";
+import logo from "../../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -12,7 +12,7 @@ export function Footer() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, delay: 0.2, ease: "easeInOut" }}
-      className="w-full py-10 "
+      className="w-full mt-10 bg-background z-0 "
     >
       <Container>
         <div className="flex flex-col items-center md:flex-row md:justify-between gap-8">

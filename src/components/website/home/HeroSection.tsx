@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Container } from "../../components/layout/Container";
-import { staggerContainer, staggerItem } from "../../animations";
-import Button from "../../components/ui/Button";
+import { Container } from "../../../components/website/layout/Container";
+import { staggerContainer, staggerItem } from "../../../animations";
+import Button from "../../../components/ui/Button";
 
 export function HeroSection() {
   const { t } = useTranslation();

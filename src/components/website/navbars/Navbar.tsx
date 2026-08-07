@@ -2,10 +2,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiMenu, FiX, FiSun, FiMoon, FiGlobe } from "react-icons/fi";
-import { Container } from "../../components/layout/Container";
-import { useTheme } from "../../hooks/useTheme";
-import logo from "../../assets/logo.png";
-import Button from "../../components/ui/Button";
+import { Container } from "../layout/Container";
+import { useTheme } from "../../../hooks/useTheme";
+import logo from "../../../assets/logo.png";
+import Button from "../../ui/Button";
 import { Link } from "react-router-dom";
 
 const navLinks = [
@@ -34,6 +34,7 @@ export function Navbar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
+        className="bg-background z-0"
       >
         <Container>
           <div className="flex items-center justify-between h-16 lg:h-20">

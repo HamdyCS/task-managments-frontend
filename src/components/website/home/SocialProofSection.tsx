@@ -1,18 +1,18 @@
-import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
-import { Container } from '../../components/layout/Container'
-import { staggerContainer, staggerItem } from '../../animations'
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Container } from "../../../components/website/layout/Container";
+import { staggerContainer, staggerItem } from "../../../animations";
 
 const companies = [
-  { name: 'TechSphere', icon: '🌐' },
-  { name: 'Nova Labs', icon: '🔬' },
-  { name: 'BrightCore', icon: '💡' },
-  { name: 'PixelForge', icon: '📈' },
-  { name: 'QuantumX', icon: '🧠' },
-]
+  { name: "TechSphere", icon: "🌐" },
+  { name: "Nova Labs", icon: "🔬" },
+  { name: "BrightCore", icon: "💡" },
+  { name: "PixelForge", icon: "📈" },
+  { name: "QuantumX", icon: "🧠" },
+];
 
 export function SocialProofSection() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <section className="py-24 border-t border-border/20">
@@ -21,14 +21,14 @@ export function SocialProofSection() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: true, margin: "-50px" }}
           className="text-center"
         >
           <motion.p
             variants={staggerItem}
             className="text-xs font-medium text-muted-foreground mb-12 uppercase tracking-widest"
           >
-            {t('socialProof.title')}
+            {t("socialProof.title")}
           </motion.p>
 
           <motion.div
@@ -48,5 +48,5 @@ export function SocialProofSection() {
         </motion.div>
       </Container>
     </section>
-  )
+  );
 }

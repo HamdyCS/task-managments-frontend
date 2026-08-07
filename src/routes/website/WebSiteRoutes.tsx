@@ -1,7 +1,7 @@
 import type { RouteObject } from "react-router-dom";
 import { HomePage } from "../../pages/HomePage";
 import { NotFoundPage } from "../../pages/NotFoundPage";
-import WebSiteLayout from "../../components/layout/WebSiteLayout";
+import WebSiteLayout from "../../components/website/layout/WebSiteLayout";
 
 const WebSiteRoutes: RouteObject[] = [
   {

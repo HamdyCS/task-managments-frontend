@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
-import { Container } from '../../components/layout/Container'
-import { fadeInUp } from '../../animations'
+import { motion } from "framer-motion";
+import { Container } from "../../../components/website/layout/Container";
+import { fadeInUp } from "../../../animations";
 
 export function FeaturesSection() {
   return (
@@ -10,7 +10,7 @@ export function FeaturesSection() {
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: "-100px" }}
           className="relative"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent blur-3xl -z-10 rounded-[3rem]" />
@@ -25,7 +25,9 @@ export function FeaturesSection() {
                   <div className="w-3 h-3 rounded-full bg-muted-foreground/30" />
                 </div>
               </div>
-              <div className="text-xs font-medium text-muted-foreground">workpilot.com/app</div>
+              <div className="text-xs font-medium text-muted-foreground">
+                workpilot.com/app
+              </div>
               <div className="w-10" />
             </div>
 
@@ -59,5 +61,5 @@ export function FeaturesSection() {
         </motion.div>
       </Container>
     </section>
-  )
+  );
 }

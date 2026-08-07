@@ -1,8 +1,8 @@
-import { HeroSection } from "./home/HeroSection";
-import { FeaturesSection } from "./home/FeaturesSection";
-import { SocialProofSection } from "./home/SocialProofSection";
-import { StatisticsSection } from "./home/StatisticsSection";
-import { CTASection } from "./home/CTASection";
+import { CTASection } from "../components/website/home/CTASection";
+import { FeaturesSection } from "../components/website/home/FeaturesSection";
+import { HeroSection } from "../components/website/home/HeroSection";
+import { SocialProofSection } from "../components/website/home/SocialProofSection";
+import { StatisticsSection } from "../components/website/home/StatisticsSection";
 
 export function HomePage() {
   return (
