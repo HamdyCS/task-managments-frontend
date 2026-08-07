@@ -10,9 +10,10 @@ export function Footer() {
   return (
     <motion.footer
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.2, delay: 0.2, ease: "easeInOut" }}
-      className="w-full mt-10 bg-background z-0 "
+      className="w-full py-5 mt-10 bg-background z-0 "
     >
       <Container>
         <div className="flex flex-col items-center md:flex-row md:justify-between gap-8">

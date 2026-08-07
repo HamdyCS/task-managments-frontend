@@ -4,157 +4,110 @@
 
 - `npm run dev` — start Vite dev server
 - `npm run build` — typecheck (`tsc -b`) then build
-- `npm run lint` — ESLint
+- `npm run lint` — ESLint (flat config, `eslint.config.js`)
 - No test runner configured yet
+
+## Stack
+
+- **React 19** + **TypeScript** + **Vite 8**
+- **Tailwind CSS v4** — CSS-first config via `@tailwindcss/vite`; theme lives in `src/index.css` (`@theme`, CSS variables). No `tailwind.config.js`.
+- **react-router-dom v7** — config-based routes via `useRoutes` / `RouteObject`
+- **framer-motion** — animations; reuse shared variants from `src/animations`
+- **i18next + react-i18next** — `en` (default) + `ar`; RTL toggling
+- **react-icons** — Feather (`Fi*`), Material (`Md*`), etc.
+- **No** axios, react-query, react-hot-toast, or UI component library are installed — the app is currently a marketing/landing frontend with no API integration yet.
 
 ## Architecture
 
-Strict layering — components never call APIs directly.
+Presentational React app — no backend calls yet. Pages compose sections; sections are presentational only.
 
 ```
-Page → Component → Custom Hook → Service → Axios → Backend API
+routes/ → Pages → Section components → shared ui/common components
 ```
 
-- **Components**: presentational only, no business logic, no API calls
-- **Hooks**: React Query logic, state, derived data
-- **Services**: Axios requests only, no React dependencies
-- **Axios**: single instance, interceptors, base URL from env
+- **Pages** (`src/pages/`): compose sections for a route.
+- **Sections** (`src/components/website/<feature>/`): page sections (Hero, Features, etc.).
+- **Layout** (`src/components/website/layout/`): route chrome (Navbar, Footer, Container).
+- **UI** (`src/components/ui/`): small reusable primitives (Button).
+- **Common** (`src/components/common/`): generic building blocks (AnimatedCounter).
+- **Animations** (`src/animations/`): centralized framer-motion `Variants`.
 
 ## Folder Structure
 
 ```
 src/
-  api/          # axios instance + endpoint constants
-  services/     # one service per feature (AuthService, TaskService, etc.)
-  hooks/        # one hook per service method (useLogin, useTasks, etc.)
-  pages/        # route-level components
-  components/   # reusable presentational components
-  layouts/      # layout wrappers (auth, dashboard)
-  routes/       # React Router config
-  types/        # TypeScript interfaces matching backend DTOs
-  config/       # app config
-  i18n/         # react-i18next setup (en, ar)
-  utils/        # pure helper functions
-  assets/       # images, icons
+  assets/       # static images
+  animations/   # framer-motion Variants (fadeIn, fadeInUp, staggerContainer, ...)
+  components/
+    common/     # generic building blocks
+    ui/         # reusable primitives (Button)
+    website/    # marketing site components, grouped by feature
+      home/     # home page sections
+      layout/   # Container, WebSiteLayout
+      navbars/  # Navbar
+      footers/  # Footer
+  hooks/        # app hooks (useTheme)
+  i18n/
+    index.ts    # i18next init
+    locales/
+      en/common.json
+      ar/common.json
+  pages/        # route-level components (HomePage, NotFoundPage, ...)
+  routes/       # React Router config per feature (website/WebSiteRoutes.tsx)
 ```
 
-## API Configuration
+## Styling (Tailwind v4)
 
-Base URL from `.env` — never hardcode:
-
-```
-VITE_API_BASE_URL=http://localhost:5102
-```
-
-## Axios
-
-One instance with:
-- `baseURL` from env
-- `withCredentials: true` (cookie-based auth)
-- request interceptor (attach cookies)
-- response interceptor (normalize errors, handle 401 refresh)
-
-## Endpoints
-
-Define all endpoint paths in `src/api/endpoints.ts` as constants grouped by feature:
-
-```ts
-export const AUTH = {
-  LOGIN: '/api/auth/login',
-  REGISTER_USER: '/api/auth/register-user',
-  // ...
-} as const;
-
-export const WORKSPACES = { ... } as const;
-export const PROJECTS = { ... } as const;
-export const TASKS = { ... } as const;
-// etc.
-```
-
-**Single source of truth**: `BackendReadme.md`. Never guess endpoint paths or DTO shapes.
-
-## React Query
-
-- Queries and mutations only inside hooks
-- Centralize query keys in a `queryKeys.ts` file
-- Always invalidate related queries after mutations
-- Use optimistic updates where it makes sense
-
-## Types
-
-- Create TypeScript interfaces matching backend DTOs exactly
-- Group by feature in `src/types/`
-- Reuse interfaces — no duplicate DTO definitions
-- Enums serialized as strings by backend (e.g. `"InProgress"`, not `2`)
-
-## Authentication
-
-- Cookie-based JWT (HttpOnly cookies: `access_token`, `refresh_token`)
-- Never store tokens in localStorage
-- Axios must send `withCredentials: true`
-- Load current user via React Query (`GET /api/auth`)
-- Support Protected Routes, Guest Routes, Layout Routes
-
-## Routing
-
-React Router organized by feature:
-- `/login`, `/register` — Guest routes
-- `/`, `/workspaces/*`, `/projects/*` — Protected routes
-- Layout routes for shared chrome (sidebar, navbar)
+- All theming via CSS variables in `src/index.css`: `--primary`, `--background`, `--foreground`, `--border`, `--muted-foreground`, etc. — used as `bg-primary`, `text-foreground`, `text-muted-foreground`, `border-border`, `bg-background`, `bg-card`, `bg-muted`, `bg-accent`, `text-destructive`, etc.
+- Dark mode via `.dark` class on `<html>`; `@custom-variant dark` in CSS. Toggle with the `useTheme` hook (persisted in `localStorage`).
+- Prefer design-token utilities over hardcoded hex values.
+- Rounded corners: `rounded-lg`, `rounded-xl`; shadows: `shadow-lg shadow-primary/25`.
+- `bg-grid-pattern` and `glass-panel` custom utilities exist in `src/index.css`.
 
 ## Internationalization
 
-react-i18next with `en` (default) and `ar`. No hardcoded strings in components — use `t('key')`.
+- `t("nav.product")` dot-notation keys; namespaces are per-file JSON (currently `common.json`).
+- Every new feature must include both English (`en`) and Arabic (`ar`) translations.
+- Language toggling updates `document.documentElement.dir` (`rtl`/`ltr`) and `lang`; persisted in `localStorage` under `language`.
+- No hardcoded strings in components — use `t('key')`.
 
-- English is the default language.
-- Every new feature must include both English and Arabic translations.
-- Translation files should be organized by feature whenever possible (e.g. `src/i18n/locales/en/auth.json`).
+## Routing
 
-## Toasts
+- Config-based routes using `RouteObject` arrays returned from `useRoutes`.
+- Route configs live in `src/routes/`, grouped by feature (e.g. `website/WebSiteRoutes.tsx`).
+- Use `<Outlet />` in layouts to render nested children.
+- Routes are wrapped in `<BrowserRouter>` in `src/main.tsx`.
 
-React Hot Toast. Show success/error from hooks, not components.
+## Animation
 
-## Error Handling
-
-Centralize API error parsing in one utility. Backend returns RFC 7807 Problem Details.
+- Define shared framer-motion `Variants` in `src/animations/index.ts` (`fadeIn`, `fadeInUp`, `fadeInDown`, `scaleIn`, `slideInLeft`, `slideInRight`, `staggerContainer`, `staggerItem`).
+- Use `initial`/`animate` (or `whileInView` with `viewport={{ once: true }}`) + `variants` on `motion.*` elements.
+- `AnimatePresence` for enter/exit transitions (e.g. mobile menu).
 
 ## Code Style
 
-- Functional components only
-- Strict TypeScript — no `any`
-- Named exports (except page components which can use default)
-- Small, reusable, single-responsibility components
-- Prefer composition over prop drilling
-- Keep files focused
+- Functional components only; strict TypeScript (no `any`).
+- Named exports for pages, sections, layouts, components, hooks (`export function Foo()`).
+- Default export only for route configs and the app entry (`WebSiteRoutes`, `App`).
+- Small, single-responsibility components; prefer composition over prop drilling.
+- Keep files focused; group static data (e.g. `stats`, `navLinks`) as module-level consts.
+- Existing files mix single-quote (hooks/animations/i18n) and double-quote (pages/components) styles; match the file you're editing.
+- `verbatimModuleSyntax` is on — use `import type` for type-only imports.
 
 ## Naming
 
 | Item | Convention |
 |------|-----------|
-| Hooks | `useSomething` |
-| Services | `SomethingService` |
+| Hooks | `useSomething` (`useTheme`) |
 | Components | `PascalCase.tsx` |
-| Other files | `camelCase.ts` |
-| Interfaces | `SomethingDto` |
-| Enums | `SomethingEnum` |
-| Query keys | `QUERY_KEYS.something` |
-
-## Feature Workflow
-
-When implementing a new backend endpoint:
-
-1. Add endpoint constant to `src/api/endpoints.ts`
-2. Add/confirm DTO types in `src/types/`
-3. Create service method
-4. Create custom hook (React Query)
-5. Build UI components (presentational)
-6. Connect to page via hook
-7. Handle loading/error/success states
-8. Invalidate related queries after mutations
+| Pages | `XxxPage.tsx` |
+| Route configs | `XxxRoutes.tsx` (default export) |
+| Animations | `camelCase` variants (`fadeInUp`) |
+| Translation namespaces | `common.json`, `auth.json`, ... |
 
 ## Backend Reference
 
-`BackendReadme.md` in repo root contains all endpoints, DTOs, auth flow, pagination, roles, SignalR hub, and error formats. Consult it before writing any API integration code. Do not guess.
+`BackendReadme.md` in repo root contains all endpoints, DTOs, auth flow, pagination, roles, SignalR hub, and error formats. Consult it before writing any API integration code. Do not guess. (Not yet used — no API layer exists.)
 
 ## UI Design Source
 

@@ -30,6 +30,19 @@
     "description": "Join leading teams and start working efficiently today.",
     "button": "Get Started Free"
   },
+  "product": {
+    "hero": {
+      "badge": "Everything your team needs",
+      "title": "Manage Projects, Tasks and Teams from One Powerful Workspace",
+      "description": "WorkPilot helps teams plan projects, assign tasks, collaborate in real time, monitor progress and deliver work faster without unnecessary complexity.",
+      "cta": "Start Free"
+    },
+    "cta": {
+      "title": "Ready to transform your team's workflow?",
+      "description": "Join thousands of high-performance teams delivering work faster with WorkPilot. Start your free trial today.",
+      "button": "Start Now"
+    }
+  },
   "notFound": {
     "title": "Page Not Found",
     "description": "The page you're looking for doesn't exist or may have been moved. Let's get you back to managing your work.",
