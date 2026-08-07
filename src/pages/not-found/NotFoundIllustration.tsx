@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FiX, FiSearch, FiImage } from "react-icons/fi";
+import { MdClose, MdSearch, MdBrokenImage } from "react-icons/md";
 
 export function NotFoundIllustration() {
   return (
@@ -18,7 +18,7 @@ export function NotFoundIllustration() {
         className="absolute top-4 left-1/4 bg-card/80 backdrop-blur-md border border-border shadow-sm rounded-lg p-3 flex items-center gap-2 w-32"
       >
         <div className="w-6 h-6 rounded-full bg-destructive/10 flex items-center justify-center">
-          <FiX className="w-4 h-4 text-destructive" />
+          <MdClose className="w-4 h-4 text-destructive" />
         </div>
         <div className="flex-1 space-y-1">
           <div className="h-2 bg-border/50 rounded w-full"></div>
@@ -33,7 +33,7 @@ export function NotFoundIllustration() {
         className="absolute bottom-8 right-1/4 bg-card/80 backdrop-blur-md border border-border shadow-sm rounded-lg p-3 flex items-center gap-2 w-36"
       >
         <div className="w-6 h-6 rounded flex items-center justify-center">
-          <FiSearch className="w-5 h-5 text-primary" />
+          <MdSearch className="w-5 h-5 text-primary" />
         </div>
         <div className="flex-1 space-y-1.5">
           <div className="h-1.5 bg-border/40 rounded w-full"></div>
@@ -48,7 +48,7 @@ export function NotFoundIllustration() {
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         className="absolute top-1/3 right-8 bg-card/80 backdrop-blur-md border border-border/50 shadow-sm rounded-lg p-2 flex items-center justify-center w-12 h-12"
       >
-        <FiImage className="w-6 h-6 text-muted-foreground" />
+        <MdBrokenImage className="w-6 h-6 text-muted-foreground" />
       </motion.div>
 
       {/* Decorative SVG Lines */}

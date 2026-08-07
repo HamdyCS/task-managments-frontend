@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { FiArrowLeft } from "react-icons/fi";
-import { Navbar } from "./home/Navbar";
-import { Footer } from "./home/Footer";
-import { Container } from "../components/layout/Container";
+import { MdArrowBack } from "react-icons/md";
 import { NotFoundIllustration } from "./not-found/NotFoundIllustration";
 import { fadeInUp } from "../animations";
 
@@ -33,7 +30,7 @@ export function NotFoundPage() {
             to="/"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl text-base font-semibold hover:opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-primary/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
-            <FiArrowLeft className="w-5 h-5" />
+            <MdArrowBack className="w-5 h-5" />
             {t("notFound.backToHome")}
           </Link>
         </div>

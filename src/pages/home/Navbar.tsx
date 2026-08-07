@@ -1,9 +1,4 @@
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiMenu, FiX, FiSun, FiMoon, FiGlobe } from "react-icons/fi";
@@ -22,14 +17,8 @@ const navLinks = [
 export function Navbar() {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { scrollY } = useScroll();
   const isAr = i18n.language === "ar";
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 20);
-  });
 
   const toggleLanguage = () => {
     const next = isAr ? "en" : "ar";
