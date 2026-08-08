@@ -17,7 +17,7 @@ const navLinks = [
 export function Navbar() {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isAr = i18n.language === "ar";
 
   const toggleLanguage = () => {
@@ -87,6 +87,13 @@ export function Navbar() {
                 )}
               </button>
 
+              <Link
+                to="/sign-in"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors h-10 px-3 rounded-xl hover:bg-accent inline-flex items-center"
+              >
+                {t("nav.signIn")}
+              </Link>
+
               <div className="w-px h-6 bg-border mx-1" />
 
               <Button
@@ -99,7 +106,7 @@ export function Navbar() {
 
             <button
               type="button"
-              onClick={() => setMobileOpen(true)}
+              onClick={() => setMobileMenuOpen(true)}
               className="md:hidden text-foreground p-2 rounded-xl hover:bg-accent transition-colors"
               aria-label={t("nav.menu")}
             >
@@ -111,7 +118,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {mobileOpen && (
+        {mobileMenuOpen && (
           <>
             <motion.div
               initial={{ opacity: 0 }}
@@ -119,7 +126,7 @@ export function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm md:hidden"
-              onClick={() => setMobileOpen(false)}
+              onClick={() => setMobileMenuOpen(false)}
             />
 
             <motion.div
@@ -135,7 +142,7 @@ export function Navbar() {
                 </span>
                 <button
                   type="button"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => setMobileMenuOpen(false)}
                   className="text-muted-foreground hover:text-foreground p-2 rounded-xl hover:bg-accent transition-colors"
                   aria-label="Close menu"
                 >
@@ -148,7 +155,7 @@ export function Navbar() {
                   <a
                     key={link.key}
                     href={link.href}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={() => setMobileMenuOpen(false)}
                     className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-xl px-4 py-3 transition-colors"
                   >
                     {t(link.key)}
@@ -181,6 +188,13 @@ export function Navbar() {
               </div>
 
               <div className="p-4 border-t border-border">
+                <Link
+                  to="/sign-in"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-center text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-xl px-4 py-3 transition-colors mb-2"
+                >
+                  {t("nav.signIn")}
+                </Link>
                 <Button
                   text={t("nav.getStarted")}
                   to="/sign-up"
