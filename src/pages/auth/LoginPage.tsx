@@ -5,7 +5,15 @@ import { motion } from "framer-motion";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "sonner";
-import { FiEye, FiEyeOff, FiArrowRight, FiSun, FiMoon, FiGlobe } from "react-icons/fi";
+import {
+  FiEye,
+  FiEyeOff,
+  FiArrowRight,
+  FiArrowLeft,
+  FiSun,
+  FiMoon,
+  FiGlobe,
+} from "react-icons/fi";
 import { MdLock, MdCheck } from "react-icons/md";
 import { slideInLeft, slideInRight } from "../../animations";
 import useLogin from "../../hooks/auth/useLogin";
@@ -78,29 +86,47 @@ export function LoginPage() {
           animate="visible"
           className="w-full max-w-[420px] rounded-lg p-8 relative z-10 glass-panel"
         >
-          {/* Theme & Language Toggles */}
-          <div className="flex items-center justify-end gap-1 mb-4">
-            <button
-              type="button"
-              onClick={toggleLanguage}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors h-9 px-2.5 rounded-lg hover:bg-accent inline-flex items-center gap-1.5"
-              aria-label="Toggle language"
-            >
-              <FiGlobe className="w-4 h-4" />
-              {isAr ? "EN" : "عربي"}
-            </button>
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="text-muted-foreground hover:text-foreground transition-colors h-9 w-9 rounded-lg hover:bg-accent inline-flex items-center justify-center"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? (
-                <FiSun className="w-4 h-4" />
-              ) : (
-                <FiMoon className="w-4 h-4" />
-              )}
-            </button>
+          <div className="flex items-center justify-between mb-4">
+            {/* Back Button */}
+            <div className="flex items-center justify-end mb-4">
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="text-muted-foreground hover:text-foreground transition-colors h-10 w-10 rounded-xl hover:bg-accent inline-flex items-center justify-center"
+                aria-label={t("login.back")}
+              >
+                {isAr ? (
+                  <FiArrowRight className="w-5 h-5" />
+                ) : (
+                  <FiArrowLeft className="w-5 h-5" />
+                )}
+              </button>
+            </div>
+
+            {/* Theme & Language Toggles */}
+            <div className="flex items-center justify-end gap-1 mb-4">
+              <button
+                type="button"
+                onClick={toggleLanguage}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors h-9 px-2.5 rounded-lg hover:bg-accent inline-flex items-center gap-1.5"
+                aria-label="Toggle language"
+              >
+                <FiGlobe className="w-4 h-4" />
+                {isAr ? "EN" : "عربي"}
+              </button>
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="text-muted-foreground hover:text-foreground transition-colors h-9 w-9 rounded-lg hover:bg-accent inline-flex items-center justify-center"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? (
+                  <FiSun className="w-4 h-4" />
+                ) : (
+                  <FiMoon className="w-4 h-4" />
+                )}
+              </button>
+            </div>
           </div>
 
           <div className="text-center mb-8">

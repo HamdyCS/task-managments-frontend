@@ -8,6 +8,7 @@ import Button from "../../ui/Button";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../../hooks/theme/useTheme";
 import { useLanguage } from "../../../hooks/language/useLanguage";
+import { useAppSelector } from "../../../store/hooks";
 
 const navLinks = [
   { key: "nav.product", href: "/product" },
@@ -21,6 +22,7 @@ export function Navbar() {
   const { language, changeLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isAr = language === "ar";
+  const currentUser = useAppSelector((state) => state.auth.user);
 
   const toggleLanguage = () => {
     changeLanguage(isAr ? "en" : "ar");
@@ -85,21 +87,30 @@ export function Navbar() {
                 )}
               </button>
 
-              <Link
-                to="/sign-in"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors h-10 px-3 rounded-xl hover:bg-accent inline-flex items-center"
-              >
-                {t("nav.signIn")}
-              </Link>
-
-              <div className="w-px h-6 bg-border mx-1" />
-
-              <Button
-                text={t("nav.getStarted")}
-                to="/sign-up"
-                type="link"
-                className="text-sm"
-              />
+              {currentUser ? (
+                <Button
+                  text={t("nav.dashboard")}
+                  to="/dashboard"
+                  type="link"
+                  className="text-sm"
+                />
+              ) : (
+                <>
+                  <Link
+                    to="/sign-in"
+                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors h-10 px-3 rounded-xl hover:bg-accent inline-flex items-center"
+                  >
+                    {t("nav.signIn")}
+                  </Link>
+                  <div className="w-px h-6 bg-border mx-1" />
+                  <Button
+                    text={t("nav.getStarted")}
+                    to="/sign-up"
+                    type="link"
+                    className="text-sm"
+                  />
+                </>
+              )}
             </div>
 
             <button
@@ -186,19 +197,30 @@ export function Navbar() {
               </div>
 
               <div className="p-4 border-t border-border">
-                <Link
-                  to="/sign-in"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-xl px-4 py-3 transition-colors mb-2"
-                >
-                  {t("nav.signIn")}
-                </Link>
-                <Button
-                  text={t("nav.getStarted")}
-                  to="/sign-up"
-                  type="link"
-                  className="w-full"
-                />
+                {currentUser ? (
+                  <Button
+                    text={t("nav.dashboard")}
+                    to="/dashboard"
+                    type="link"
+                    className="w-full"
+                  />
+                ) : (
+                  <>
+                    <Link
+                      to="/sign-in"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-center text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-xl px-4 py-3 transition-colors mb-2"
+                    >
+                      {t("nav.signIn")}
+                    </Link>
+                    <Button
+                      text={t("nav.getStarted")}
+                      to="/sign-up"
+                      type="link"
+                      className="w-full"
+                    />
+                  </>
+                )}
               </div>
             </motion.div>
           </>

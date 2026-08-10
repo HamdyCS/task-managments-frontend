@@ -1,8 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "sonner";
-import { useTheme } from "./hooks/theme/useTheme";
+import { Provider } from "react-redux";
+import { ThemedToaster } from "./components/common/ThemedToaster";
+import store from "./store";
 import "./i18n";
 import "./index.css";
 import App from "./App.tsx";
@@ -10,18 +11,15 @@ import { BrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
-function ThemedToaster() {
-  const { theme } = useTheme();
-  return <Toaster theme={theme} position="top-center" richColors />;
-}
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <App />
-        <ThemedToaster />
-      </BrowserRouter>
-    </QueryClientProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <App />
+          <ThemedToaster />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </Provider>
   </StrictMode>,
 );

@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import config from "../../config";
 
 const GoogleIcon = () => (
   <svg
@@ -25,6 +26,10 @@ const GoogleIcon = () => (
   </svg>
 );
 
+function handleGoogleLogin() {
+  const returnUrl = `${window.location.origin}/auth/callback`;
+  window.location.href = `${config.BaseApiURl}${config.auth.googleLogin}?returnUrl=${encodeURIComponent(returnUrl)}`;
+}
 
 export function SocialLoginProviders() {
   const { t } = useTranslation();
@@ -33,6 +38,7 @@ export function SocialLoginProviders() {
     <div className="space-y-3">
       <button
         type="button"
+        onClick={handleGoogleLogin}
         className="w-full flex items-center justify-center gap-3 py-2.5 border border-border rounded-lg bg-card hover:bg-muted transition-colors text-sm font-medium text-foreground shadow-sm cursor-pointer"
       >
         <GoogleIcon />

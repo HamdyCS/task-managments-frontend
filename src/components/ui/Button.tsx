@@ -45,7 +45,8 @@ export default function Button({
           disabled={isLoading || disabled}
           whileHover={{ scale: isLoading ? 1 : 1.02 }}
           whileTap={{ scale: isLoading ? 1 : 0.98 }}
-          className={`bg-primary text-primary-foreground px-8 h-12 rounded-xl text-base font-semibold inline-flex items-center justify-center gap-2 shadow-lg shadow-primary/25 disabled:opacity-70 disabled:cursor-not-allowed ${className}`}
+          className={`bg-primary text-primary-foreground px-8 h-12 rounded-xl text-base font-semibold inline-flex items-center justify-center gap-2 shadow-lg shadow-primary/25 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer
+            ${className}`}
         >
           {isLoading ? (
             <span className="size-5 animate-spin rounded-full border-2 border-current border-t-transparent" />

@@ -3,6 +3,7 @@
     "product": "Product",
     "solutions": "Solutions",
     "features": "Features",
+    "dashboard": "Dashboard",
     "signIn": "Sign In",
     "getStarted": "Get Started Free",
     "menu": "Menu"
@@ -145,6 +146,7 @@
     "password": "Password",
     "forgotPassword": "Forgot password?",
     "submit": "Sign In",
+    "back": "Back",
     "or": "OR",
     "google": "Continue with Google",
     "microsoft": "Continue with Microsoft",
@@ -166,6 +168,13 @@
       "generic": "Login failed. Please try again.",
       "invalidCredentials": "Invalid email or password."
     }
+  },
+  "callback": {
+    "signingIn": "Signing you in...",
+    "pleaseWait": "Please wait while we complete your authentication.",
+    "error": "An error occurred while logging in. Please try again.",
+    "success": "Signed in successfully",
+    "redirecting": "Redirecting to sign in..."
   },
   "footer": {
     "description": "An all-in-one platform for project and task management for modern teams.",
