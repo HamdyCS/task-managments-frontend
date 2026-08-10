@@ -138,6 +138,35 @@
       }
     }
   },
+  "login": {
+    "title": "Sign In",
+    "subtitle": "Sign in to continue to your workspace.",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "submit": "Sign In",
+    "or": "OR",
+    "google": "Continue with Google",
+    "microsoft": "Continue with Microsoft",
+    "noAccount": "Don't have an account?",
+    "createAccount": "Create account",
+    "trust": "Your data is protected with encryption",
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters"
+    },
+    "features": {
+      "projects": "Projects & Tasks",
+      "collaboration": "Team Collaboration",
+      "analytics": "Reports & Analytics"
+    },
+    "error": {
+      "generic": "Login failed. Please try again.",
+      "invalidCredentials": "Invalid email or password."
+    }
+  },
   "footer": {
     "description": "An all-in-one platform for project and task management for modern teams.",
     "share": "Share",

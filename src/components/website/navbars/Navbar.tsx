@@ -3,10 +3,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiMenu, FiX, FiSun, FiMoon, FiGlobe } from "react-icons/fi";
 import { Container } from "../layout/Container";
-import { useTheme } from "../../../hooks/useTheme";
 import logo from "../../../assets/logo.png";
 import Button from "../../ui/Button";
 import { Link } from "react-router-dom";
+import { useTheme } from "../../../hooks/theme/useTheme";
+import { useLanguage } from "../../../hooks/language/useLanguage";
 
 const navLinks = [
   { key: "nav.product", href: "/product" },
@@ -15,17 +16,14 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
+  const { language, changeLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isAr = i18n.language === "ar";
+  const isAr = language === "ar";
 
   const toggleLanguage = () => {
-    const next = isAr ? "en" : "ar";
-    i18n.changeLanguage(next);
-    localStorage.setItem("language", next);
-    document.documentElement.dir = next === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = next;
+    changeLanguage(isAr ? "en" : "ar");
   };
 
   return (
