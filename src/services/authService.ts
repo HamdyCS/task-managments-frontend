@@ -12,12 +12,12 @@ export async function login(loginDto: LoginDto) {
 }
 
 export async function getCurrentUser(): Promise<UserDto> {
-  const { data } = await authApi.get<UserDto>(config.auth.currentUser);
+  const { data } = await api.get<UserDto>(config.auth.currentUser);
   return data;
 }
 
 export async function refreshToken() {
-  await api.post(config.auth.refreshToken);
+  await authApi.post(config.auth.refreshToken);
 }
 
 export async function sendOtp(dto: SendOtpDto) {
