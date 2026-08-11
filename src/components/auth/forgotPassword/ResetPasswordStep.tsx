@@ -5,9 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FiArrowRight, FiArrowLeft, FiEye, FiEyeOff } from "react-icons/fi";
 import Button from "../../ui/Button";
-
-const PASSWORD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+=-]).*$/;
+import { PASSWORD_REGEX } from "../../../common/Regex";
 
 interface ResetPasswordStepProps {
   onSubmit: (newPassword: string) => void;

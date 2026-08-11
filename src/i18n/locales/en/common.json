@@ -139,6 +139,69 @@
       }
     }
   },
+  "register": {
+    "title": "Create Account",
+    "subtitle": "Create your account and start using WorkPilot.",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "firstNamePlaceholder": "Enter first name",
+    "lastNamePlaceholder": "Enter last name",
+    "email": "Email",
+    "dob": "Date of Birth",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "submit": "Create Account",
+    "or": "OR",
+    "google": "Continue with Google",
+    "hasAccount": "Already have an account?",
+    "signIn": "Sign In",
+    "passwordChecks": {
+      "length": "At least 8 characters",
+      "upper": "At least one uppercase letter",
+      "number": "At least one number",
+      "special": "At least one special character"
+    },
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "dobRequired": "Date of birth is required",
+      "age": "You must be at least 18 years old",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordRegex": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+      "confirmRequired": "Please confirm your password",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "success": {
+      "message": "Account created successfully. Please check your email for verification."
+    },
+    "error": {
+      "generic": "Registration failed. Please try again."
+    }
+  },
+  "verifyEmail": {
+    "title": "Check your email",
+    "subtitle": "We've sent a confirmation link to your email address. Please check your inbox and click the link to activate your account.",
+    "backToLogin": "Back to Sign In"
+  },
+  "confirmEmail": {
+    "loading": {
+      "title": "Confirming your email",
+      "subtitle": "Please wait while we verify your account."
+    },
+    "success": {
+      "title": "Email confirmed",
+      "subtitle": "Your email has been verified successfully. You can now sign in to your account.",
+      "backToLogin": "Return to Sign In"
+    },
+    "failure": {
+      "title": "Confirmation failed",
+      "subtitle": "This confirmation link is invalid or has expired. Please register again to receive a new link.",
+      "backToRegister": "Return to Sign Up"
+    }
+  },
   "login": {
     "title": "Sign In",
     "subtitle": "Sign in to continue to your workspace.",
