@@ -4,11 +4,13 @@ import type UserDto from "../../dtos/auth/UserDto";
 interface AuthState {
   user: UserDto | null;
   isAuthenticated: boolean;
+  forgotPasswordNewPassword: string;
 }
 
 const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
+  forgotPasswordNewPassword: "",
 };
 
 const authSlice = createSlice({
@@ -23,9 +25,15 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
     },
+    setForgotPasswordNewPassword: (state, action: PayloadAction<string>) => {
+      state.forgotPasswordNewPassword = action.payload;
+    },
+    clearForgotPasswordNewPassword: (state) => {
+      state.forgotPasswordNewPassword = "";
+    },
   },
 });
 
-export const { setUser, clearUser } = authSlice.actions;
+export const { setUser, clearUser, setForgotPasswordNewPassword, clearForgotPasswordNewPassword } = authSlice.actions;
 
 export default authSlice.reducer;

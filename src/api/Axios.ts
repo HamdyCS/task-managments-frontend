@@ -2,7 +2,14 @@ import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
 import config from "../config";
 import { refreshToken } from "../services/authService";
 
-export const Axios = axios.create({
+//for auth endpoints
+export const authApi = axios.create({
+  baseURL: config.BaseApiURl,
+  withCredentials: true,
+});
+
+//for all endpoints need access token and refresh token
+export const api = axios.create({
   baseURL: config.BaseApiURl,
   withCredentials: true,
 });
@@ -32,7 +39,7 @@ function processQueue(error: any | null) {
   failedQueue = [];
 }
 
-Axios.interceptors.response.use(
+api.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     //get original request
@@ -58,7 +65,7 @@ Axios.interceptors.response.use(
       })
         .then(() => {
           //retry request
-          return Axios(originalRequest);
+          return api(originalRequest);
         })
         .catch((err) => {
           //send error
@@ -80,7 +87,7 @@ Axios.interceptors.response.use(
       processQueue(null);
 
       //retry request
-      return Axios(originalRequest);
+      return api(originalRequest);
     } catch (error) {
       //process queue with error
       processQueue(error);

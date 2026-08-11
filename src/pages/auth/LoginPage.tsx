@@ -44,9 +44,8 @@ export function LoginPage() {
       toast.success(t("login.title"));
       navigate("/");
     },
-    onError: (error) => {
-      const data = error.response?.data as { message?: string } | undefined;
-      const message = data?.message || t("login.error.generic");
+    onError: () => {
+      const message = t("login.error.generic");
       toast.error(message);
       setServerError(message);
     },

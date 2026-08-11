@@ -176,6 +176,58 @@
     "success": "Signed in successfully",
     "redirecting": "Redirecting to sign in..."
   },
+  "forgotPassword": {
+    "sendOtp": {
+      "title": "Forgot your password?",
+      "subtitle": "Enter your email and we'll send you a verification code.",
+      "email": "Email",
+      "submit": "Send Verification Code",
+      "backToLogin": "Back to Sign In",
+      "validation": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email"
+      },
+      "error": {
+        "title": "Failed to send verification code",
+        "description": "Please check the email and try again."
+      }
+    },
+    "checkOtp": {
+      "title": "Verify your email",
+      "subtitle": "Enter the 6-digit code sent to your email.",
+      "submit": "Continue",
+      "resend": "Resend Code",
+      "didntReceive": "Didn't receive the code?",
+      "seconds": "{{count}} seconds",
+      "backToLogin": "Back to Sign In"
+    },
+    "resetPassword": {
+      "title": "Create new password",
+      "subtitle": "Choose a strong password for your account.",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "submit": "Continue",
+      "backToLogin": "Back to Sign In",
+      "hint": "At least 8 characters, one uppercase, one lowercase, one number, and one special character.",
+      "validation": {
+        "passwordRequired": "Password is required",
+        "passwordMin": "Password must be at least 8 characters",
+        "passwordMax": "Password must be at most 80 characters",
+        "passwordRegex": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+        "confirmRequired": "Please confirm your password",
+        "passwordMismatch": "Passwords do not match"
+      }
+    },
+    "success": {
+      "title": "Password reset successful",
+      "subtitle": "Your password has been updated successfully. You can now sign in using your new password.",
+      "backToLogin": "Back to Sign In"
+    },
+    "error": {
+      "title": "Failed to reset password",
+      "description": "Please check the verification code and try again."
+    }
+  },
   "footer": {
     "description": "An all-in-one platform for project and task management for modern teams.",
     "share": "Share",
