@@ -5,12 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "sonner";
-import {
-  FiArrowRight,
-  FiArrowLeft,
-  FiEye,
-  FiEyeOff,
-} from "react-icons/fi";
+import { FiArrowRight, FiArrowLeft, FiEye, FiEyeOff } from "react-icons/fi";
 import { MdCheck } from "react-icons/md";
 import useSendOtp from "../../hooks/auth/useSendOtp";
 import useResendOtp from "../../hooks/auth/useResendOtp";
@@ -44,14 +39,12 @@ export function ForgotPasswordPage() {
   const [timeLeft, setTimeLeft] = useState(RESEND_TIMER_SECONDS);
   const otpInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Clean up Redux on unmount
   useEffect(() => {
     return () => {
       dispatch(clearForgotPasswordNewPassword());
     };
   }, [dispatch]);
 
-  // Send OTP
   const sendOtpMutation = useSendOtp({
     onSuccess: () => {
       setStep("checkOtp");
@@ -63,7 +56,6 @@ export function ForgotPasswordPage() {
     },
   });
 
-  // Resend OTP
   const resendOtpMutation = useResendOtp({
     onSuccess: () => {
       setTimeLeft(RESEND_TIMER_SECONDS);
@@ -77,7 +69,6 @@ export function ForgotPasswordPage() {
     },
   });
 
-  // Reset Password (ForgetPasswordApi)
   const resetPasswordMutation = useResetPassword({
     onSuccess: () => {
       toast.success(t("forgotPassword.success.title"));
@@ -89,7 +80,6 @@ export function ForgotPasswordPage() {
     },
   });
 
-  // Countdown timer
   useEffect(() => {
     if (step !== "checkOtp") return;
     if (timeLeft <= 0) return;
@@ -106,7 +96,19 @@ export function ForgotPasswordPage() {
     resendOtpMutation.mutateAsync({ email });
   }, [timeLeft, email, resendOtpMutation]);
 
-  // Step 1: Reset Password form (new password + confirm)
+  const sendOtpFormik = useFormik({
+    initialValues: { email: "" },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email(t("forgotPassword.sendOtp.validation.emailInvalid"))
+        .required(t("forgotPassword.sendOtp.validation.emailRequired")),
+    }),
+    onSubmit: (values) => {
+      setEmail(values.email);
+      sendOtpMutation.mutateAsync({ email: values.email });
+    },
+  });
+
   const resetPasswordFormik = useFormik({
     initialValues: { newPassword: "", confirmPassword: "" },
     validationSchema: Yup.object({
@@ -131,21 +133,6 @@ export function ForgotPasswordPage() {
     },
   });
 
-  // Step 2: Send OTP form (email)
-  const sendOtpFormik = useFormik({
-    initialValues: { email: "" },
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email(t("forgotPassword.sendOtp.validation.emailInvalid"))
-        .required(t("forgotPassword.sendOtp.validation.emailRequired")),
-    }),
-    onSubmit: (values) => {
-      setEmail(values.email);
-      sendOtpMutation.mutateAsync({ email: values.email });
-    },
-  });
-
-  // Step 3: Check OTP submit → call ForgetPasswordApi
   const handleOtpSubmit = () => {
     const otpValue = otp.join("");
     if (otpValue.length !== OTP_LENGTH) return;
@@ -156,7 +143,6 @@ export function ForgotPasswordPage() {
     });
   };
 
-  // OTP input handling
   const handleOtpChange = (index: number, value: string) => {
     if (value.length > 1) {
       value = value.slice(-1);
@@ -298,9 +284,7 @@ export function ForgotPasswordPage() {
                 />
                 <button
                   type="button"
-                  onClick={() =>
-                    setShowConfirmPassword(!showConfirmPassword)
-                  }
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors focus:outline-none"
                 >
                   {showConfirmPassword ? (
@@ -382,10 +366,7 @@ export function ForgotPasswordPage() {
             </p>
           </div>
 
-          <form
-            onSubmit={sendOtpFormik.handleSubmit}
-            className="space-y-5"
-          >
+          <form onSubmit={sendOtpFormik.handleSubmit} className="space-y-5">
             <div>
               <label
                 htmlFor="email"
@@ -404,12 +385,11 @@ export function ForgotPasswordPage() {
                 value={sendOtpFormik.values.email}
                 className="w-full px-4 py-2.5 bg-card border border-border rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm text-foreground text-left shadow-sm"
               />
-              {sendOtpFormik.touched.email &&
-                sendOtpFormik.errors.email && (
-                  <p className="mt-1 text-xs text-destructive">
-                    {sendOtpFormik.errors.email}
-                  </p>
-                )}
+              {sendOtpFormik.touched.email && sendOtpFormik.errors.email && (
+                <p className="mt-1 text-xs text-destructive">
+                  {sendOtpFormik.errors.email}
+                </p>
+              )}
             </div>
 
             <Button
@@ -440,7 +420,7 @@ export function ForgotPasswordPage() {
         </motion.div>
       )}
 
-      {/* Step 3: Check OTP */}
+      {/* Step 3: Check OTP and reset password */}
       {step === "checkOtp" && (
         <motion.div
           key="checkOtp"
@@ -466,10 +446,7 @@ export function ForgotPasswordPage() {
             }}
             className="space-y-5"
           >
-            <div
-              className="flex justify-between gap-2 sm:gap-3"
-              dir="ltr"
-            >
+            <div className="flex justify-between gap-2 sm:gap-3" dir="ltr">
               {Array.from({ length: OTP_LENGTH }).map((_, index) => (
                 <input
                   key={index}
@@ -483,7 +460,7 @@ export function ForgotPasswordPage() {
                   onChange={(e) => handleOtpChange(index, e.target.value)}
                   onKeyDown={(e) => handleOtpKeyDown(index, e)}
                   onPaste={index === 0 ? handleOtpPaste : undefined}
-                  className="w-11 h-13 sm:w-13 sm:h-15 text-center text-xl font-bold bg-card border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-foreground [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="flex-1 min-w-0 h-13 sm:w-13 sm:h-15 text-center text-xl font-bold bg-card border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-foreground [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               ))}
             </div>
@@ -516,7 +493,7 @@ export function ForgotPasswordPage() {
                 type="button"
                 onClick={handleResendOtp}
                 disabled={resendOtpMutation.isPending}
-                className="text-primary font-medium hover:text-primary/80 transition-colors disabled:opacity-50"
+                className="text-primary font-medium hover:text-primary/80 transition-colors disabled:opacity-50 cursor-pointer"
               >
                 {t("forgotPassword.checkOtp.resend")}
               </button>
