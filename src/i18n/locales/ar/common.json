@@ -308,6 +308,7 @@
       "ofCompleted": "من {{total}} مهمة مكتملة"
     },
     "taskDistribution": "توزيع المهام",
+    "numberOfTasks": "عدد المهام",
     "viewReport": "عرض التقرير",
     "recentActivity": "النشاط الأخير",
     "noActiveTasks": "لا توجد مهام نشطة",
@@ -326,7 +327,7 @@
       "workspace": "مساحة العمل",
       "analytics": "التحليلات",
       "dashboard": "لوحة التحكم",
-      "myTasks": "مهامي",
+      "tasks": "المهام",
       "notifications": "الإشعارات",
       "projects": "المشاريع",
       "team": "الفريق",

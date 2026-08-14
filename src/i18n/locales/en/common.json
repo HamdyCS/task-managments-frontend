@@ -308,6 +308,7 @@
       "ofCompleted": "of {{total}} tasks completed"
     },
     "taskDistribution": "Task Distribution",
+    "numberOfTasks": "Number of Tasks",
     "viewReport": "View report",
     "recentActivity": "Recent Activity",
     "noActiveTasks": "No active tasks",
@@ -326,7 +327,7 @@
       "workspace": "Workspace",
       "analytics": "Analytics",
       "dashboard": "Dashboard",
-      "myTasks": "My Tasks",
+      "tasks": "Tasks",
       "notifications": "Notifications",
       "projects": "Projects",
       "team": "Team",

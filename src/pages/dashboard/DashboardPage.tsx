@@ -48,8 +48,12 @@ export default function DashboardPage() {
     return <NoWorkspace />;
   }
 
-  const { stats, tasksByStatusReportDtos, activeTasks, unReadNotifications } =
-    dashboardData;
+  const {
+    stats,
+    tasksByStatusReportDtos,
+    latestActiveTasks: activeTasks,
+    unReadNotifications,
+  } = dashboardData;
 
   return (
     <div className="space-y-6 pb-6">

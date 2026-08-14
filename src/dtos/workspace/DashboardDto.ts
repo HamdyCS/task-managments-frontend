@@ -33,6 +33,6 @@ export interface DashboardDto {
   stats: DashboardStats;
   tasksByStatusReportDtos: TaskByStatus[];
   tasksByPriorityReportDtos: TaskByPriority[];
-  activeTasks: ActiveTask[];
+  latestActiveTasks: ActiveTask[];
   unReadNotifications: Notification[];
 }

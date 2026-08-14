@@ -48,7 +48,7 @@ export default function DashboardSidebar({
         },
         {
           icon: <FiCheckSquare size={20} />,
-          label: t("dashboard.sidebar.myTasks"),
+          label: t("dashboard.sidebar.tasks"),
           to: `/dashboard/tasks?workspaceId=${workspaceId}`,
           section: "tasks",
         },
@@ -161,7 +161,7 @@ export default function DashboardSidebar({
                bg-black/50 z-50 lg:hidden"
               onClick={onClose}
             />
-            <motion.nav
+            <motion.aside
               initial={{ x: i18n.dir() === "rtl" ? 260 : -260 }}
               animate={{ x: 0 }}
               exit={{ x: i18n.dir() === "rtl" ? 260 : -260 }}
@@ -170,12 +170,12 @@ export default function DashboardSidebar({
             >
               <button
                 onClick={onClose}
-                className="absolute top-4 lrt:right-4 rtl:left-4 text-muted-foreground hover:text-card-foreground"
+                className="absolute top-4 ltr:right-4 rtl:left-4  text-muted-foreground hover:text-card-foreground"
               >
                 <FiX size={20} />
               </button>
               {sidebarContent}
-            </motion.nav>
+            </motion.aside>
           </>
         )}
       </AnimatePresence>
