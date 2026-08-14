@@ -6,9 +6,9 @@ import { Container } from "../layout/Container";
 import logo from "../../../assets/logo.png";
 import Button from "../../ui/Button";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../../hooks/theme/useTheme";
 import { useLanguage } from "../../../hooks/language/useLanguage";
-import { useAppSelector } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { toggleTheme } from "../../../store/theme/theme";
 
 const navLinks = [
   { key: "nav.product", href: "/product" },
@@ -18,7 +18,8 @@ const navLinks = [
 
 export function Navbar() {
   const { t } = useTranslation();
-  const { theme, toggleTheme } = useTheme();
+  const theme = useAppSelector((state) => state.theme);
+  const dispatch = useAppDispatch();
   const { language, changeLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isAr = language === "ar";
@@ -76,7 +77,7 @@ export function Navbar() {
 
               <button
                 type="button"
-                onClick={toggleTheme}
+                onClick={() => dispatch(toggleTheme())}
                 className="text-muted-foreground hover:text-foreground transition-colors h-10 w-10 rounded-xl hover:bg-accent inline-flex items-center justify-center"
                 aria-label="Toggle theme"
               >
@@ -184,7 +185,7 @@ export function Navbar() {
 
                 <button
                   type="button"
-                  onClick={toggleTheme}
+                  onClick={() => dispatch(toggleTheme())}
                   className="flex items-center gap-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-xl px-4 py-3 transition-colors"
                 >
                   {theme === "dark" ? (

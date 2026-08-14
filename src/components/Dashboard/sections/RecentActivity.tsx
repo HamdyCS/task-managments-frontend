@@ -1,42 +1,57 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { fadeIn } from "../../../animations";
+import type { Notification } from "../../../dtos/notification/Notification";
+import type { NotificationType } from "../../../types/NotificationType";
 
-interface ActivityItem {
-  id: number;
-  dotColor: string;
-  text: string;
-  timestamp: string;
+interface RecentActivityProps {
+  unReadNotifications: Notification[];
 }
 
-const FALLBACK_ACTIVITIES: ActivityItem[] = [
-  {
-    id: 1,
-    dotColor: "bg-primary",
-    text: 'Alex moved <span class="font-medium text-primary">Homepage Redesign</span> to In Progress',
-    timestamp: "10 mins ago",
-  },
-  {
-    id: 2,
-    dotColor: "bg-success",
-    text: 'Maria completed <span class="font-medium text-primary">API Documentation</span>',
-    timestamp: "1 hour ago",
-  },
-  {
-    id: 3,
-    dotColor: "bg-muted-foreground",
-    text: 'You commented on <span class="font-medium text-primary">Auth Module</span>',
-    timestamp: "2 hours ago",
-  },
-  {
-    id: 4,
-    dotColor: "bg-destructive",
-    text: 'System marked <span class="font-medium text-primary">DB Migration</span> as overdue',
-    timestamp: "Yesterday",
-  },
-];
+function getNotificationColors(type: NotificationType): {
+  dot: string;
+  title: string;
+} {
+  switch (type) {
+    case "TaskAssigned":
+      return { dot: "bg-primary", title: "text-primary" };
+    case "TaskUnassigned":
+      return { dot: "bg-muted-foreground", title: "text-muted-foreground" };
+    case "TaskStatusUpdated":
+      return { dot: "bg-success", title: "text-success" };
+    case "TaskUpdated":
+      return { dot: "bg-primary", title: "text-primary" };
+    case "CommentAdded":
+      return { dot: "bg-muted-foreground", title: "text-muted-foreground" };
+    case "DueDateReminder":
+      return { dot: "bg-destructive", title: "text-destructive" };
+    case "TaskDeleted":
+      return { dot: "bg-destructive", title: "text-destructive" };
+    case "WorkSpaceInvite":
+      return { dot: "bg-success", title: "text-success" };
+    default:
+      return { dot: "bg-muted-foreground", title: "text-muted-foreground" };
+  }
+}
 
-export default function RecentActivity() {
+function formatTimeAgo(dateString: string): string {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+
+  if (diffMins < 1) return "Just now";
+  if (diffMins < 60) return `${diffMins} mins ago`;
+  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
+  if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
+  return date.toLocaleDateString();
+}
+
+export default function RecentActivity({
+  unReadNotifications,
+}: RecentActivityProps) {
   const { t } = useTranslation();
 
   return (
@@ -50,22 +65,33 @@ export default function RecentActivity() {
         {t("dashboard.recentActivity")}
       </h2>
       <div className="flex-1 overflow-y-auto pr-2 space-y-4">
-        {FALLBACK_ACTIVITIES.map((item) => (
-          <div key={item.id} className="flex gap-3">
-            <div
-              className={`w-2 h-2 rounded-full ${item.dotColor} mt-2 shrink-0`}
-            />
-            <div>
-              <div
-                className="text-sm text-card-foreground"
-                dangerouslySetInnerHTML={{ __html: item.text }}
-              />
-              <div className="text-xs text-muted-foreground mt-0.5">
-                {item.timestamp}
+        {unReadNotifications.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            {t("dashboard.noNotifications")}
+          </p>
+        ) : (
+          unReadNotifications.map((notification) => {
+            const colors = getNotificationColors(notification.notificationType);
+            return (
+              <div key={notification.id} className="flex gap-3">
+                <div
+                  className={`w-2 h-2 rounded-full ${colors.dot} mt-2 shrink-0`}
+                />
+                <div>
+                  <div className={`text-sm font-medium ${colors.title}`}>
+                    {notification.title}
+                  </div>
+                  <div className="text-sm text-card-foreground">
+                    {notification.message}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-0.5">
+                    {formatTimeAgo(notification.createdAt)}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            );
+          })
+        )}
       </div>
     </motion.div>
   );

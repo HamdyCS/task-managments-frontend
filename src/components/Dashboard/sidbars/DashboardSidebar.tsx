@@ -145,7 +145,7 @@ export default function DashboardSidebar({
   return (
     <>
       {/* Desktop Sidebar */}
-      <nav className="hidden lg:flex fixed  ltr:left-0 rtl:right-0 top-0 h-full w-[260px] bg-card border-r flex-col py-4 z-50 ">
+      <nav className="hidden lg:flex fixed  ltr:left-0 rtl:right-0 top-0 h-full w-[260px] bg-card ltr:border-r rtl:border-l flex-col py-4 z-50 ">
         {sidebarContent}
       </nav>
 

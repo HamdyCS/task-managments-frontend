@@ -1,3 +1,5 @@
+import type { Notification } from "../notification/Notification";
+
 export interface DashboardStats {
   totalProjects: number;
   totalTasks: number;
@@ -26,11 +28,11 @@ export interface ActiveTask {
   deadLine: string;
 }
 
-export interface WorkSpaceDashboardDto {
+export interface DashboardDto {
   workspace: { id: number; name: string };
   stats: DashboardStats;
   tasksByStatusReportDtos: TaskByStatus[];
   tasksByPriorityReportDtos: TaskByPriority[];
   activeTasks: ActiveTask[];
-  unReadNotifications: unknown[];
+  unReadNotifications: Notification[];
 }

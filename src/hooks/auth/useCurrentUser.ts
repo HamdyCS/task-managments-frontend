@@ -9,7 +9,10 @@ import { clearUser, setUser } from "../../store/auth/authSlice";
 export default function useCurrentUser() {
   const appDispatch = useAppDispatch();
 
-  const { data, isError, isSuccess, error } = useQuery<UserDto, AxiosError>({
+  const { data, isError, isSuccess, error, isPending } = useQuery<
+    UserDto,
+    AxiosError
+  >({
     queryKey: ["currentUser"],
     queryFn: getCurrentUser,
     retry: false,
@@ -23,7 +26,7 @@ export default function useCurrentUser() {
     if (isError) {
       appDispatch(clearUser());
     }
-  }, [data, isError, isSuccess, error]);
+  }, [data, isError, isSuccess, error, isPending]);
 
-  return { data, isError, isSuccess };
+  return { data, isError, isSuccess, isPending };
 }

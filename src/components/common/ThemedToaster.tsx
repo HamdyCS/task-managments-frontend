@@ -1,7 +1,7 @@
 import { Toaster } from "sonner";
-import { useTheme } from "../../hooks/theme/useTheme";
+import { useAppSelector } from "../../store/hooks";
 
 export function ThemedToaster() {
-  const { theme } = useTheme();
+  const theme = useAppSelector((state) => state.theme);
   return <Toaster theme={theme} position="top-center" richColors />;
 }

@@ -310,6 +310,8 @@
     "taskDistribution": "Task Distribution",
     "viewReport": "View report",
     "recentActivity": "Recent Activity",
+    "noActiveTasks": "No active tasks",
+    "noNotifications": "No notifications",
     "activeTasks": "Active Tasks",
     "viewAll": "View all",
     "teamPerformance": "Team Performance",

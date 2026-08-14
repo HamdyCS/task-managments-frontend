@@ -310,6 +310,8 @@
     "taskDistribution": "توزيع المهام",
     "viewReport": "عرض التقرير",
     "recentActivity": "النشاط الأخير",
+    "noActiveTasks": "لا توجد مهام نشطة",
+    "noNotifications": "لا توجد إشعارات",
     "activeTasks": "المهام النشطة",
     "viewAll": "عرض الكل",
     "teamPerformance": "أداء الفريق",

@@ -3,7 +3,7 @@ import { FiArrowRight, FiFilter } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../animations";
-import type { ActiveTask } from "../../../dtos/workspace/WorkSpaceDashboardDto";
+import type { ActiveTask } from "../../../dtos/workspace/DashboardDto";
 
 interface Props {
   tasks: ActiveTask[];
@@ -87,7 +87,10 @@ export default function ActiveTasksTable({ tasks, workspaceId }: Props) {
           <tbody className="text-sm divide-y divide-border/50">
             {tasks.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-muted-foreground">
+                <td
+                  colSpan={5}
+                  className="p-8 text-center text-muted-foreground"
+                >
                   No active tasks
                 </td>
               </tr>
@@ -105,7 +108,9 @@ export default function ActiveTasksTable({ tasks, workspaceId }: Props) {
                       #{String(task.id).padStart(3, "0")}
                     </div>
                   </td>
-                  <td className="p-4 text-muted-foreground">{task.projectName}</td>
+                  <td className="p-4 text-muted-foreground">
+                    {task.projectName}
+                  </td>
                   <td className="p-4">
                     <span
                       className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${PRIORITY_STYLES[task.priority] ?? "bg-muted text-muted-foreground"}`}

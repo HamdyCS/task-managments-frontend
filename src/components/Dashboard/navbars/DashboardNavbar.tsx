@@ -12,9 +12,9 @@ import {
   FiSettings,
   FiLogOut,
 } from "react-icons/fi";
-import { useTheme } from "../../../hooks/theme/useTheme";
 import { useLanguage } from "../../../hooks/language/useLanguage";
-import { useAppSelector } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { toggleTheme } from "../../../store/theme/theme";
 import useUserWorkspaces from "../../../hooks/workspace/useUserWorkspaces";
 import useLogout from "../../../hooks/auth/useLogout";
 import ConfirmDialog from "../../ui/ConfirmDialog";
@@ -26,7 +26,8 @@ interface DashboardNavbarProps {
 
 export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
   const { t } = useTranslation();
-  const { theme, toggleTheme } = useTheme();
+  const theme = useAppSelector((state) => state.theme);
+  const dispatch = useAppDispatch();
   const { language, changeLanguage } = useLanguage();
   const user = useAppSelector((state) => state.auth.user);
   const isAr = language === "ar";
@@ -157,7 +158,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                 </button>
                 <button
                   type="button"
-                  onClick={toggleTheme}
+                  onClick={() => dispatch(toggleTheme())}
                   className="text-muted-foreground hover:text-card-foreground transition-colors h-10 w-10 rounded-xl hover:bg-accent inline-flex items-center justify-center"
                   aria-label="Toggle theme"
                 >

@@ -13,9 +13,16 @@ import { FiArrowRight } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../animations";
-import type { TaskByStatus } from "../../../dtos/workspace/WorkSpaceDashboardDto";
+import type { TaskByStatus } from "../../../dtos/workspace/DashboardDto";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 interface Props {
   data: TaskByStatus[];

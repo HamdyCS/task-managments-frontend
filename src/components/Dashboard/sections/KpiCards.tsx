@@ -3,7 +3,7 @@ import { FiFolder, FiList, FiLoader, FiCheckCircle } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem } from "../../../animations";
 import { AnimatedCounter } from "../../common/AnimatedCounter";
-import type { DashboardStats } from "../../../dtos/workspace/WorkSpaceDashboardDto";
+import type { DashboardStats } from "../../../dtos/workspace/DashboardDto";
 
 interface Props {
   stats: DashboardStats;
@@ -80,7 +80,8 @@ export default function KpiCards({ stats, totalTasks }: Props) {
               </div>
               <div className="flex justify-between items-center text-muted-foreground text-xs mt-1">
                 <span>
-                  {stats.completedTasks} {t("dashboard.kpi.ofCompleted", { total: totalTasks })}
+                  {stats.completedTasks}{" "}
+                  {t("dashboard.kpi.ofCompleted", { total: totalTasks })}
                 </span>
                 <span>{card.progress.toFixed(1)}%</span>
               </div>

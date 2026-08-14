@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import { FiArrowLeft, FiArrowRight, FiSun, FiMoon, FiGlobe } from "react-icons/fi";
 import { MdCheck } from "react-icons/md";
 import { slideInLeft, slideInRight } from "../animations";
-import { useTheme } from "../hooks/theme/useTheme";
 import { useLanguage } from "../hooks/language/useLanguage";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { toggleTheme } from "../store/theme/theme";
 
 const featureGridItemTitle: string[] = [
   "login.features.projects",
@@ -16,7 +17,8 @@ const featureGridItemTitle: string[] = [
 export default function AuthLayout() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useTheme();
+  const theme = useAppSelector((state) => state.theme);
+  const dispatch = useAppDispatch();
   const { language, changeLanguage } = useLanguage();
 
   const isAr = language === "ar";
@@ -65,7 +67,7 @@ export default function AuthLayout() {
               </button>
               <button
                 type="button"
-                onClick={toggleTheme}
+                onClick={() => dispatch(toggleTheme())}
                 className="text-muted-foreground hover:text-foreground transition-colors h-9 w-9 rounded-lg hover:bg-accent inline-flex items-center justify-center"
                 aria-label="Toggle theme"
               >
