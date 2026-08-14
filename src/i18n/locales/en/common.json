@@ -291,6 +291,57 @@
       "description": "Please check the verification code and try again."
     }
   },
+  "dashboard": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "kpi": {
+      "totalProjects": "Total Projects",
+      "totalTasks": "Total Tasks",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "acrossWorkspace": "Across this workspace",
+      "acrossProjects": "Across all projects",
+      "currentlyActive": "Currently active",
+      "ofCompleted": "of {{total}} tasks completed"
+    },
+    "taskDistribution": "Task Distribution",
+    "viewReport": "View report",
+    "recentActivity": "Recent Activity",
+    "activeTasks": "Active Tasks",
+    "viewAll": "View all",
+    "teamPerformance": "Team Performance",
+    "noWorkspace": {
+      "title": "No workspaces found",
+      "description": "Create a workspace or accept an invite to get started",
+      "create": "Create Work Space",
+      "acceptInvite": "Accept Invite"
+    },
+    "sidebar": {
+      "main": "Main",
+      "workspace": "Workspace",
+      "analytics": "Analytics",
+      "dashboard": "Dashboard",
+      "myTasks": "My Tasks",
+      "notifications": "Notifications",
+      "projects": "Projects",
+      "team": "Team",
+      "reports": "Reports",
+      "settings": "Settings",
+      "create": "Create"
+    },
+    "accountMenu": {
+      "settings": "Account settings",
+      "logout": "Logout"
+    },
+    "logoutConfirm": {
+      "title": "Are you sure you want to logout?",
+      "cancel": "Cancel",
+      "continue": "Continue"
+    }
+  },
   "footer": {
     "description": "An all-in-one platform for project and task management for modern teams.",
     "share": "Share",

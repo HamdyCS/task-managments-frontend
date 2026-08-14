@@ -38,6 +38,10 @@ export async function resetPassword(dto: ResetPasswordDto) {
   await authApi.post(config.auth.forgetPassword.reset, dto);
 }
 
+export async function logout() {
+  await authApi.post(config.auth.logout);
+}
+
 export async function confirmEmail(email: string, token: string) {
   await authApi.post(config.auth.confirmEmail, null, {
     params: { email, token },

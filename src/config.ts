@@ -8,12 +8,17 @@ const config = {
     currentUser: `/auth`,
     googleLogin: `/auth/login-user-with-google`,
     refreshToken: `/auth/refresh-token`,
+    logout: `/auth/logout`,
     confirmEmail: `/auth/confirm-email`,
     forgetPassword: {
       sendOtp: `/auth/forget-password/send-otp`,
       resendOtp: `/auth/forget-password/resend-otp`,
       reset: `/auth/forget-password`,
     },
+  },
+  workspace: {
+    all: `/workspaces/all`,
+    dashboard: (id: number) => `/workspaces/${id}/dashboard`,
   },
 };
 

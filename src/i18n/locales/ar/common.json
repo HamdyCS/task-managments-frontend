@@ -291,6 +291,57 @@
       "description": "يرجى التحقق من رمز التحقق والمحاولة مرة أخرى."
     }
   },
+  "dashboard": {
+    "greeting": {
+      "morning": "صباح الخير",
+      "afternoon": "مساء الخير",
+      "evening": "مساء الخير"
+    },
+    "kpi": {
+      "totalProjects": "إجمالي المشاريع",
+      "totalTasks": "إجمالي المهام",
+      "inProgress": "قيد التنفيذ",
+      "completed": "مكتملة",
+      "acrossWorkspace": "في مساحة العمل هذه",
+      "acrossProjects": "في جميع المشاريع",
+      "currentlyActive": "نشط حالياً",
+      "ofCompleted": "من {{total}} مهمة مكتملة"
+    },
+    "taskDistribution": "توزيع المهام",
+    "viewReport": "عرض التقرير",
+    "recentActivity": "النشاط الأخير",
+    "activeTasks": "المهام النشطة",
+    "viewAll": "عرض الكل",
+    "teamPerformance": "أداء الفريق",
+    "noWorkspace": {
+      "title": "لم يتم العثور على مساحات عمل",
+      "description": "أنشئ مساحة عمل أو اقبل دعوة للبدء",
+      "create": "إنشاء مساحة عمل",
+      "acceptInvite": "قبول الدعوة"
+    },
+    "sidebar": {
+      "main": "الرئيسية",
+      "workspace": "مساحة العمل",
+      "analytics": "التحليلات",
+      "dashboard": "لوحة التحكم",
+      "myTasks": "مهامي",
+      "notifications": "الإشعارات",
+      "projects": "المشاريع",
+      "team": "الفريق",
+      "reports": "التقارير",
+      "settings": "الإعدادات",
+      "create": "إنشاء"
+    },
+    "accountMenu": {
+      "settings": "إعدادات الحساب",
+      "logout": "تسجيل الخروج"
+    },
+    "logoutConfirm": {
+      "title": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+      "cancel": "إلغاء",
+      "continue": "متابعة"
+    }
+  },
   "footer": {
     "description": "منصة متكاملة لإدارة المشاريع والمهام للفرق الحديثة.",
     "share": "مشاركة",

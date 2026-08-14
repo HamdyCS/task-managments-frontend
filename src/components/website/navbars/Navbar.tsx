@@ -30,7 +30,7 @@ export function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <motion.aside
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
@@ -123,7 +123,7 @@ export function Navbar() {
             </button>
           </div>
         </Container>
-      </motion.nav>
+      </motion.aside>
 
       {/* Mobile Menu */}
       <AnimatePresence>

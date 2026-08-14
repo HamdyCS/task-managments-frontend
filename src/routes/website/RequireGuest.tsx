@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
 
 export default function RequireGuest() {
