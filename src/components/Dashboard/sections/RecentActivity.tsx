@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { fadeIn } from "../../../animations";
 import type { Notification } from "../../../dtos/notification/Notification";
 import type { NotificationType } from "../../../types/NotificationType";
+import { formatTimeAgo } from "../../../utils/formatTimeAgo";
 
 interface RecentActivityProps {
   unReadNotifications: Notification[];
@@ -32,21 +33,6 @@ function getNotificationColors(type: NotificationType): {
     default:
       return { dot: "bg-muted-foreground", title: "text-muted-foreground" };
   }
-}
-
-function formatTimeAgo(dateString: string): string {
-  const date = new Date(dateString);
-  const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffMins = Math.floor(diffMs / 60000);
-  const diffHours = Math.floor(diffMs / 3600000);
-  const diffDays = Math.floor(diffMs / 86400000);
-
-  if (diffMins < 1) return "Just now";
-  if (diffMins < 60) return `${diffMins} mins ago`;
-  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
-  if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
-  return date.toLocaleDateString();
 }
 
 export default function RecentActivity({

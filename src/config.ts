@@ -20,6 +20,13 @@ const config = {
     all: `/workspaces/all`,
     dashboard: (id: number) => `/workspaces/${id}/dashboard`,
   },
+  notification: {
+    all: (page: number, pageSize: number) =>
+      `/notifications/all?pageNumber=${page}&pageSize=${pageSize}`,
+    unread: (page: number, pageSize: number) =>
+      `/notifications/all/unread?pageNumber=${page}&pageSize=${pageSize}`,
+    markRead: (id: number) => `/notifications/${id}/read`,
+  },
 };
 
 export default config;

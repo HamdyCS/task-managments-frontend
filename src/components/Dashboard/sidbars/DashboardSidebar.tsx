@@ -1,4 +1,4 @@
-import { Link, NavLink, useSearchParams } from "react-router-dom";
+import { Link, NavLink, useLocation, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -31,10 +31,13 @@ export default function DashboardSidebar({
   isOpen,
   onClose,
 }: DashboardSidebarProps) {
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const user = useAppSelector((state) => state.auth.user);
   const [searchParams] = useSearchParams();
   const workspaceId = searchParams.get("workspaceId");
+
+  //get location
+  const location = useLocation();
 
   const navSections: { title: string; items: NavItem[] }[] = [
     {
@@ -113,6 +116,7 @@ export default function DashboardSidebar({
               <NavLink
                 key={item.section}
                 to={item.to}
+                end
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-2 mb-1 rounded-r-lg border-l-4 transition-colors duration-200 ${
                     isActive

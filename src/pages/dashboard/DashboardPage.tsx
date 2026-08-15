@@ -15,19 +15,25 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const workspaceIdParam = searchParams.get("workspaceId");
 
+  //fetch user workspaces
   const { data: workspacesData, isLoading: workspacesLoading } =
     useUserWorkspaces();
 
+  //get workspaces from data
   const workspaces = useMemo(
     () => workspacesData?.data ?? [],
     [workspacesData],
   );
+
+  //check if user has workspaces
   const hasWorkspaces = workspaces.length > 0;
 
+  //get workspace id from query params
   const effectiveWorkspaceId = workspaceIdParam
     ? Number(workspaceIdParam)
     : null;
 
+  //fetch dashboard data
   const { data: dashboardData, isPending: dashboardLoading } =
     useDashboard(effectiveWorkspaceId);
 
@@ -38,16 +44,18 @@ export default function DashboardPage() {
     }
   }, [hasWorkspaces, workspaceIdParam, workspaces, navigate]);
 
-  console.log(dashboardData);
 
+  //handle loading state
   if (workspacesLoading || dashboardLoading) {
     return <DashboardSkeleton />;
   }
 
+  //handle no workspaces state
   if (!hasWorkspaces) {
     return <NoWorkspace />;
   }
 
+  //destructure dashboard data
   const {
     stats,
     tasksByStatusReportDtos,

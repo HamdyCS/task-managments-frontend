@@ -343,6 +343,26 @@
       "title": "Are you sure you want to logout?",
       "cancel": "Cancel",
       "continue": "Continue"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Stay up to date with activity across your workspaces.",
+      "filters": {
+        "all": "All",
+        "unread": "Unread"
+      },
+      "markAsRead": "Mark as read",
+      "markAsUnread": "Mark as unread",
+      "accept": "Accept",
+      "decline": "Decline",
+      "empty": {
+        "title": "You're all caught up",
+        "description": "You don't have any notifications yet."
+      },
+      "emptyUnread": {
+        "title": "You're all caught up",
+        "description": "There are no unread notifications."
+      }
     }
   },
   "footer": {

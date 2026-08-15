@@ -168,7 +168,10 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                     <FiMoon className="w-5 h-5" />
                   )}
                 </button>
-                <button className="p-1.5 text-muted-foreground hover:text-card-foreground hover:bg-muted rounded-lg transition-colors relative">
+                <button
+                  onClick={() => navigate(`/dashboard/notifications?workspaceId=${workspaceId}`)}
+                  className="p-1.5 text-muted-foreground hover:text-card-foreground hover:bg-muted rounded-lg transition-colors relative"
+                >
                   <FiBell size={18} />
                   <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-destructive rounded-full" />
                 </button>
