@@ -1,4 +1,4 @@
-import type { Notification } from "../notification/Notification";
+import type { NotificationDto } from "../notification/NotificationDto";
 
 export interface DashboardStats {
   totalProjects: number;
@@ -34,5 +34,5 @@ export interface DashboardDto {
   tasksByStatusReportDtos: TaskByStatus[];
   tasksByPriorityReportDtos: TaskByPriority[];
   latestActiveTasks: ActiveTask[];
-  unReadNotifications: Notification[];
+  unReadNotifications: NotificationDto[];
 }

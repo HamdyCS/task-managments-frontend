@@ -1,7 +1,9 @@
 const BaseApiURl = import.meta.env.VITE_BASE_API_URL;
+const SignalRUrl = import.meta.env.VITE_SIGNALR_URL;
 
 const config = {
   BaseApiURl,
+  SignalRUrl,
   auth: {
     register: `/auth/register-user`,
     login: `/auth/login`,

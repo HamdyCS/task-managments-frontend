@@ -7,7 +7,7 @@ import { markNotificationAsRead } from "../../services/notificationService";
 import type { AxiosError } from "axios";
 import type { MutationCallBack } from "../MutationCallBack";
 import type PaginationResultDto from "../../dtos/workspace/PaginationResultDto";
-import type { Notification } from "../../dtos/notification/Notification";
+import type { NotificationDto } from "../../dtos/notification/NotificationDto";
 
 export default function useMarkAsRead(
   callback: MutationCallBack<void, AxiosError>,
@@ -26,7 +26,7 @@ export default function useMarkAsRead(
 
       //Get previous state
       const previousNotifications = queryClient.getQueryData<
-        InfiniteData<PaginationResultDto<Notification>>
+        InfiniteData<PaginationResultDto<NotificationDto>>
       >(["notifications", "all"]);
 
       //if no previous data return
@@ -36,7 +36,7 @@ export default function useMarkAsRead(
 
       //mark notification as read without change previous data and state)
       const updatedNotifications: InfiniteData<
-        PaginationResultDto<Notification>
+        PaginationResultDto<NotificationDto>
       > = {
         ...previousNotifications,
 
@@ -57,7 +57,7 @@ export default function useMarkAsRead(
 
       //update the cache for unread notifications
       const previousUnreadNotifications = queryClient.getQueryData<
-        InfiniteData<PaginationResultDto<Notification>>
+        InfiniteData<PaginationResultDto<NotificationDto>>
       >(["notifications", "unread"]);
 
       //if no previous data return
@@ -67,11 +67,11 @@ export default function useMarkAsRead(
           ["notifications", "all"],
           updatedNotifications,
         );
-        return { previousNotifications};
+        return { previousNotifications };
       }
 
       const updatedUnreadNotifications: InfiniteData<
-        PaginationResultDto<Notification>
+        PaginationResultDto<NotificationDto>
       > = {
         ...previousUnreadNotifications,
 

@@ -1,6 +1,6 @@
 import type { NotificationType } from "../../types/NotificationType";
 
-export interface Notification {
+export interface NotificationDto {
   id: number;
   notifyToId: string;
   taskId: number | null;

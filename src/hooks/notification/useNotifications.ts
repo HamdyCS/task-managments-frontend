@@ -3,14 +3,14 @@ import {
   getNotifications,
   getUnreadNotifications,
 } from "../../services/notificationService";
-import type { Notification } from "../../dtos/notification/Notification";
+import type { NotificationDto } from "../../dtos/notification/NotificationDto";
 import type PaginationResultDto from "../../dtos/workspace/PaginationResultDto";
 import type { NotificationFilter } from "../../types/NotificationFilter";
 
 const PAGE_SIZE = 20;
 
 export function useNotifications(filter: NotificationFilter) {
-  return useInfiniteQuery<PaginationResultDto<Notification>, Error>({
+  return useInfiniteQuery<PaginationResultDto<NotificationDto>, Error>({
     queryKey: ["notifications", filter],
     queryFn: ({ pageParam = 1 }) =>
       filter === "unread"

@@ -3,6 +3,7 @@ import DashboardPage from "../../pages/dashboard/DashboardPage";
 import NotificationsPage from "../../pages/dashboard/NotificationsPage";
 import DashboardLayout from "../../components/Dashboard/layout/DashboardLayout";
 import RequireRole from "../RequireRole";
+import NotificationProvider from "../../providers/NotificationProvider";
 
 const dashboard: RouteObject[] = [
   {
@@ -10,7 +11,11 @@ const dashboard: RouteObject[] = [
     children: [
       {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: (
+          <NotificationProvider>
+            <DashboardLayout />
+          </NotificationProvider>
+        ),
         children: [
           { index: true, element: <DashboardPage /> },
           { path: "notifications", element: <NotificationsPage /> },

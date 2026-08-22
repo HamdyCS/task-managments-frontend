@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import type { Notification } from "../../../dtos/notification/Notification";
+import type { NotificationDto } from "../../../dtos/notification/NotificationDto";
 import { formatTimeAgo } from "../../../utils/formatTimeAgo";
 import NotificationIcon from "./NotificationIcon";
 import useMarkAsRead from "../../../hooks/notification/useMarkAsRead";
 
 interface WorkspaceInviteNotificationProps {
-  notification: Notification;
+  notification: NotificationDto;
 }
 
 export default function WorkspaceInviteNotification({

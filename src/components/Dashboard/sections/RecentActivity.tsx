@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { fadeIn } from "../../../animations";
-import type { Notification } from "../../../dtos/notification/Notification";
+import type { NotificationDto } from "../../../dtos/notification/NotificationDto";
 import type { NotificationType } from "../../../types/NotificationType";
 import { formatTimeAgo } from "../../../utils/formatTimeAgo";
 
 interface RecentActivityProps {
-  unReadNotifications: Notification[];
+  unReadNotifications: NotificationDto[];
 }
 
 function getNotificationColors(type: NotificationType): {
