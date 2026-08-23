@@ -1,14 +1,16 @@
 import { useEffect, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import useUserWorkspaces from "../../hooks/workspace/useUserWorkspaces";
+import useWorkspaceRole from "../../hooks/workspace/useWorkspaceRole";
 import useDashboard from "../../hooks/workspace/useDashboard";
+import { useAppDispatch } from "../../store/hooks";
 import DashboardSkeleton from "../../components/Dashboard/skeleton/DashboardSkeleton";
 import NoWorkspace from "../../components/Dashboard/empty/NoWorkspace";
 import KpiCards from "../../components/Dashboard/sections/KpiCards";
 import TaskDistribution from "../../components/Dashboard/sections/TaskDistribution";
 import RecentActivity from "../../components/Dashboard/sections/RecentActivity";
 import ActiveTasksTable from "../../components/Dashboard/sections/ActiveTasksTable";
-import TeamPerformance from "../../components/Dashboard/sections/TeamPerformance";
+import { setSelectedWorkSpace } from "../../store/dashboard/SelectedWorkSpace";
 
 export default function DashboardPage() {
   const [searchParams] = useSearchParams();
@@ -33,6 +35,12 @@ export default function DashboardPage() {
     ? Number(workspaceIdParam)
     : null;
 
+  //fetch workspace role
+  const { data: workspaceRole } = useWorkspaceRole(effectiveWorkspaceId);
+
+  //redux dispatch
+  const dispatch = useAppDispatch();
+
   //fetch dashboard data
   const { data: dashboardData, isPending: dashboardLoading } =
     useDashboard(effectiveWorkspaceId);
@@ -44,6 +52,20 @@ export default function DashboardPage() {
     }
   }, [hasWorkspaces, workspaceIdParam, workspaces, navigate]);
 
+  //sync selected workspace to redux
+  useEffect(() => {
+    if (!effectiveWorkspaceId || !workspaceRole) return;
+    const workspace = workspaces.find((w) => w.id === effectiveWorkspaceId);
+    if (workspace) {
+      dispatch(
+        setSelectedWorkSpace({
+          workSpaceId: effectiveWorkspaceId,
+          workSpace: workspace,
+          workSpaceRole: workspaceRole,
+        }),
+      );
+    }
+  }, [effectiveWorkspaceId, workspaceRole, workspaces, dispatch]);
 
   //handle loading state
   if (workspacesLoading || dashboardLoading) {

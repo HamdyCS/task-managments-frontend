@@ -35,12 +35,14 @@ export default function DashboardSidebar({
   const user = useAppSelector((state) => state.auth.user);
   const [searchParams] = useSearchParams();
   const workspaceId = searchParams.get("workspaceId");
+  const selectedWorkSpace = useAppSelector((state) => state.selectedWorkSpace);
 
   //get location
   const location = useLocation();
 
-  const navSections: { title: string; items: NavItem[] }[] = [
+  const navSections: { id: string; title: string; items: NavItem[] }[] = [
     {
+      id: "main",
       title: t("dashboard.sidebar.main"),
       items: [
         {
@@ -64,6 +66,7 @@ export default function DashboardSidebar({
       ],
     },
     {
+      id: "workspace",
       title: t("dashboard.sidebar.workspace"),
       items: [
         {
@@ -81,6 +84,7 @@ export default function DashboardSidebar({
       ],
     },
     {
+      id: "analytics",
       title: t("dashboard.sidebar.analytics"),
       items: [
         {
@@ -107,31 +111,40 @@ export default function DashboardSidebar({
       </div>
 
       <div className="flex-1 overflow-y-auto pr-2">
-        {navSections.map((section) => (
-          <div key={section.title}>
-            <div className="px-6 mb-2 mt-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
-              {section.title}
+        {navSections.map((section) => {
+          // if the user is a member, do not show the analytics section
+          if (
+            section.id == "analytics" &&
+            selectedWorkSpace.workSpaceRole == "Member"
+          ) {
+            return null;
+          }
+          return (
+            <div key={section.title}>
+              <div className="px-6 mb-2 mt-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                {section.title}
+              </div>
+              {section.items.map((item) => (
+                <NavLink
+                  key={item.section}
+                  to={item.to}
+                  end
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-4 py-2 mb-1 rounded-r-lg border-l-4 transition-colors duration-200 ${
+                      isActive
+                        ? "bg-primary/10 text-primary border-primary"
+                        : "text-muted-foreground hover:text-card-foreground hover:bg-muted border-transparent"
+                    }`
+                  }
+                  onClick={onClose}
+                >
+                  {item.icon}
+                  <span className="text-sm font-medium">{item.label}</span>
+                </NavLink>
+              ))}
             </div>
-            {section.items.map((item) => (
-              <NavLink
-                key={item.section}
-                to={item.to}
-                end
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2 mb-1 rounded-r-lg border-l-4 transition-colors duration-200 ${
-                    isActive
-                      ? "bg-primary/10 text-primary border-primary"
-                      : "text-muted-foreground hover:text-card-foreground hover:bg-muted border-transparent"
-                  }`
-                }
-                onClick={onClose}
-              >
-                {item.icon}
-                <span className="text-sm font-medium">{item.label}</span>
-              </NavLink>
-            ))}
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="px-4 mt-auto pt-4 border-t">

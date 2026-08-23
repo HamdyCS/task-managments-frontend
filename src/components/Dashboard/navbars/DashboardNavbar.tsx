@@ -16,9 +16,12 @@ import { useLanguage } from "../../../hooks/language/useLanguage";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { toggleTheme } from "../../../store/theme/theme";
 import useUserWorkspaces from "../../../hooks/workspace/useUserWorkspaces";
+import useWorkspaceRole from "../../../hooks/workspace/useWorkspaceRole";
 import useLogout from "../../../hooks/auth/useLogout";
+import { useNotifications } from "../../../hooks/notification/useNotifications";
 import ConfirmDialog from "../../ui/ConfirmDialog";
 import { Container } from "../../website/layout/Container";
+import { setSelectedWorkSpace } from "../../../store/dashboard/SelectedWorkSpace";
 
 interface DashboardNavbarProps {
   onMenuClick: () => void;
@@ -41,23 +44,48 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
   const workspaceMenuRef = useRef<HTMLDivElement>(null);
   const { mutateAsync: logout, isPending } = useLogout();
 
+  //fetch user workspaces and current workspace from URL param
   const { data: workspacesData } = useUserWorkspaces();
   const workspaces = workspacesData?.data ?? [];
   const currentWorkspace = workspaces.find((w) => w.id === Number(workspaceId));
 
+  //fetch workspace role for the current workspace
+  const { data: workspaceRole } = useWorkspaceRole(
+    workspaceId ? Number(workspaceId) : null,
+  );
 
+  //fetch unread notifications count
+  const { data: unreadNotificationsData } = useNotifications("unread");
+  const unreadCount = unreadNotificationsData?.pages?.[0]?.totalCount ?? 0;
+
+  //close dropdowns on outside click
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setIsMenuOpen(false);
       }
-      if (workspaceMenuRef.current && !workspaceMenuRef.current.contains(e.target as Node)) {
+      if (
+        workspaceMenuRef.current &&
+        !workspaceMenuRef.current.contains(e.target as Node)
+      ) {
         setIsWorkspaceOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  //sync selected workspace and role to redux when they change
+  useEffect(() => {
+    if (!currentWorkspace || !workspaceRole) return;
+    dispatch(
+      setSelectedWorkSpace({
+        workSpaceId: currentWorkspace.id,
+        workSpace: currentWorkspace,
+        workSpaceRole: workspaceRole,
+      }),
+    );
+  }, [currentWorkspace, workspaceRole, dispatch]);
 
   function getGreeting(): string {
     const hour = new Date().getHours();
@@ -70,6 +98,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
     changeLanguage(isAr ? "en" : "ar");
   };
 
+  //switch workspace by updating URL param
   function switchWorkspace(id: number) {
     if (id === Number(workspaceId)) {
       setIsWorkspaceOpen(false);
@@ -83,6 +112,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
 
   return (
     <>
+      {/* sticky top navbar with greeting, workspace switcher, and user actions */}
       <nav className="h-16 border-b bg-background/80 backdrop-blur-md shrink-0 z-40 sticky top-0">
         <Container className="px-6 h-full max-w-full!">
           <div className="flex h-full justify-between gap-4">
@@ -96,10 +126,14 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
               <h1 className="text-lg hidden md:block font-semibold text-card-foreground">
                 {getGreeting()}, {user?.firstName ?? "User"} 👋
               </h1>
+              {/* workspace switcher dropdown */}
               {currentWorkspace && (
                 <>
                   <div className="h-6 w-px bg-border hidden sm:block" />
-                  <div ref={workspaceMenuRef} className="relative hidden sm:block">
+                  <div
+                    ref={workspaceMenuRef}
+                    className="relative hidden sm:block"
+                  >
                     <button
                       onClick={() => setIsWorkspaceOpen((o) => !o)}
                       className="flex items-center gap-1 text-muted-foreground hover:text-card-foreground transition-colors text-sm font-medium"
@@ -110,7 +144,10 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                     {isWorkspaceOpen && (
                       <div className="absolute top-full ltr:left-0 rtl:right-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-lg py-1 z-50">
                         <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
-                          {t("dashboard.workspaceSwitcher.title", "Switch workspace")}
+                          {t(
+                            "dashboard.workspaceSwitcher.title",
+                            "Switch workspace",
+                          )}
                         </div>
                         {workspaces.map((ws) => (
                           <button
@@ -150,7 +187,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                 <button
                   type="button"
                   onClick={toggleLanguage}
-                  className="text-sm font-medium text-muted-foreground hover:text-card-foreground transition-colors h-10 px-3 rounded-xl hover:bg-accent inline-flex items-center gap-1.5"
+                  className="text-sm font-medium text-muted-foreground hover:text-card-foreground transition-colors h-10 px-3 rounded-xl hover:bg-accent inline-flex items-center gap-1.5 cursor-pointer"
                   aria-label="Toggle language"
                 >
                   <FiGlobe className="w-4 h-4" />
@@ -159,7 +196,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                 <button
                   type="button"
                   onClick={() => dispatch(toggleTheme())}
-                  className="text-muted-foreground hover:text-card-foreground transition-colors h-10 w-10 rounded-xl hover:bg-accent inline-flex items-center justify-center"
+                  className="text-muted-foreground hover:text-card-foreground transition-colors h-10 w-10 rounded-xl hover:bg-accent inline-flex items-center justify-center cursor-pointer"
                   aria-label="Toggle theme"
                 >
                   {theme === "dark" ? (
@@ -168,14 +205,19 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                     <FiMoon className="w-5 h-5" />
                   )}
                 </button>
-                <button
-                  onClick={() => navigate(`/dashboard/notifications?workspaceId=${workspaceId}`)}
-                  className="p-1.5 text-muted-foreground hover:text-card-foreground hover:bg-muted rounded-lg transition-colors relative"
+                <Link
+                  to={`/dashboard/notifications?workspaceId=${workspaceId}`}
+                  className="p-1.5 text-muted-foreground hover:text-card-foreground hover:bg-muted rounded-lg transition-colors relative cursor-pointer"
                 >
                   <FiBell size={18} />
-                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-destructive rounded-full" />
-                </button>
-                <div ref={menuRef} className="relative">
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-1 rtl:-right-1 ltr:-left-1 min-w-[18px] h-[18px] flex items-center justify-center bg-destructive text-destructive-foreground text-[10px] font-bold rounded-full px-1">
+                      {unreadCount > 99 ? "99+" : unreadCount}
+                    </span>
+                  )}
+                </Link>
+                {/* user account menu */}
+              <div ref={menuRef} className="relative">
                   <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     className="account-menu-btn w-8 h-8 rounded-full overflow-hidden border bg-muted flex items-center justify-center text-xs font-medium text-card-foreground cursor-pointer"
@@ -211,6 +253,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
           </div>
         </Container>
       </nav>
+      {/* logout confirmation dialog */}
       <ConfirmDialog
         open={isLogoutDialogOpen}
         onClose={() => setIsLogoutDialogOpen(false)}

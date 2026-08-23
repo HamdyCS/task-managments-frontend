@@ -20,6 +20,7 @@ const config = {
   },
   workspace: {
     all: `/workspaces/all`,
+    myRole: (id: number) => `/workspaces/${id}/my-role`,
     dashboard: (id: number) => `/workspaces/${id}/dashboard`,
   },
   notification: {
