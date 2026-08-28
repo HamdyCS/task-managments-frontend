@@ -10,7 +10,7 @@ import KpiCards from "../../components/Dashboard/sections/KpiCards";
 import TaskDistribution from "../../components/Dashboard/sections/TaskDistribution";
 import RecentActivity from "../../components/Dashboard/sections/RecentActivity";
 import ActiveTasksTable from "../../components/Dashboard/sections/ActiveTasksTable";
-import { setSelectedWorkSpace } from "../../store/dashboard/SelectedWorkSpace";
+import { setSelectedWorkSpace } from "../../store/dashboard/selectedWorkSpace";
 
 export default function DashboardPage() {
   const [searchParams] = useSearchParams();

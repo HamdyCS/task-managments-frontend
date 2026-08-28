@@ -26,7 +26,7 @@ export default function Button({
   ButtonType = "button",
 }: ButtonProps) {
   return (
-    <motion.div variants={staggerItem}>
+    <motion.div>
       {type === "link" && to ? (
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <Link

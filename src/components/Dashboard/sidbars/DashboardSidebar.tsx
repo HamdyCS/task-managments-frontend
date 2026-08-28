@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation, useSearchParams } from "react-router-dom";
+import { Link, NavLink, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -13,7 +13,6 @@ import {
 } from "react-icons/fi";
 import { useAppSelector } from "../../../store/hooks";
 import logo from "../../../assets/logo.png";
-import { useLanguage } from "../../../hooks/language/useLanguage";
 
 interface NavItem {
   icon: React.ReactNode;
@@ -32,13 +31,9 @@ export default function DashboardSidebar({
   onClose,
 }: DashboardSidebarProps) {
   const { t, i18n } = useTranslation();
-  const user = useAppSelector((state) => state.auth.user);
   const [searchParams] = useSearchParams();
   const workspaceId = searchParams.get("workspaceId");
   const selectedWorkSpace = useAppSelector((state) => state.selectedWorkSpace);
-
-  //get location
-  const location = useLocation();
 
   const navSections: { id: string; title: string; items: NavItem[] }[] = [
     {
@@ -110,7 +105,7 @@ export default function DashboardSidebar({
         </Link>
       </div>
 
-      <div className="flex-1 overflow-y-auto pr-2">
+      <div className="flex-1 overflow-y-auto ltr:pr-2 rtl:pl-2">
         {navSections.map((section) => {
           // if the user is a member, do not show the analytics section
           if (
@@ -130,7 +125,7 @@ export default function DashboardSidebar({
                   to={item.to}
                   end
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-4 py-2 mb-1 rounded-r-lg border-l-4 transition-colors duration-200 ${
+                    `flex items-center gap-3 px-4 py-2 mb-1 ltr:rounded-r-lg ltr:border-l-4 rtl:rounded-l-lg rtl:border-r-4 transition-colors duration-200 ${
                       isActive
                         ? "bg-primary/10 text-primary border-primary"
                         : "text-muted-foreground hover:text-card-foreground hover:bg-muted border-transparent"

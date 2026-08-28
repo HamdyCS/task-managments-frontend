@@ -4,8 +4,8 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface SelectedWorkSpaceState {
   workSpaceId: number;
-  workSpace: WorkSpaceDto;
-  workSpaceRole: WorkSpaceRole;
+  workSpace: WorkSpaceDto | null;
+  workSpaceRole: WorkSpaceRole | null;
 }
 
 const initialState: SelectedWorkSpaceState = {

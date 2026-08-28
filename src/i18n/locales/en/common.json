@@ -307,6 +307,14 @@
       "currentlyActive": "Currently active",
       "ofCompleted": "of {{total}} tasks completed"
     },
+    "workspaceSwitcher": {
+      "title": "Switch workspace",
+      "role": {
+        "Owner": "Admin",
+        "ProjectManager": "Project Manager",
+        "Member": "Member"
+      }
+    },
     "taskDistribution": "Task Distribution",
     "numberOfTasks": "Number of Tasks",
     "viewReport": "View report",
@@ -362,6 +370,140 @@
       "emptyUnread": {
         "title": "You're all caught up",
         "description": "There are no unread notifications."
+      }
+    },
+    "tasks": {
+      "title": "Tasks",
+      "subtitle": "Manage and track tasks across your workspace",
+      "tabs": {
+        "allTasks": "All Tasks",
+        "myTasks": "My Tasks"
+      },
+      "projectSelector": {
+        "label": "Project",
+        "placeholder": "Select a project"
+      },
+      "filters": {
+        "search": "Search tasks...",
+        "status": "Status",
+        "priority": "Priority",
+        "sort": "Sort",
+        "reset": "Reset"
+      },
+      "status": {
+        "all": "All",
+        "Backlog": "Backlog",
+        "Todo": "Todo",
+        "InProgress": "In Progress",
+        "Review": "Review",
+        "Done": "Done"
+      },
+      "priority": {
+        "all": "All",
+        "Low": "Low",
+        "Medium": "Medium",
+        "High": "High",
+        "Critical": "Critical"
+      },
+      "sort": {
+        "createdDate": "Created Date",
+        "deadline": "Deadline",
+        "priority": "Priority",
+        "name": "Name"
+      },
+      "table": {
+        "task": "Task",
+        "createdDate": "Created At",
+        "assignee": "Assignee",
+        "priority": "Priority",
+        "status": "Status",
+        "deadline": "Deadline",
+        "actions": "Actions",
+        "unassigned": "Unassigned",
+        "you": "You"
+      },
+      "kanban": {
+        "columns": {
+          "Backlog": "Backlog",
+          "Todo": "To Do",
+          "InProgress": "In Progress",
+          "Review": "Review",
+          "Done": "Done"
+        }
+      },
+      "actions": {
+        "viewDetails": "View Details",
+        "edit": "Edit",
+        "changeStatus": "Change Status",
+        "assign": "Assign",
+        "unassign": "Unassign",
+        "delete": "Delete"
+      },
+      "create": {
+        "title": "Create Task",
+        "button": "Create Task",
+        "success": "Task created successfully"
+      },
+      "edit": {
+        "title": "Edit Task",
+        "success": "Task updated successfully"
+      },
+      "delete": {
+        "title": "Delete Task",
+        "confirm": "Are you sure you want to delete this task?",
+        "success": "Task deleted successfully"
+      },
+      "assign": {
+        "title": "Assign Task",
+        "selectUser": "Select a user",
+        "success": "User assigned successfully"
+      },
+      "unassign": {
+        "title": "Unassign",
+        "confirm": "Are you sure you want to unassign this user?",
+        "success": "User unassigned successfully"
+      },
+      "statusChange": {
+        "success": "Status updated successfully"
+      },
+      "details": {
+        "title": "Task Details",
+        "description": "Description",
+        "status": "Status",
+        "priority": "Priority",
+        "deadline": "Deadline",
+        "assignee": "Assignee",
+        "noDescription": "No description provided.",
+        "comments": "Comments",
+        "addComment": "Add a comment...",
+        "postComment": "Post",
+        "editComment": "Edit",
+        "deleteComment": "Delete",
+        "noComments": "No comments yet. Be the first to comment.",
+        "attachments": "Attachments",
+        "uploadAttachment": "Upload File",
+        "noAttachments": "No attachments uploaded.",
+        "dragDrop": "Drag and drop or click to upload",
+        "fileTypes": "PDF, JPG, JPEG, PNG (max 50 MB)",
+        "deleteAttachment": "Delete"
+      },
+      "empty": {
+        "noProjects": {
+          "title": "No projects yet",
+          "description": "Create a project to start managing tasks in this workspace."
+        },
+        "noTasks": {
+          "title": "No tasks found",
+          "description": "There are no tasks for this project yet."
+        },
+        "noFilterResults": {
+          "title": "No tasks match your filters",
+          "description": "Try adjusting or clearing your filters."
+        },
+        "noMyTasks": {
+          "title": "No tasks assigned to you",
+          "description": "You currently have no assigned tasks in this project."
+        }
       }
     }
   },

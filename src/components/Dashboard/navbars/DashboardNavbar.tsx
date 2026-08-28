@@ -21,7 +21,7 @@ import useLogout from "../../../hooks/auth/useLogout";
 import { useNotifications } from "../../../hooks/notification/useNotifications";
 import ConfirmDialog from "../../ui/ConfirmDialog";
 import { Container } from "../../website/layout/Container";
-import { setSelectedWorkSpace } from "../../../store/dashboard/SelectedWorkSpace";
+import { setSelectedWorkSpace } from "../../../store/dashboard/selectedWorkSpace";
 
 interface DashboardNavbarProps {
   onMenuClick: () => void;
@@ -98,6 +98,19 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
     changeLanguage(isAr ? "en" : "ar");
   };
 
+  function getRoleBadgeClasses(role: string): string {
+    switch (role) {
+      case "Owner":
+        return "bg-destructive/10 text-destructive";
+      case "ProjectManager":
+        return "bg-success/10 text-success";
+      case "Member":
+        return "bg-primary/10 text-primary";
+      default:
+        return "bg-muted text-muted-foreground";
+    }
+  }
+
   //switch workspace by updating URL param
   function switchWorkspace(id: number) {
     if (id === Number(workspaceId)) {
@@ -136,9 +149,21 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                   >
                     <button
                       onClick={() => setIsWorkspaceOpen((o) => !o)}
-                      className="flex items-center gap-1 text-muted-foreground hover:text-card-foreground transition-colors text-sm font-medium"
+                      className="flex items-center gap-1.5 text-muted-foreground hover:text-card-foreground transition-colors text-sm font-medium"
                     >
                       {currentWorkspace.name}
+                      {workspaceRole && (
+                        <span
+                          className={`hidden sm:inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-semibold leading-none ${getRoleBadgeClasses(workspaceRole)}`}
+                        >
+                          {t(`dashboard.workspaceSwitcher.role.${workspaceRole}`)}
+                        </span>
+                      )}
+                      {workspaceRole && (
+                        <span
+                          className={`sm:hidden w-2 h-2 rounded-full shrink-0 ${workspaceRole === "Owner" ? "bg-destructive" : workspaceRole === "ProjectManager" ? "bg-success" : "bg-primary"}`}
+                        />
+                      )}
                       <FiChevronDown size={14} />
                     </button>
                     {isWorkspaceOpen && (

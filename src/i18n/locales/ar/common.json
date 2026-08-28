@@ -307,6 +307,14 @@
       "currentlyActive": "نشط حالياً",
       "ofCompleted": "من {{total}} مهمة مكتملة"
     },
+    "workspaceSwitcher": {
+      "title": "تبديل مساحة العمل",
+      "role": {
+        "Owner": "مدير",
+        "ProjectManager": "مدير المشاريع",
+        "Member": "عضو"
+      }
+    },
     "taskDistribution": "توزيع المهام",
     "numberOfTasks": "عدد المهام",
     "viewReport": "عرض التقرير",
@@ -362,6 +370,140 @@
       "emptyUnread": {
         "title": "أنت محدث بالكامل",
         "description": "لا توجد إشعارات غير مقروءة."
+      }
+    },
+    "tasks": {
+      "title": "المهام",
+      "subtitle": "إدارة وتتبع المهام عبر مساحة عملك",
+      "tabs": {
+        "allTasks": "جميع المهام",
+        "myTasks": "مهامي"
+      },
+      "projectSelector": {
+        "label": "المشروع",
+        "placeholder": "اختر مشروعاً"
+      },
+      "filters": {
+        "search": "بحث في المهام...",
+        "status": "الحالة",
+        "priority": "الأولوية",
+        "sort": "ترتيب",
+        "reset": "إعادة تعيين"
+      },
+      "status": {
+        "all": "الكل",
+        "Backlog": "قائمة الانتظار",
+        "Todo": "للتنفيذ",
+        "InProgress": "قيد التنفيذ",
+        "Review": "قيد المراجعة",
+        "Done": "مكتملة"
+      },
+      "priority": {
+        "all": "الكل",
+        "Low": "منخفضة",
+        "Medium": "متوسطة",
+        "High": "عالية",
+        "Critical": "حرجة"
+      },
+      "sort": {
+        "createdDate": "تاريخ الإنشاء",
+        "deadline": "الموعد النهائي",
+        "priority": "الأولوية",
+        "name": "الاسم"
+      },
+      "table": {
+        "task": "المهمة",
+        "createdDate": "تاريخ الإنشاء",
+        "assignee": "المسؤول",
+        "priority": "الأولوية",
+        "status": "الحالة",
+        "deadline": "الموعد النهائي",
+        "actions": "الإجراءات",
+        "unassigned": "غير مسند",
+        "you": "أنت"
+      },
+      "kanban": {
+        "columns": {
+          "Backlog": "قائمة الانتظار",
+          "Todo": "للتنفيذ",
+          "InProgress": "قيد التنفيذ",
+          "Review": "قيد المراجعة",
+          "Done": "مكتملة"
+        }
+      },
+      "actions": {
+        "viewDetails": "عرض التفاصيل",
+        "edit": "تعديل",
+        "changeStatus": "تغيير الحالة",
+        "assign": "تكليف",
+        "unassign": "إلغاء التكليف",
+        "delete": "حذف"
+      },
+      "create": {
+        "title": "إنشاء مهمة",
+        "button": "إنشاء مهمة",
+        "success": "تم إنشاء المهمة بنجاح"
+      },
+      "edit": {
+        "title": "تعديل المهمة",
+        "success": "تم تحديث المهمة بنجاح"
+      },
+      "delete": {
+        "title": "حذف المهمة",
+        "confirm": "هل أنت متأكد أنك تريد حذف هذه المهمة؟",
+        "success": "تم حذف المهمة بنجاح"
+      },
+      "assign": {
+        "title": "تكليف المهمة",
+        "selectUser": "اختر مستخدماً",
+        "success": "تم تكليف المستخدم بنجاح"
+      },
+      "unassign": {
+        "title": "إلغاء التكليف",
+        "confirm": "هل أنت متأكد أنك تريد إلغاء تكليف هذا المستخدم؟",
+        "success": "تم إلغاء تكليف المستخدم بنجاح"
+      },
+      "statusChange": {
+        "success": "تم تحديث الحالة بنجاح"
+      },
+      "details": {
+        "title": "تفاصيل المهمة",
+        "description": "الوصف",
+        "status": "الحالة",
+        "priority": "الأولوية",
+        "deadline": "الموعد النهائي",
+        "assignee": "المسؤول",
+        "noDescription": "لم يتم تقديم وصف.",
+        "comments": "التعليقات",
+        "addComment": "أضف تعليقاً...",
+        "postComment": "نشر",
+        "editComment": "تعديل",
+        "deleteComment": "حذف",
+        "noComments": "لا توجد تعليقات بعد. كن أول من يعلق.",
+        "attachments": "المرفقات",
+        "uploadAttachment": "رفع ملف",
+        "noAttachments": "لم يتم رفع أي مرفقات.",
+        "dragDrop": "اسحب وأفلت أو انقر للرفع",
+        "fileTypes": "PDF، JPG، JPEG، PNG (حد أقصى 50 ميغابايت)",
+        "deleteAttachment": "حذف"
+      },
+      "empty": {
+        "noProjects": {
+          "title": "لا توجد مشاريع بعد",
+          "description": "أنشئ مشروعاً لبدء إدارة المهام في مساحة العمل هذه."
+        },
+        "noTasks": {
+          "title": "لم يتم العثور على مهام",
+          "description": "لا توجد مهام لهذا المشروع بعد."
+        },
+        "noFilterResults": {
+          "title": "لا توجد مهام تطابق فلاترتك",
+          "description": "حاول تعديل فلاترك أو مسحها."
+        },
+        "noMyTasks": {
+          "title": "لا توجد مهام مسندة إليك",
+          "description": "ليس لديك حالياً أي مهام مسندة في هذا المشروع."
+        }
       }
     }
   },

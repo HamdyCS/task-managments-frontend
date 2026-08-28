@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/authSlice";
 import themeReducer from "./theme/theme";
-import selectedWorkSpaceReducer from "./dashboard/SelectedWorkSpace";
+import selectedWorkSpaceReducer from "./dashboard/selectedWorkSpace";
 
 const store = configureStore({
   reducer: {

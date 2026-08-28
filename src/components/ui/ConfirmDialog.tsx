@@ -45,8 +45,8 @@ export default function ConfirmDialog({
                   onClick={onClose}
                   disabled={isLoading}
                   text={cancelText}
-                  type={"link"}
-                  className="w-20!"
+                  type={"button"}
+                  className="w-25! p-2! text-sm"
                 />
 
                 <Button
@@ -54,7 +54,7 @@ export default function ConfirmDialog({
                   disabled={isLoading}
                   text={confirmText}
                   type={"button"}
-                  className="bg-red-700 w-20!"
+                  className="bg-red-700 w-25! p-2! text-sm"
                   isLoading={isLoading}
                 />
               </div>
