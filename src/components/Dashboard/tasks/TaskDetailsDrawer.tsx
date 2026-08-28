@@ -167,6 +167,7 @@ export default function TaskDetailsDrawer({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
         className="fixed inset-0 h-full bg-black/50 z-50"
         onClick={onClose}
       />
