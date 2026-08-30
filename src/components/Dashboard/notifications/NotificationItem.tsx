@@ -24,7 +24,17 @@ export default function NotificationItem({
     if (!notification.isRead) {
       markAsRead(notification.id);
     }
-    if (notification.notificationType === "TaskDeleted") return;
+    if (notification.notificationType === "TaskUnassigned" || 
+      notification.notificationType === "TaskStatusUpdated"
+      ||
+      notification.notificationType === "TaskUpdated"
+      ||
+      notification.notificationType === "CommentAdded"
+      ||
+      notification.notificationType === "DueDateReminder"
+      ||
+      notification.notificationType === "TaskDeleted"
+    )
     if (notification.taskId) {
       navigate(`/dashboard/tasks?workspaceId=${workspaceId}`);
     }

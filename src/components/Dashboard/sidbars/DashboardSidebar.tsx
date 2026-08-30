@@ -43,19 +43,25 @@ export default function DashboardSidebar({
         {
           icon: <FiLayout size={20} />,
           label: t("dashboard.sidebar.dashboard"),
-          to: `/dashboard?workspaceId=${workspaceId}`,
+          to: workspaceId
+            ? `/dashboard?workspaceId=${workspaceId}`
+            : "/dashboard",
           section: "dashboard",
         },
         {
           icon: <FiCheckSquare size={20} />,
           label: t("dashboard.sidebar.tasks"),
-          to: `/dashboard/tasks?workspaceId=${workspaceId}`,
+          to: workspaceId
+            ? `/dashboard/tasks?workspaceId=${workspaceId}`
+            : "/dashboard/tasks",
           section: "tasks",
         },
         {
           icon: <FiBell size={20} />,
           label: t("dashboard.sidebar.notifications"),
-          to: `/dashboard/notifications?workspaceId=${workspaceId}`,
+          to: workspaceId
+            ? `/dashboard/notifications?workspaceId=${workspaceId}`
+            : "/dashboard/notifications",
           section: "notifications",
         },
       ],
@@ -67,13 +73,17 @@ export default function DashboardSidebar({
         {
           icon: <FiGrid size={20} />,
           label: t("dashboard.sidebar.projects"),
-          to: `/dashboard/projects?workspaceId=${workspaceId}`,
+          to: workspaceId
+            ? `/dashboard/projects?workspaceId=${workspaceId}`
+            : "/dashboard/projects",
           section: "projects",
         },
         {
           icon: <FiUsers size={20} />,
           label: t("dashboard.sidebar.team"),
-          to: `/dashboard/team?workspaceId=${workspaceId}`,
+          to: workspaceId
+            ? `/dashboard/team?workspaceId=${workspaceId}`
+            : "/dashboard/team",
           section: "team",
         },
       ],
@@ -85,7 +95,9 @@ export default function DashboardSidebar({
         {
           icon: <FiBarChart2 size={20} />,
           label: t("dashboard.sidebar.reports"),
-          to: `/dashboard/reports?workspaceId=${workspaceId}`,
+          to: workspaceId
+            ? `/dashboard/reports?workspaceId=${workspaceId}`
+            : "/dashboard/reports",
           section: "reports",
         },
       ],

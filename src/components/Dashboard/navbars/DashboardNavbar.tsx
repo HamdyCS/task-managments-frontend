@@ -22,6 +22,7 @@ import { useNotifications } from "../../../hooks/notification/useNotifications";
 import ConfirmDialog from "../../ui/ConfirmDialog";
 import { Container } from "../../website/layout/Container";
 import { setSelectedWorkSpace } from "../../../store/dashboard/selectedWorkSpace";
+import getRoleBadgeClasses from "../../../utils/getRoleBadgeClasses";
 
 interface DashboardNavbarProps {
   onMenuClick: () => void;
@@ -98,19 +99,6 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
     changeLanguage(isAr ? "en" : "ar");
   };
 
-  function getRoleBadgeClasses(role: string): string {
-    switch (role) {
-      case "Owner":
-        return "bg-destructive/10 text-destructive";
-      case "ProjectManager":
-        return "bg-success/10 text-success";
-      case "Member":
-        return "bg-primary/10 text-primary";
-      default:
-        return "bg-muted text-muted-foreground";
-    }
-  }
-
   //switch workspace by updating URL param
   function switchWorkspace(id: number) {
     if (id === Number(workspaceId)) {
@@ -132,7 +120,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
             <div className="flex items-center gap-4 ">
               <button
                 onClick={onMenuClick}
-                className="lg:hidden text-muted-foreground hover:text-card-foreground"
+                className="lg:hidden text-muted-foreground hover:text-card-foreground cursor-pointer"
               >
                 <FiMenu size={20} />
               </button>
@@ -156,7 +144,9 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                         <span
                           className={`hidden sm:inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-semibold leading-none ${getRoleBadgeClasses(workspaceRole)}`}
                         >
-                          {t(`dashboard.workspaceSwitcher.role.${workspaceRole}`)}
+                          {t(
+                            `dashboard.workspaceSwitcher.role.${workspaceRole}`,
+                          )}
                         </span>
                       )}
                       {workspaceRole && (
@@ -242,7 +232,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                   )}
                 </Link>
                 {/* user account menu */}
-              <div ref={menuRef} className="relative">
+                <div ref={menuRef} className="relative">
                   <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     className="account-menu-btn w-8 h-8 rounded-full overflow-hidden border bg-muted flex items-center justify-center text-xs font-medium text-card-foreground cursor-pointer"

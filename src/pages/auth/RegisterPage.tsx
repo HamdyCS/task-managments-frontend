@@ -258,7 +258,7 @@ export function RegisterPage() {
           {formik.touched.password && (
             <div className="mt-2 text-xs space-y-1">
               <div
-                className={`flex items-center gap-2 ${passwordChecks.length ? "text-secondary" : "text-muted-foreground"}`}
+                className={`flex items-center gap-2 ${passwordChecks.length && "text-blue-500"}`}
               >
                 <FiCheck
                   className={`w-3.5 h-3.5 ${passwordChecks.length ? "opacity-100" : "opacity-30"}`}
@@ -266,7 +266,7 @@ export function RegisterPage() {
                 <span>{t("register.passwordChecks.length")}</span>
               </div>
               <div
-                className={`flex items-center gap-2 ${passwordChecks.upper ? "text-secondary" : "text-muted-foreground"}`}
+                className={`flex items-center gap-2 ${passwordChecks.upper && "text-blue-500"}`}
               >
                 <FiCheck
                   className={`w-3.5 h-3.5 ${passwordChecks.upper ? "opacity-100" : "opacity-30"}`}
@@ -274,7 +274,7 @@ export function RegisterPage() {
                 <span>{t("register.passwordChecks.upper")}</span>
               </div>
               <div
-                className={`flex items-center gap-2 ${passwordChecks.number ? "text-secondary" : "text-muted-foreground"}`}
+                className={`flex items-center gap-2 ${passwordChecks.number && "text-blue-500"}`}
               >
                 <FiCheck
                   className={`w-3.5 h-3.5 ${passwordChecks.number ? "opacity-100" : "opacity-30"}`}
@@ -282,7 +282,7 @@ export function RegisterPage() {
                 <span>{t("register.passwordChecks.number")}</span>
               </div>
               <div
-                className={`flex items-center gap-2 ${passwordChecks.special ? "text-secondary" : "text-muted-foreground"}`}
+                className={`flex items-center gap-2 ${passwordChecks.special && "text-blue-500"}`}
               >
                 <FiCheck
                   className={`w-3.5 h-3.5 ${passwordChecks.special ? "opacity-100" : "opacity-30"}`}

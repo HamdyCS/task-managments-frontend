@@ -73,6 +73,16 @@ const config = {
     ) =>
       `/workspaces/${workspaceId}/projects/${projectId}/tasks/${taskId}/attachments/${attachmentId}/download`,
   },
+  workspaceInvite: {
+    byId: (id: number) => `/workspace-invites/${id}`,
+    myReceived: (page: number, pageSize: number) =>
+      `/workspace-invites/all-my-invites?pageNumber=${page}&pageSize=${pageSize}`,
+    mySent: (page: number, pageSize: number) =>
+      `/workspace-invites/all-my-send-invites?pageNumber=${page}&pageSize=${pageSize}`,
+    create: `/workspace-invites`,
+    accept: (id: number) => `/workspace-invites/${id}/accept`,
+    reject: (id: number) => `/workspace-invites/${id}/reject`,
+  },
   notification: {
     all: (page: number, pageSize: number) =>
       `/notifications/all?pageNumber=${page}&pageSize=${pageSize}`,

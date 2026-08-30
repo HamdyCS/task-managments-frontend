@@ -22,27 +22,27 @@ export default function WorkspaceInviteNotification({
     },
   });
 
-  function handleAccept(e: React.MouseEvent) {
+  function handleClick(e: React.MouseEvent) {
     e.stopPropagation();
     markAsRead(notification.id);
     notification.isRead = true;
-    if (workspaceId) {
-      navigate(`/dashboard?workspaceId=${workspaceId}`);
-    }
-  }
 
-  function handleDecline(e: React.MouseEvent) {
-    e.stopPropagation();
-    markAsRead(notification.id);
+    // redirect to workspace team page
+    if (workspaceId) {
+      navigate(`/dashboard/team?workspaceId=${workspaceId}`);
+    } else {
+      navigate(`/dashboard/team`);
+    }
   }
 
   return (
     <div
-      className={`w-full flex items-start gap-3.5 p-4 rounded-xl text-start transition-colors ${
+      className={`w-full flex items-start gap-3.5 p-4 rounded-xl text-start transition-colors cursor-pointer ${
         notification.isRead
           ? "bg-card hover:bg-accent/50"
           : "bg-primary/20 hover:bg-primary/25"
       }`}
+      onClick={handleClick}
     >
       <NotificationIcon type="WorkSpaceInvite" />
 
@@ -67,21 +67,6 @@ export default function WorkspaceInviteNotification({
         <span className="text-xs text-muted-foreground/70 mt-1 block">
           {formatTimeAgo(notification.createdAt)}
         </span>
-
-        <div className="flex gap-2 mt-3">
-          <button
-            onClick={handleAccept}
-            className="px-4 py-1.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors cursor-pointer"
-          >
-            {t("dashboard.notifications.accept")}
-          </button>
-          <button
-            onClick={handleDecline}
-            className="px-4 py-1.5 bg-muted text-muted-foreground text-sm font-medium rounded-lg hover:bg-muted/80 hover:text-card-foreground transition-colors cursor-pointer"
-          >
-            {t("dashboard.notifications.decline")}
-          </button>
-        </div>
       </div>
     </div>
   );

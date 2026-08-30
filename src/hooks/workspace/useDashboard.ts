@@ -7,6 +7,6 @@ export default function useDashboard(workspaceId: number | null) {
   return useQuery<DashboardDto, AxiosError>({
     queryKey: ["workspaceDashboard", workspaceId],
     queryFn: () => getWorkspaceDashboard(workspaceId!),
-    enabled: workspaceId !== null,
+    enabled: workspaceId != null,
   });
 }

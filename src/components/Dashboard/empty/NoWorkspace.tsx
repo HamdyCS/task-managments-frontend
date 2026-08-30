@@ -48,7 +48,7 @@ export default function NoWorkspace() {
         <Button
           text={t("dashboard.noWorkspace.acceptInvite")}
           type="link"
-          to="/dashboard"
+          to="/dashboard/team"
           Icon={<FiMail size={18} />}
           className="shadow-none w-[250px]! h-12!"
         />

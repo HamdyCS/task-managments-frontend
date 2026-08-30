@@ -42,7 +42,7 @@ export default function DashboardPage() {
   const dispatch = useAppDispatch();
 
   //fetch dashboard data
-  const { data: dashboardData, isPending: dashboardLoading } =
+  const { data: dashboardData, isLoading: dashboardLoading } =
     useDashboard(effectiveWorkspaceId);
 
   //handle redirect to the first workspace
@@ -72,35 +72,32 @@ export default function DashboardPage() {
     return <DashboardSkeleton />;
   }
 
-  //handle no workspaces state
-  if (!hasWorkspaces) {
+  //handle no workspaces state or dashboard data is null or undefined
+  if (!hasWorkspaces || !dashboardData) {
     return <NoWorkspace />;
   }
 
-  //destructure dashboard data
-  const {
-    stats,
-    tasksByStatusReportDtos,
-    latestActiveTasks: activeTasks,
-    unReadNotifications,
-  } = dashboardData;
-
   return (
     <div className="space-y-6 pb-6">
-      <KpiCards stats={stats} totalTasks={stats.totalTasks} />
+      <KpiCards
+        stats={dashboardData?.stats}
+        totalTasks={dashboardData?.stats?.totalTasks ?? 0}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <TaskDistribution
-            data={tasksByStatusReportDtos}
+            data={dashboardData?.tasksByStatusReportDtos ?? []}
             workspaceId={effectiveWorkspaceId!}
           />
         </div>
-        <RecentActivity unReadNotifications={unReadNotifications} />
+        <RecentActivity
+          unReadNotifications={dashboardData?.unReadNotifications ?? []}
+        />
       </div>
 
       <ActiveTasksTable
-        tasks={activeTasks}
+        tasks={dashboardData?.latestActiveTasks ?? []}
         workspaceId={effectiveWorkspaceId!}
       />
 

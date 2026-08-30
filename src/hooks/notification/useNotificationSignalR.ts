@@ -18,60 +18,12 @@ export default function useNotificationSignalR() {
       .build();
 
     const updateCacheNotifications = (notification: NotificationDto) => {
-      // =========================
-      // All Notifications
-      // =========================
-
-      queryClient.setQueryData<
-        InfiniteData<PaginationResultDto<NotificationDto>>
-      >(["notifications", "all"], (previousNotifications) => {
-        if (!previousNotifications) {
-          return previousNotifications;
-        }
-
-        return {
-          ...previousNotifications,
-          pages: previousNotifications.pages.map((page, index) => {
-            //if not first page return page as is
-            if (index !== 0) {
-              return page;
-            }
-
-            //add notification to be first element in first page
-            return {
-              ...page,
-              data: [notification, ...page.data],
-            };
-          }),
-        };
+      queryClient.invalidateQueries({
+        queryKey: ["notifications", "all"],
       });
 
-      // =========================
-      // Unread Notifications
-      // =========================
-
-      queryClient.setQueryData<
-        InfiniteData<PaginationResultDto<NotificationDto>>
-      >(["notifications", "unread"], (previousUnreadNotifications) => {
-        if (!previousUnreadNotifications) {
-          return previousUnreadNotifications;
-        }
-
-        return {
-          ...previousUnreadNotifications,
-          pages: previousUnreadNotifications.pages.map((page, index) => {
-            //if not first page return page as is
-            if (index !== 0) {
-              return page;
-            }
-
-            //add notification to be first element in first page
-            return {
-              ...page,
-              data: [notification, ...page.data],
-            };
-          }),
-        };
+      queryClient.invalidateQueries({
+        queryKey: ["notifications", "unread"],
       });
     };
 

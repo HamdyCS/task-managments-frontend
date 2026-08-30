@@ -505,6 +505,91 @@
           "description": "You currently have no assigned tasks in this project."
         }
       }
+    },
+    "team": {
+      "title": "Team",
+      "subtitle": "Manage your workspace members and invitations.",
+      "inviteButton": "Invite Member",
+      "noWorkspace": "No workspace selected.",
+      "members": {
+        "title": "Members",
+        "subtitle": "All people in this workspace.",
+        "you": "You",
+        "empty": {
+          "title": "No members yet",
+          "description": "Invite people to start collaborating."
+        },
+        "table": {
+          "member": "Member",
+          "email": "Email",
+          "role": "Role"
+        }
+      },
+      "sentInvites": {
+        "title": "Sent Invites",
+        "subtitle": "Invitations you have sent to join this workspace.",
+        "empty": {
+          "title": "No sent invitations",
+          "description": "You haven't invited anyone yet."
+        },
+        "table": {
+          "email": "Email",
+          "sentDate": "Sent",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "cancel": {
+          "button": "Cancel invite",
+          "title": "Cancel Invitation?",
+          "confirm": "Cancel Invite",
+          "cancel": "Keep",
+          "success": "Invitation cancelled.",
+          "error": "Failed to cancel invitation."
+        }
+      },
+      "receivedInvites": {
+        "title": "Received Invites",
+        "subtitle": "Invitations you have received to join other workspaces.",
+        "empty": {
+          "title": "No received invitations",
+          "description": "You have no pending invitations."
+        },
+        "table": {
+          "workspace": "Workspace",
+          "sentDate": "Received",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "accept": {
+          "success": "Invitation accepted.",
+          "error": "Failed to accept invitation."
+        },
+        "reject": {
+          "title": "Reject Invitation?",
+          "confirm": "Reject",
+          "cancel": "Keep",
+          "success": "Invitation rejected.",
+          "error": "Failed to reject invitation."
+        },
+        "actions": {
+          "accept": "Accept",
+          "reject": "Reject"
+        }
+      },
+      "inviteModal": {
+        "title": "Invite Member",
+        "email": "Email address",
+        "emailPlaceholder": "colleague@company.com",
+        "cancel": "Cancel",
+        "send": "Send Invite",
+        "success": "Invitation sent successfully.",
+        "error": "Failed to send invitation."
+      },
+      "inviteStatus": {
+        "Pending": "Pending",
+        "Accepted": "Accepted",
+        "Rejected": "Rejected"
+      }
     }
   },
   "footer": {
