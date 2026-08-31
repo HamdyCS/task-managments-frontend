@@ -310,7 +310,7 @@
     "workspaceSwitcher": {
       "title": "Switch workspace",
       "role": {
-        "Owner": "Admin",
+        "Owner": "Owner",
         "ProjectManager": "Project Manager",
         "Member": "Member"
       }
