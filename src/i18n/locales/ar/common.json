@@ -586,6 +586,11 @@
         "title": "دعوة عضو",
         "email": "البريد الإلكتروني",
         "emailPlaceholder": "zcolleague@company.com",
+        "role": "الدور",
+        "roles": {
+          "member": "عضو",
+          "projectManager": "مدير المشروع"
+        },
         "cancel": "إلغاء",
         "send": "إرسال الدعوة",
         "success": "تم إرسال الدعوة بنجاح.",

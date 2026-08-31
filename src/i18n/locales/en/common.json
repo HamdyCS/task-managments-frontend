@@ -586,6 +586,11 @@
         "title": "Invite Member",
         "email": "Email address",
         "emailPlaceholder": "colleague@company.com",
+        "role": "Role",
+        "roles": {
+          "member": "Member",
+          "projectManager": "Project Manager"
+        },
         "cancel": "Cancel",
         "send": "Send Invite",
         "success": "Invitation sent successfully.",

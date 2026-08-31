@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiX } from "react-icons/fi";
 import { toast } from "sonner";
 import useSendInvite from "../../../hooks/team/useSendInvite";
+import type { WorkSpaceRole } from "../../../types/WorkSpaceRole";
 
 interface Props {
   workspaceId: number;
@@ -18,6 +19,7 @@ export default function InviteMemberModal({
 }: Props) {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
+  const [role, setRole] = useState<WorkSpaceRole>("Member");
 
   const { mutateAsync: sendInviteMutation, isPending } = useSendInvite({
     onSuccess: () => {
@@ -32,6 +34,7 @@ export default function InviteMemberModal({
 
   const resetForm = () => {
     setEmail("");
+    setRole("Member");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,7 +44,7 @@ export default function InviteMemberModal({
     await sendInviteMutation({
       workSpaceId: workspaceId,
       inviteToEmail: email.trim(),
-      workSpaceRole: "Member",
+      workSpaceRole: role,
     });
   };
 
@@ -89,6 +92,20 @@ export default function InviteMemberModal({
                     className="w-full h-10 px-3 bg-muted border border-border rounded-lg text-sm text-card-foreground placeholder-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
                     required
                   />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-muted-foreground mb-1.5">
+                    {t("dashboard.team.inviteModal.role")}
+                  </label>
+                  <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value as "Member" | "ProjectManager")}
+                    className="w-full h-10 px-3 bg-muted border border-border rounded-lg text-sm text-card-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all cursor-pointer"
+                  >
+                    <option value="Member">{t("dashboard.team.inviteModal.roles.member")}</option>
+                    <option value="ProjectManager">{t("dashboard.team.inviteModal.roles.projectManager")}</option>
+                  </select>
                 </div>
 
                 <div className="flex justify-end gap-3 pt-2">
