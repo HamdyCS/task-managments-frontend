@@ -1,6 +1,8 @@
 import { Link, NavLink, useSearchParams } from "react-router-dom";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
 import {
   FiLayout,
   FiCheckSquare,
@@ -10,8 +12,11 @@ import {
   FiBarChart2,
   FiPlus,
   FiX,
+  FiBriefcase,
 } from "react-icons/fi";
 import { useAppSelector } from "../../../store/hooks";
+import useCreateWorkspace from "../../../hooks/workspace/useCreateWorkspace";
+import WorkspaceFormDialog from "../workspaces/WorkspaceFormDialog";
 import logo from "../../../assets/logo.png";
 
 interface NavItem {
@@ -34,6 +39,19 @@ export default function DashboardSidebar({
   const [searchParams] = useSearchParams();
   const workspaceId = searchParams.get("workspaceId");
   const selectedWorkSpace = useAppSelector((state) => state.selectedWorkSpace);
+
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const createWorkspace = useCreateWorkspace({
+    onSuccess: () => {
+      toast.success(t("dashboard.workspaces.create.success"));
+      setIsFormOpen(false);
+    },
+    onError: () => {
+      toast.error(t("dashboard.workspaces.create.error"));
+    },
+  });
+
 
   const navSections: { id: string; title: string; items: NavItem[] }[] = [
     {
@@ -86,6 +104,12 @@ export default function DashboardSidebar({
             : "/dashboard/team",
           section: "team",
         },
+        {
+          icon: <FiBriefcase size={20} />,
+          label: t("dashboard.sidebar.workspaces"),
+          to: "/dashboard/workspaces",
+          section: "workspaces",
+        },
       ],
     },
     {
@@ -122,7 +146,7 @@ export default function DashboardSidebar({
           // if the user is a member, do not show the analytics section
           if (
             section.id == "analytics" &&
-            selectedWorkSpace.workSpaceRole == "Member"
+            (!selectedWorkSpace || selectedWorkSpace.workSpaceRole == "Member")
           ) {
             return null;
           }
@@ -155,7 +179,10 @@ export default function DashboardSidebar({
       </div>
 
       <div className="px-4 mt-auto pt-4 border-t">
-        <button className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-2 rounded-lg text-sm font-medium mb-4 hover:bg-primary/90 transition-colors shadow-sm group">
+        <button
+          onClick={() => setIsFormOpen(true)}
+          className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-2 rounded-lg text-sm font-medium mb-4 hover:bg-primary/90 transition-colors shadow-sm group cursor-pointer"
+        >
           <FiPlus
             size={18}
             className="group-hover:rotate-90 transition-transform"
@@ -203,6 +230,14 @@ export default function DashboardSidebar({
           </>
         )}
       </AnimatePresence>
+
+      <WorkspaceFormDialog
+        isOpen={isFormOpen}
+        mode="create"
+        isLoading={createWorkspace.isPending}
+        onClose={() => setIsFormOpen(false)}
+        onSubmit={(data) => createWorkspace.mutateAsync(data)}
+      />
     </>
   );
 }

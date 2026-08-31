@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useInView } from "react-intersection-observer";
 import {
   FiBell,
   FiChevronDown,
@@ -46,9 +47,22 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
   const { mutateAsync: logout, isPending } = useLogout();
 
   //fetch user workspaces and current workspace from URL param
-  const { data: workspacesData } = useUserWorkspaces();
-  const workspaces = workspacesData?.data ?? [];
+  const {
+    data: workspacesData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useUserWorkspaces();
+  const workspaces = workspacesData?.pages.flatMap((p) => p.data) ?? [];
   const currentWorkspace = workspaces.find((w) => w.id === Number(workspaceId));
+
+  const { ref: sentinelRef } = useInView({
+    onChange: (inView) => {
+      if (inView && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    },
+  });
 
   //fetch workspace role for the current workspace
   const { data: workspaceRole } = useWorkspaceRole(
@@ -157,7 +171,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                       <FiChevronDown size={14} />
                     </button>
                     {isWorkspaceOpen && (
-                      <div className="absolute top-full ltr:left-0 rtl:right-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-lg py-1 z-50">
+                      <div className="absolute top-full ltr:left-0 rtl:right-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-lg py-1 z-50 max-h-72 overflow-y-auto">
                         <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
                           {t(
                             "dashboard.workspaceSwitcher.title",
@@ -180,6 +194,12 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                             <span className="truncate">{ws.name}</span>
                           </button>
                         ))}
+                        <div ref={sentinelRef} className="h-2" />
+                        {isFetchingNextPage && (
+                          <div className="flex justify-center py-2">
+                            <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -221,7 +241,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                   )}
                 </button>
                 <Link
-                  to={`/dashboard/notifications?workspaceId=${workspaceId}`}
+                  to={`/dashboard/notifications${workspaceId ? `?workspaceId=${workspaceId}` : ""}`}
                   className="p-1.5 text-muted-foreground hover:text-card-foreground hover:bg-muted rounded-lg transition-colors relative cursor-pointer"
                 >
                   <FiBell size={18} />

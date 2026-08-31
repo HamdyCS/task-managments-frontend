@@ -13,7 +13,7 @@ export async function getWorkspaceMembers(
   pageSize: number,
 ): Promise<PaginationResultDto<WorkSpaceUserDto>> {
   const { data } = await authApi.get<PaginationResultDto<WorkSpaceUserDto>>(
-    `${config.workspace.allUsers(workspaceId)}?pageNumber=${page}&pageSize=${pageSize}`,
+    config.workspace.allUsers(workspaceId, page, pageSize),
   );
   return data;
 }

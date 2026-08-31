@@ -3,6 +3,7 @@ import DashboardPage from "../../pages/dashboard/DashboardPage";
 import TasksPage from "../../pages/dashboard/TasksPage";
 import TeamsPage from "../../pages/dashboard/TeamsPage";
 import NotificationsPage from "../../pages/dashboard/NotificationsPage";
+import WorkspacesPage from "../../pages/dashboard/WorkspacesPage";
 import DashboardNotFoundPage from "../../pages/dashboard/DashboardNotFoundPage";
 import DashboardLayout from "../../components/Dashboard/layout/DashboardLayout";
 import NotificationProvider from "../../providers/NotificationProvider";
@@ -17,6 +18,7 @@ const dashboard: RouteObject[] = [
     ),
     children: [
       { index: true, element: <DashboardPage /> },
+      { path: "workspaces", element: <WorkspacesPage /> },
       { path: "tasks", element: <TasksPage /> },
       { path: "team", element: <TeamsPage /> },
       { path: "notifications", element: <NotificationsPage /> },

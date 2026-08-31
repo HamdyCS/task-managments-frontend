@@ -19,10 +19,16 @@ const config = {
     },
   },
   workspace: {
-    all: `/workspaces/all`,
+    all: (page: number, pageSize: number) =>
+      `/workspaces/all?pageNumber=${page}&pageSize=${pageSize}`,
+    single: (id: number) => `/workspaces/${id}`,
+    create: `/workspaces`,
+    update: (id: number) => `/workspaces/${id}`,
+    delete: (id: number) => `/workspaces/${id}`,
     myRole: (id: number) => `/workspaces/${id}/my-role`,
     dashboard: (id: number) => `/workspaces/${id}/dashboard`,
-    allUsers: (id: number) => `/workspaces/${id}/all-users`,
+    allUsers: (id: number, page: number, pageSize: number) =>
+      `/workspaces/${id}/all-users?pageNumber=${page}&pageSize=${pageSize}`,
   },
   project: {
     all: (workspaceId: number) => `/workspaces/${workspaceId}/projects`,

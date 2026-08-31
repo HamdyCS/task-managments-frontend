@@ -6,7 +6,7 @@ import type WorkSpaceUserDto from "../../dtos/workspace/WorkSpaceUserDto";
 export default function useWorkspaceUsers(workspaceId: number | null) {
   return useQuery<PaginationResultDto<WorkSpaceUserDto>, Error>({
     queryKey: ["workspaceUsers", workspaceId],
-    queryFn: () => getWorkspaceUsers(workspaceId!),
+    queryFn: () => getWorkspaceUsers(workspaceId!, 1, 100),
     enabled: workspaceId !== null,
   });
 }

@@ -5,9 +5,11 @@ import type WorkSpaceUserDto from "../dtos/workspace/WorkSpaceUserDto";
 
 export async function getWorkspaceUsers(
   workspaceId: number,
+  page: number,
+  pageSize: number,
 ): Promise<PaginationResultDto<WorkSpaceUserDto>> {
   const { data } = await api.get<PaginationResultDto<WorkSpaceUserDto>>(
-    `${config.workspace.allUsers(workspaceId)}?pageNumber=1&pageSize=100`,
+    config.workspace.allUsers(workspaceId, page, pageSize),
   );
   return data;
 }

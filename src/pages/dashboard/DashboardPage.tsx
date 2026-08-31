@@ -23,7 +23,7 @@ export default function DashboardPage() {
 
   //get workspaces from data
   const workspaces = useMemo(
-    () => workspacesData?.data ?? [],
+    () => workspacesData?.pages.flatMap((p) => p.data) ?? [],
     [workspacesData],
   );
 

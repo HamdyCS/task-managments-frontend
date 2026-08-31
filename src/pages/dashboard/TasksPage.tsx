@@ -52,7 +52,7 @@ export default function TasksPage() {
   const { data: workspacesData, isLoading: workspacesLoading } =
     useUserWorkspaces();
   const workspaces = useMemo(
-    () => workspacesData?.data ?? [],
+    () => workspacesData?.pages.flatMap((p) => p.data) ?? [],
     [workspacesData],
   );
   const effectiveWorkspaceId = workspaceIdParam

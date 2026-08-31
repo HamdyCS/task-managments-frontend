@@ -345,6 +345,7 @@
       "projects": "Projects",
       "team": "Team",
       "reports": "Reports",
+      "workspaces": "Workspaces",
       "settings": "Settings",
       "create": "Create"
     },
@@ -595,6 +596,91 @@
         "Accepted": "Accepted",
         "Rejected": "Rejected"
       }
+    },
+    "workspaces": {
+      "title": "Workspaces",
+      "subtitle": "Manage the workspaces you belong to",
+      "create": {
+        "button": "Create Workspace",
+        "title": "Create Workspace",
+        "success": "Workspace created successfully.",
+        "error": "Failed to create workspace."
+      },
+      "edit": {
+        "title": "Edit Workspace",
+        "success": "Workspace updated successfully.",
+        "error": "Failed to update workspace."
+      },
+      "delete": {
+        "title": "Delete Workspace?",
+        "confirm": "Delete",
+        "cancel": "Cancel",
+        "success": "Workspace deleted successfully.",
+        "error": "Failed to delete workspace."
+      },
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Enter workspace name",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter workspace description"
+      },
+      "filters": {
+        "search": "Search workspaces...",
+        "role": "Role",
+        "all": "All",
+        "owned": "Owned",
+        "member": "Member"
+      },
+      "table": {
+        "workspace": "Workspace",
+        "description": "Description",
+        "owner": "Owner",
+        "role": "Role",
+        "createdAt": "Created At",
+        "lastUpdatedAt": "Last Updated At",
+        "actions": "Actions"
+      },
+      "role": {
+        "Owner": "Owner",
+        "ProjectManager": "Project Manager",
+        "Member": "Member"
+      },
+      "actions": {
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "details": {
+        "title": "Workspace Details",
+        "name": "Name",
+        "description": "Description",
+        "owner": "Owner",
+        "yourRole": "Your Role",
+        "created": "Created",
+        "lastUpdated": "Last Updated",
+        "lastUpdatedBy": "Last Updated By",
+        "you": "You",
+        "members": "Members"
+      },
+      "members": {
+        "title": "Members",
+        "empty": "No members found.",
+        "table": {
+          "member": "Member",
+          "email": "Email",
+          "role": "Role"
+        }
+      },
+      "empty": {
+        "title": "No workspaces yet",
+        "description": "Create a workspace to start organizing your tasks and projects.",
+        "create": "Create Workspace"
+      },
+      "emptyFiltered": {
+        "title": "No workspaces match your filter",
+        "description": "Try adjusting your search or filter criteria."
+      },
+      "loading": "Loading more..."
     }
   },
   "footer": {
