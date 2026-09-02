@@ -336,6 +336,11 @@
       "description": "The page you're looking for doesn't exist or may have been moved. Let's get you back to your tasks.",
       "backToDashboard": "Back to Dashboard"
     },
+    "accessDenied": {
+      "title": "Access denied",
+      "description": "You don't have permission to view this page. Contact your workspace owner to request access.",
+      "backToDashboard": "Back to Dashboard"
+    },
     "sidebar": {
       "main": "Main",
       "workspace": "Workspace",

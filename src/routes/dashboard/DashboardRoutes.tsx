@@ -6,6 +6,7 @@ import NotificationsPage from "../../pages/dashboard/NotificationsPage";
 import WorkspacesPage from "../../pages/dashboard/WorkspacesPage";
 import ProjectsPage from "../../pages/dashboard/ProjectsPage";
 import DashboardNotFoundPage from "../../pages/dashboard/DashboardNotFoundPage";
+import DashboardAccessDeniedPage from "../../pages/dashboard/DashboardAccessDeniedPage";
 import DashboardLayout from "../../components/Dashboard/layout/DashboardLayout";
 import NotificationProvider from "../../providers/NotificationProvider";
 
@@ -24,6 +25,7 @@ const dashboard: RouteObject[] = [
       { path: "tasks", element: <TasksPage /> },
       { path: "team", element: <TeamsPage /> },
       { path: "notifications", element: <NotificationsPage /> },
+      { path: "access-denied", element: <DashboardAccessDeniedPage /> },
       { path: "*", element: <DashboardNotFoundPage /> },
     ],
   },
