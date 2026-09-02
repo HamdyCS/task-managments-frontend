@@ -309,6 +309,7 @@
     },
     "workspaceSwitcher": {
       "title": "Switch workspace",
+      "selectWorkspace": "Select workspace",
       "role": {
         "Owner": "Owner",
         "ProjectManager": "Project Manager",
@@ -684,6 +685,65 @@
       "emptyFiltered": {
         "title": "No workspaces match your filter",
         "description": "Try adjusting your search or filter criteria."
+      },
+      "loading": "Loading more..."
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Manage projects in this workspace",
+      "create": {
+        "button": "Create Project",
+        "title": "Create Project",
+        "success": "Project created successfully.",
+        "error": "Failed to create project."
+      },
+      "edit": {
+        "title": "Edit Project",
+        "success": "Project updated successfully.",
+        "error": "Failed to update project."
+      },
+      "delete": {
+        "title": "Delete Project?",
+        "confirm": "Delete",
+        "cancel": "Cancel",
+        "success": "Project deleted successfully.",
+        "error": "Failed to delete project."
+      },
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Enter project name",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter project description"
+      },
+      "filters": {
+        "search": "Search projects..."
+      },
+      "table": {
+        "project": "Project",
+        "description": "Description",
+        "createdAt": "Created At",
+        "actions": "Actions"
+      },
+      "actions": {
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "details": {
+        "title": "Project Details",
+        "description": "Description",
+        "created": "Created",
+        "lastUpdated": "Last Updated",
+        "viewTasks": "View Tasks"
+      },
+      "empty": {
+        "title": "No projects yet",
+        "description": "Create a project to start organizing your tasks.",
+        "create": "Create Project"
+      },
+      "emptyFiltered": {
+        "title": "No projects match your search",
+        "description": "Try adjusting your search criteria."
       },
       "loading": "Loading more..."
     }

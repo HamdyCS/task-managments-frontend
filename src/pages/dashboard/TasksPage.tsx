@@ -43,10 +43,12 @@ const EMPTY_FILTERS = {
 
 export default function TasksPage() {
   const { t } = useTranslation();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const workspaceIdParam = searchParams.get("workspaceId");
+  const projectIdParam = searchParams.get("projectId");
+  const viewParam = searchParams.get("view");
 
   // Workspace
   const { data: workspacesData, isLoading: workspacesLoading } =
@@ -94,39 +96,88 @@ export default function TasksPage() {
   }, [workspaces, workspaceIdParam, navigate]);
 
   // Projects
-  const { data: projectsData, isLoading: projectsLoading } =
-    useProjects(effectiveWorkspaceId);
-  const projects = useMemo(() => projectsData?.data ?? [], [projectsData]);
-
-  // Selected project
-  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
-    null,
+  const {
+    data: projectsData,
+    isLoading: projectsLoading,
+    fetchNextPage: fetchNextProjectsPage,
+    hasNextPage: hasNextProjectsPage,
+    isFetchingNextPage: isFetchingNextProjectsPage,
+  } = useProjects(effectiveWorkspaceId);
+  const projects = useMemo(
+    () => projectsData?.pages.flatMap((p) => p.data) ?? [],
+    [projectsData],
   );
 
+  // Selected project — driven by URL query param
   const effectiveProjectId = useMemo(() => {
     if (projects.length === 0) return null;
-    if (selectedProjectId && projects.find((p) => p.id === selectedProjectId)) {
-      return selectedProjectId;
+    if (projectIdParam) {
+      const parsed = Number(projectIdParam);
+      if (projects.find((p) => p.id === parsed)) return parsed;
     }
     return projects[0].id;
-  }, [projects, selectedProjectId]);
+  }, [projects, projectIdParam]);
+
+  // Redirect to first project when no projectId in URL
+  useEffect(() => {
+    if (projects.length > 0 && !projectIdParam && effectiveProjectId) {
+      setSearchParams(
+        (prev) => {
+          prev.set("projectId", String(effectiveProjectId));
+          return prev;
+        },
+        { replace: true },
+      );
+    }
+  }, [projects, projectIdParam, effectiveProjectId, setSearchParams]);
 
   // Mode & filters
   const [mode, setMode] = useState<TaskMode>("all");
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState(EMPTY_FILTERS);
-  const [view, setView] = useState<"table" | "kanban">("table");
+  const [tabelView, setTableView] = useState<"table" | "kanban">("table");
+
+  //set tasks view from url (me || all)
+  useEffect(() => {
+    if (viewParam === "me") {
+      setMode("my");
+    } else {
+      setMode("all");
+    }
+  }, [viewParam]);
 
   // Reset page via callbacks(donot render component when changed)
-  const handleProjectChange = useCallback((projectId: number) => {
-    setSelectedProjectId(projectId);
-    setPage(1);
-  }, []);
+  const handleProjectChange = useCallback(
+    (projectId: number) => {
+      setSearchParams((prev) => {
+        prev.set("projectId", String(projectId));
+        return prev;
+      });
+      setPage(1);
+    },
+    [setSearchParams],
+  );
 
-  const handleModeChange = useCallback((newMode: TaskMode) => {
-    setMode(newMode);
-    setPage(1);
-  }, []);
+  //handle change mode between me and all
+  const handleModeChange = useCallback(
+    (newMode: TaskMode) => {
+      if (newMode === "my") {
+        setSearchParams((prev) => {
+          prev.set("view", "me");
+          return prev;
+        });
+      } else {
+        setSearchParams((prev) => {
+          prev.delete("view");
+          return prev;
+        });
+      }
+
+      setMode(newMode);
+      setPage(1);
+    },
+    [setSearchParams],
+  );
 
   // Tasks
   const { data: tasksData, isLoading: tasksLoading } = useProjectTasks(
@@ -153,7 +204,6 @@ export default function TasksPage() {
         hasPreviousPage: tasksData.hasPreviousPage,
       }
     : null;
-
 
   // Current user
   const user = useAppSelector((state) => state.auth.user);
@@ -343,8 +393,11 @@ export default function TasksPage() {
         <div className="w-64">
           <ProjectSelector
             projects={projects}
-            selectedProjectId={selectedProjectId}
+            selectedProjectId={effectiveProjectId}
             onSelect={handleProjectChange}
+            hasNextPage={hasNextProjectsPage}
+            isFetchingNextPage={isFetchingNextProjectsPage}
+            onLoadMore={fetchNextProjectsPage}
           />
         </div>
       </div>
@@ -376,9 +429,9 @@ export default function TasksPage() {
 
         <div className="flex gap-1 bg-muted p-1 rounded-lg">
           <button
-            onClick={() => setView("table")}
+            onClick={() => setTableView("table")}
             className={`p-2 rounded-md transition-colors cursor-pointer ${
-              view === "table"
+              tabelView === "table"
                 ? "bg-card text-card-foreground shadow-sm"
                 : "text-muted-foreground hover:text-card-foreground"
             }`}
@@ -386,9 +439,9 @@ export default function TasksPage() {
             <FiList size={16} />
           </button>
           <button
-            onClick={() => setView("kanban")}
+            onClick={() => setTableView("kanban")}
             className={`p-2 rounded-md transition-colors cursor-pointer ${
-              view === "kanban"
+              tabelView === "kanban"
                 ? "bg-card text-card-foreground shadow-sm"
                 : "text-muted-foreground hover:text-card-foreground"
             }`}
@@ -457,7 +510,7 @@ export default function TasksPage() {
                 : t("dashboard.tasks.empty.noTasks.description")}
           </p>
         </div>
-      ) : view === "table" ? (
+      ) : tabelView === "table" ? (
         <TasksTable
           tasks={tasks}
           currentUserId={currentUserId}

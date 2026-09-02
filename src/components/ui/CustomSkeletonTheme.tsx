@@ -12,13 +12,13 @@ const SKELETON_COLORS = {
   },
 } as const;
 
-interface SkeletonThemeProviderProps {
+interface CustomSkeletonThemeProps {
   children: React.ReactNode;
 }
 
-export default function SkeletonThemeProvider({
+export default function CustomSkeletonTheme({
   children,
-}: SkeletonThemeProviderProps) {
+}: CustomSkeletonThemeProps) {
   const theme = useAppSelector((state) => state.theme);
   const colors = SKELETON_COLORS[theme];
 

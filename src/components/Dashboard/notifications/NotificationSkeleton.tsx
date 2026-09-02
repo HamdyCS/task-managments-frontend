@@ -1,11 +1,11 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import SkeletonThemeProvider from "../../ui/SkeletonTheme";
+import CustomSkeletonTheme from "../../ui/CustomSkeletonTheme";
 
 export default function NotificationSkeleton() {
   return (
     <div className="space-y-2">
-      <SkeletonThemeProvider>
+      <CustomSkeletonTheme>
         {Array.from({ length: 5 }).map((_, i) => (
           <div
             key={i}
@@ -21,7 +21,7 @@ export default function NotificationSkeleton() {
             </div>
           </div>
         ))}
-      </SkeletonThemeProvider>
+      </CustomSkeletonTheme>
     </div>
   );
 }

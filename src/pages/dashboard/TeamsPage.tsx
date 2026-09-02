@@ -50,6 +50,7 @@ export default function TeamsPage() {
     }
   }, [effectiveWorkspaceId, workspaceRole, workspaces, dispatch]);
 
+  //if no workspace is selected, redirect to the first workspace
   useEffect(() => {
     if (workspaces.length > 0 && !workspaceIdParam) {
       navigate(`/dashboard/team?workspaceId=${workspaces[0].id}`, {

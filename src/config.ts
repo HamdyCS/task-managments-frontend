@@ -31,7 +31,20 @@ const config = {
       `/workspaces/${id}/all-users?pageNumber=${page}&pageSize=${pageSize}`,
   },
   project: {
-    all: (workspaceId: number) => `/workspaces/${workspaceId}/projects`,
+    all: (workspaceId: number, pageNumber?: number, pageSize?: number) => {
+      let url = `/workspaces/${workspaceId}/projects`;
+      if (pageNumber !== undefined && pageSize !== undefined) {
+        url += `?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+      }
+      return url;
+    },
+    single: (workspaceId: number, projectId: number) =>
+      `/workspaces/${workspaceId}/projects/${projectId}`,
+    create: (workspaceId: number) => `/workspaces/${workspaceId}/projects`,
+    update: (workspaceId: number, projectId: number) =>
+      `/workspaces/${workspaceId}/projects/${projectId}`,
+    delete: (workspaceId: number, projectId: number) =>
+      `/workspaces/${workspaceId}/projects/${projectId}`,
   },
   task: {
     all: (workspaceId: number, projectId: number) =>

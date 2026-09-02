@@ -1,6 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import SkeletonThemeProvider from "../../ui/SkeletonTheme";
+import CustomSkeletonTheme from "../../ui/CustomSkeletonTheme";
 
 function TableSkeleton({ rows, columns }: { rows: number; columns: number[] }) {
   return (
@@ -39,7 +39,7 @@ function TableSkeleton({ rows, columns }: { rows: number; columns: number[] }) {
 
 export default function TeamsPageSkeleton() {
   return (
-    <SkeletonThemeProvider>
+    <CustomSkeletonTheme>
       <div className="space-y-6 pb-6">
         {/* Header skeleton */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -99,6 +99,6 @@ export default function TeamsPageSkeleton() {
         {/* Received invites table skeleton */}
         <TableSkeleton rows={3} columns={[160, 100, 80, 80]} />
       </div>
-    </SkeletonThemeProvider>
+    </CustomSkeletonTheme>
   );
 }

@@ -10,6 +10,7 @@ import {
   FloatingPortal,
   offset,
   shift,
+  useDismiss,
   useFloating,
 } from "@floating-ui/react";
 
@@ -57,20 +58,23 @@ export default function TaskActionsMenu({
     placement: "bottom-end",
     onOpenChange: setOpen,
 
-    // تحديث المنيو تلقائيا يعني مثلا مع تغيير حجم الشاشة  مثل تصغير الشاشة او سكرول  
+    // تحديث المنيو تلقائيا يعني مثلا مع تغيير حجم الشاشة  مثل تصغير الشاشة او سكرول
     whileElementsMounted: autoUpdate,
 
     middleware: [
       //مسافة بين الزر والمينيو
-      offset(5), 
+      offset(5),
 
       // لو المنيو خارج الشاشة يغير مكانه
-      flip(), 
-      
+      flip(),
+
       // مسافة بين المنيو والحواف
-      shift({ padding: 10 })
+      shift({ padding: 10 }),
     ],
   });
+
+  //اطفاء المينيو علي ضغط escape or click outside
+  const {} = useDismiss(context);
 
   const isManager = canManageTask(workspaceRole);
   const assignedUserId = task.assignments.find((a) => a.isActive)?.assignedToId;

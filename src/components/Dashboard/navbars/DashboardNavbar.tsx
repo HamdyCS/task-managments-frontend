@@ -142,69 +142,93 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                 {getGreeting()}, {user?.firstName ?? "User"} 👋
               </h1>
               {/* workspace switcher dropdown */}
-              {currentWorkspace && (
-                <>
-                  <div className="h-6 w-px bg-border hidden sm:block" />
-                  <div
-                    ref={workspaceMenuRef}
-                    className="relative hidden sm:block"
+              <>
+                <div className="h-6 w-px bg-border hidden sm:block" />
+
+                <div
+                  ref={workspaceMenuRef}
+                  className="relative hidden sm:block"
+                >
+                  <button
+                    onClick={() => setIsWorkspaceOpen((o) => !o)}
+                    className="flex items-center gap-1.5 text-muted-foreground hover:text-card-foreground transition-colors text-sm font-medium"
                   >
-                    <button
-                      onClick={() => setIsWorkspaceOpen((o) => !o)}
-                      className="flex items-center gap-1.5 text-muted-foreground hover:text-card-foreground transition-colors text-sm font-medium"
-                    >
-                      {currentWorkspace.name}
-                      {workspaceRole && (
-                        <span
-                          className={`hidden sm:inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-semibold leading-none ${getRoleBadgeClasses(workspaceRole)}`}
-                        >
-                          {t(
-                            `dashboard.workspaceSwitcher.role.${workspaceRole}`,
-                          )}
-                        </span>
-                      )}
-                      {workspaceRole && (
-                        <span
-                          className={`sm:hidden w-2 h-2 rounded-full shrink-0 ${workspaceRole === "Owner" ? "bg-destructive" : workspaceRole === "ProjectManager" ? "bg-success" : "bg-primary"}`}
-                        />
-                      )}
-                      <FiChevronDown size={14} />
-                    </button>
-                    {isWorkspaceOpen && (
-                      <div className="absolute top-full ltr:left-0 rtl:right-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-lg py-1 z-50 max-h-72 overflow-y-auto">
-                        <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
-                          {t(
-                            "dashboard.workspaceSwitcher.title",
-                            "Switch workspace",
-                          )}
-                        </div>
-                        {workspaces.map((ws) => (
-                          <button
-                            key={ws.id}
-                            onClick={() => switchWorkspace(ws.id)}
-                            className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors cursor-pointer ${
-                              ws.id === Number(workspaceId)
-                                ? "bg-accent text-card-foreground font-medium"
-                                : "text-popover-foreground hover:bg-accent"
-                            }`}
+                    {currentWorkspace ? (
+                      <>
+                        {currentWorkspace.name}
+
+                        {workspaceRole && (
+                          <span
+                            className={`hidden sm:inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-semibold leading-none ${getRoleBadgeClasses(workspaceRole)}`}
                           >
-                            <span className="w-6 h-6 rounded-md bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">
-                              {ws.name[0]}
-                            </span>
-                            <span className="truncate">{ws.name}</span>
-                          </button>
-                        ))}
-                        <div ref={sentinelRef} className="h-2" />
-                        {isFetchingNextPage && (
-                          <div className="flex justify-center py-2">
-                            <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-                          </div>
+                            {t(
+                              `dashboard.workspaceSwitcher.role.${workspaceRole}`,
+                            )}
+                          </span>
+                        )}
+
+                        {workspaceRole && (
+                          <span
+                            className={`sm:hidden w-2 h-2 rounded-full shrink-0 ${
+                              workspaceRole === "Owner"
+                                ? "bg-destructive"
+                                : workspaceRole === "ProjectManager"
+                                  ? "bg-success"
+                                  : "bg-primary"
+                            }`}
+                          />
+                        )}
+                      </>
+                    ) : (
+                      <span className="text-muted-foreground">
+                        {t(
+                          "dashboard.workspaceSwitcher.selectWorkspace",
+                          "Select workspace",
+                        )}
+                      </span>
+                    )}
+
+                    <FiChevronDown size={14} />
+                  </button>
+
+                  {isWorkspaceOpen && (
+                    <div className="absolute top-full ltr:left-0 rtl:right-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-lg py-1 z-50 max-h-72 overflow-y-auto">
+                      <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
+                        {t(
+                          "dashboard.workspaceSwitcher.title",
+                          "Switch workspace",
                         )}
                       </div>
-                    )}
-                  </div>
-                </>
-              )}
+
+                      {workspaces.map((ws) => (
+                        <button
+                          key={ws.id}
+                          onClick={() => switchWorkspace(ws.id)}
+                          className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors cursor-pointer ${
+                            ws.id === Number(workspaceId)
+                              ? "bg-accent text-card-foreground font-medium"
+                              : "text-popover-foreground hover:bg-accent"
+                          }`}
+                        >
+                          <span className="w-6 h-6 rounded-md bg-primary/10 text-primary flex items-center justify-center text-xs font-semibold">
+                            {ws.name[0]}
+                          </span>
+
+                          <span className="truncate">{ws.name}</span>
+                        </button>
+                      ))}
+
+                      <div ref={sentinelRef} className="h-2" />
+
+                      {isFetchingNextPage && (
+                        <div className="flex justify-center py-2">
+                          <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </>
             </div>
             <div className="flex items-center gap-1">
               <div className="search-input relative flex-1">
