@@ -144,12 +144,12 @@ export default function DashboardSidebar({
       <div className="flex-1 overflow-y-auto ltr:pr-2 rtl:pl-2">
         {navSections.map((section) => {
           // if the user is a member, do not show the analytics section
-          if (
-            section.id == "analytics" &&
-            (!selectedWorkSpace || selectedWorkSpace.workSpaceRole == "Member")
-          ) {
-            return null;
-          }
+          // if (
+          //   section.id == "analytics" &&
+          //   (!selectedWorkSpace || selectedWorkSpace.workSpaceRole == "Member")
+          // ) {
+          //   return null;
+          // }
           return (
             <div key={section.title}>
               <div className="px-6 mb-2 mt-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">

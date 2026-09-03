@@ -36,7 +36,9 @@ export default function ReportsPage() {
   /** Flattened list of workspace DTOs from the paginated query result. */
   const workspaces = useMemo(
     () =>
-      workspacesData?.pages.flatMap((p: PaginationResultDto<WorkSpaceDto>) => p.data) ?? [],
+      workspacesData?.pages.flatMap(
+        (p: PaginationResultDto<WorkSpaceDto>) => p.data,
+      ) ?? [],
     [workspacesData],
   );
 
@@ -54,14 +56,15 @@ export default function ReportsPage() {
     useWorkspaceRole(effectiveWorkspaceId);
 
   /** All projects belonging to the selected workspace. */
-  const { data: projectsData, isLoading: projectsLoading } = useProjects(
-    effectiveWorkspaceId,
-  );
+  const { data: projectsData, isLoading: projectsLoading } =
+    useProjects(effectiveWorkspaceId);
 
   /** Flattened list of project DTOs. */
   const projects = useMemo(
     () =>
-      projectsData?.pages.flatMap((p: PaginationResultDto<ProjectDto>) => p.data) ?? [],
+      projectsData?.pages.flatMap(
+        (p: PaginationResultDto<ProjectDto>) => p.data,
+      ) ?? [],
     [projectsData],
   );
 
@@ -71,9 +74,12 @@ export default function ReportsPage() {
   /** Flattened list of workspace member DTOs. */
   const members = useMemo(
     () =>
-      membersData?.pages.flatMap((p: PaginationResultDto<WorkSpaceUserDto>) => p.data) ?? [],
+      membersData?.pages.flatMap(
+        (p: PaginationResultDto<WorkSpaceUserDto>) => p.data,
+      ) ?? [],
     [membersData],
   );
+
 
   // ---------------------------------------------------------------------------
   // Auto-select first workspace when none is in the URL
@@ -99,10 +105,13 @@ export default function ReportsPage() {
   /** Ensure a "tab" param always exists in the URL (defaults to "overview"). */
   useEffect(() => {
     if (!searchParams.get("tab")) {
-      setSearchParams((prev) => {
-        prev.set("tab", "overview");
-        return prev;
-      }, { replace: true });
+      setSearchParams(
+        (prev) => {
+          prev.set("tab", "overview");
+          return prev;
+        },
+        { replace: true },
+      );
     }
   }, [searchParams, setSearchParams]);
 
@@ -127,10 +136,13 @@ export default function ReportsPage() {
   /** Auto-select the first project when switching to the Projects tab. */
   useEffect(() => {
     if (tab === "projects" && projects.length > 0 && !projectIdParam) {
-      setSearchParams((prev) => {
-        prev.set("projectId", String(projects[0].id));
-        return prev;
-      }, { replace: true });
+      setSearchParams(
+        (prev) => {
+          prev.set("projectId", String(projects[0].id));
+          return prev;
+        },
+        { replace: true },
+      );
     }
   }, [tab, projects, projectIdParam, setSearchParams]);
 
@@ -155,10 +167,13 @@ export default function ReportsPage() {
   /** Auto-select the first member when switching to the Members tab. */
   useEffect(() => {
     if (tab === "members" && members.length > 0 && !memberIdParam) {
-      setSearchParams((prev) => {
-        prev.set("memberId", members[0].userId);
-        return prev;
-      }, { replace: true });
+      setSearchParams(
+        (prev) => {
+          prev.set("memberId", members[0].userId);
+          return prev;
+        },
+        { replace: true },
+      );
     }
   }, [tab, members, memberIdParam, setSearchParams]);
 
@@ -171,11 +186,6 @@ export default function ReportsPage() {
     return <ReportsSkeleton />;
   }
 
-  /** Members are not allowed to view reports — redirect them. */
-  if (workspaceRole === "Member") {
-    navigate("/dashboard/access-denied", { replace: true });
-    return null;
-  }
 
   /** Show an empty state when no workspace is selected or available. */
   if (!effectiveWorkspaceId) {
@@ -195,9 +205,7 @@ export default function ReportsPage() {
       <ReportsTabs activeTab={tab} workspaceId={effectiveWorkspaceId} />
 
       {/* Active tab content — only one is rendered at a time */}
-      {tab === "overview" && (
-        <OverviewTab workspaceId={effectiveWorkspaceId} />
-      )}
+      {tab === "overview" && <OverviewTab workspaceId={effectiveWorkspaceId} />}
 
       {tab === "projects" && (
         <ProjectsTab

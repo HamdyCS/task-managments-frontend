@@ -10,6 +10,7 @@ import DashboardAccessDeniedPage from "../../pages/dashboard/DashboardAccessDeni
 import ReportsPage from "../../pages/dashboard/ReportsPage";
 import DashboardLayout from "../../components/Dashboard/layout/DashboardLayout";
 import NotificationProvider from "../../providers/NotificationProvider";
+import RequireWorkSpaceRole from "./RequireWorkSpaceRole";
 
 const dashboard: RouteObject[] = [
   {
@@ -26,8 +27,12 @@ const dashboard: RouteObject[] = [
       { path: "tasks", element: <TasksPage /> },
       { path: "team", element: <TeamsPage /> },
       { path: "notifications", element: <NotificationsPage /> },
-      { path: "reports", element: <ReportsPage /> },
       { path: "access-denied", element: <DashboardAccessDeniedPage /> },
+      {
+        path: "reports",
+        element: <RequireWorkSpaceRole role={["Owner", "ProjectManager"]} />,
+        children: [{ index: true, element: <ReportsPage /> }],
+      },
       { path: "*", element: <DashboardNotFoundPage /> },
     ],
   },
