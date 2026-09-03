@@ -131,54 +131,42 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
       <nav className="h-16 border-b bg-background/80 backdrop-blur-md shrink-0 z-40 sticky top-0">
         <Container className="px-6 h-full max-w-full!">
           <div className="flex h-full justify-between gap-4">
-            <div className="flex items-center gap-4 ">
+            <div className="flex items-center gap-4 min-w-0 flex-1">
               <button
                 onClick={onMenuClick}
-                className="lg:hidden text-muted-foreground hover:text-card-foreground cursor-pointer"
+                className="lg:hidden text-muted-foreground hover:text-card-foreground cursor-pointer shrink-0"
               >
                 <FiMenu size={20} />
               </button>
-              <h1 className="text-lg hidden md:block font-semibold text-card-foreground">
+              <h1 className="text-lg hidden md:block font-semibold text-card-foreground shrink-0">
                 {getGreeting()}, {user?.firstName ?? "User"} 👋
               </h1>
               {/* workspace switcher dropdown */}
               <>
-                <div className="h-6 w-px bg-border hidden sm:block" />
+                <div className="h-6 w-px bg-border hidden sm:block shrink-0" />
 
-                <div
-                  ref={workspaceMenuRef}
-                  className="relative hidden sm:block"
-                >
+                <div ref={workspaceMenuRef} className="relative min-w-0">
                   <button
                     onClick={() => setIsWorkspaceOpen((o) => !o)}
-                    className="flex items-center gap-1.5 text-muted-foreground hover:text-card-foreground transition-colors text-sm font-medium"
+                    className="flex items-center gap-1.5 text-muted-foreground hover:text-card-foreground transition-colors text-sm font-medium min-w-0 max-w-full"
+                    title={currentWorkspace?.name}
                   >
                     {currentWorkspace ? (
-                      <>
-                        {currentWorkspace.name}
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="truncate">
+                          {currentWorkspace.name}
+                        </span>
 
                         {workspaceRole && (
                           <span
-                            className={`hidden sm:inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-semibold leading-none ${getRoleBadgeClasses(workspaceRole)}`}
+                            className={`inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-semibold leading-none shrink-0 ${getRoleBadgeClasses(workspaceRole)}`}
                           >
                             {t(
                               `dashboard.workspaceSwitcher.role.${workspaceRole}`,
                             )}
                           </span>
                         )}
-
-                        {workspaceRole && (
-                          <span
-                            className={`sm:hidden w-2 h-2 rounded-full shrink-0 ${
-                              workspaceRole === "Owner"
-                                ? "bg-destructive"
-                                : workspaceRole === "ProjectManager"
-                                  ? "bg-success"
-                                  : "bg-primary"
-                            }`}
-                          />
-                        )}
-                      </>
+                      </div>
                     ) : (
                       <span className="text-muted-foreground">
                         {t(
@@ -188,9 +176,8 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                       </span>
                     )}
 
-                    <FiChevronDown size={14} />
+                    <FiChevronDown size={14} className="shrink-0" />
                   </button>
-
                   {isWorkspaceOpen && (
                     <div className="absolute top-full ltr:left-0 rtl:right-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-lg py-1 z-50 max-h-72 overflow-y-auto">
                       <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
@@ -231,7 +218,8 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
               </>
             </div>
             <div className="flex items-center gap-1">
-              <div className="search-input relative flex-1">
+              {/* search bar */}
+              {/* <div className="search-input relative flex-1">
                 <FiSearch
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                   size={16}
@@ -241,7 +229,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                   placeholder="Search spaces, tasks..."
                   className="w-full pl-9 pr-4 py-1.5 bg-muted border rounded-lg text-sm text-card-foreground placeholder-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
                 />
-              </div>
+              </div> */}
               <div className="flex items-center flex-1">
                 <button
                   type="button"

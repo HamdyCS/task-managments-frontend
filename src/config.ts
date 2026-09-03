@@ -109,6 +109,24 @@ const config = {
       `/notifications/all/unread?pageNumber=${page}&pageSize=${pageSize}`,
     markRead: (id: number) => `/notifications/${id}/read`,
   },
+  reports: {
+    workspace: (workspaceId: number) =>
+      `/workspaces/${workspaceId}/reports`,
+    workspacePdf: (workspaceId: number) =>
+      `/workspaces/${workspaceId}/reports/pdf/download`,
+    projectTasksByStatus: (workspaceId: number, projectId: number) =>
+      `/workspaces/${workspaceId}/reports/projects/${projectId}/tasks-by-status`,
+    projectTasksByPriority: (workspaceId: number, projectId: number) =>
+      `/workspaces/${workspaceId}/reports/projects/${projectId}/tasks-by-priority`,
+    projectMemberPerformance: (
+      workspaceId: number,
+      projectId: number,
+      memberId: string,
+    ) =>
+      `/workspaces/${workspaceId}/reports/projects/${projectId}/members/${memberId}/performance`,
+    memberPerformance: (workspaceId: number, memberId: string) =>
+      `/workspaces/${workspaceId}/reports/members/${memberId}/performance`,
+  },
 };
 
 export default config;

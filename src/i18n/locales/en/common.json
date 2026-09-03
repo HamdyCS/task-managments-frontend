@@ -751,6 +751,63 @@
         "description": "Try adjusting your search criteria."
       },
       "loading": "Loading more..."
+    },
+    "reports": {
+      "title": "Reports",
+      "noWorkspace": {
+        "title": "No workspace selected",
+        "description": "Select a workspace from the dropdown to view reports."
+      },
+      "tabs": {
+        "overview": "Overview",
+        "projects": "Projects",
+        "members": "Members"
+      },
+      "stats": {
+        "totalProjects": "Total Projects",
+        "totalMembers": "Total Members",
+        "totalTasks": "Total Tasks",
+        "completedTasks": "Completed Tasks",
+        "acrossWorkspace": "Across this workspace",
+        "ofTotal": "of {{total}} tasks completed"
+      },
+      "taskStatus": "Task Status",
+      "taskPriority": "Task Priority",
+      "memberPerformance": "Member Performance",
+      "projectTaskStatus": "Project Task Status",
+      "projectTaskPriority": "Project Task Priority",
+      "projectMemberPerformance": "Project Member Performance",
+      "selectProject": "Select Project",
+      "selectMember": "Select Member",
+      "selectProjectFirst": "Select a project to view its report.",
+      "selectMemberFirst": "Select a member to view their performance.",
+      "downloadButton": "Download Workspace Report",
+      "downloadSuccess": "Report downloaded successfully.",
+      "downloadError": "Failed to download report.",
+      "noProjects": "No projects in this workspace.",
+      "noMembers": "No members in this workspace.",
+      "noTasks": "No tasks to display.",
+      "noPerformanceData": "No performance data available.",
+      "status": {
+        "Backlog": "Backlog",
+        "Todo": "Todo",
+        "InProgress": "In Progress",
+        "Review": "Review",
+        "Done": "Done"
+      },
+      "priority": {
+        "Low": "Low",
+        "Medium": "Medium",
+        "High": "High",
+        "Critical": "Critical"
+      },
+      "table": {
+        "member": "Member",
+        "assigned": "Assigned",
+        "inProgress": "In Progress",
+        "done": "Done",
+        "completion": "Completion"
+      }
     }
   },
   "footer": {

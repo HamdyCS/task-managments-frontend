@@ -262,15 +262,15 @@ All configuration lives in `appsettings.json` / `appsettings.Development.json`.
 |---|------------|------------|------|
 | 1 | `AuthController` | `/api/auth` | `POST register-user` · `POST register-admin` · `POST confirm-email` · `POST login` · `POST refresh-token` · `POST logout` · `GET ""` · `PUT ""` · `POST forget-password/send-otp` · `POST forget-password/resend-otp` · `POST forget-password` · `POST reset-password/send-email` · `POST reset-password` · `POST change-email/send-email` · `POST change-email` · `POST delete-account/send-otp` · `POST delete-account/resend-otp` · `DELETE delete-account` · `GET login-user-with-google` · `GET login-user-by-provider-callback` |
 | 2 | `UsersController` | `/api/users` | `GET {id}` · `GET all` · `DELETE {id}` |
-| 3 | `WorkSpacesController` | `/api/workspaces` | `GET {id}` · `GET all` · `GET {id}/all-users` · `POST ""` · `PUT {id}` · `DELETE {id}` |
+| 3 | `WorkSpacesController` | `/api/workspaces` | `GET {id}` · `GET all` · `GET {id}/all-users` · `GET {id}/my-role` · `POST ""` · `PUT {id}` · `DELETE {id}` |
 | 4 | `WorkSpaceInvitesController` | `/api/workspace-invites` | `GET {id}` · `GET all-my-invites` · `GET all-my-send-invites` · `POST ""` · `DELETE {id}` · `PATCH {id}/accept` · `PATCH {id}/reject` |
 | 5 | `ProjectsController` | `/api/workspaces/{workspaceId}/projects` | `POST ""` · `GET {projectId}` · `GET ""` · `PUT {projectId}` · `PATCH {projectId}/status` · `DELETE {projectId}` |
 | 6 | `ProjectsTasksController` | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks` | `POST ""` · `GET {taskId}` · `GET {taskId}/me` · `GET ""` · `GET users/{userId}` · `GET me` · `PUT {taskId}` · `DELETE {taskId}` · `POST {taskId}/assignments` · `DELETE {taskId}/assignments/{assignedUserId}` · `PATCH {taskId}/status` · `PATCH {taskId}/me/status` |
 | 7 | `TaskCommentsController` | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks/{taskId}/comments` | `POST ""` · `GET ""` · `GET {commentId}` · `PUT {commentId}` · `DELETE {commentId}` |
-| 8 | `TaskAttachmentsController` | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks/{taskId}/attachments` | `POST ""` · `GET ""` · `GET {attachmentId}` · `GET by-name/{name}` · `DELETE {attachmentId}` |
-| 9 | `ReportsController` | `/api/workspaces/{workSpaceId}/reports` | `GET projects/{projectId}/tasks-by-priority` · `GET projects/{projectId}/tasks-by-status` · `GET members/{memberId}/performance` · `GET projects/{projectId}/members/{memberId}/performance` · `GET ""` · `GET pdf` |
+| 8 | `TaskAttachmentsController` | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks/{taskId}/attachments` | `POST ""` · `GET ""` · `GET {attachmentId}` · `GET by-name/{name}` · `GET {attachmentId}/download` · `DELETE {attachmentId}` |
+| 9 | `ReportsController` | `/api/workspaces/{workSpaceId}/reports` | `GET projects/{projectId}/tasks-by-priority` · `GET projects/{projectId}/tasks-by-status` · `GET members/{memberId}/performance` · `GET projects/{projectId}/members/{memberId}/performance` · `GET ""` · `GET pdf/download` |
 | 10 | `NotificationsController` | `/api/notifications` | `GET {id}` · `GET all` · `GET all/unread` · `PUT {id}/read` |
-| 11 | `WorkSpaceUserDashboardController` | `/api/workspaces/{workspaceId}/dashboard` | `GET ""` |
+| 11 | `DashboardController` | `/api/workspaces/{workspaceId}/dashboard` | `GET ""` |
 
 ---
 
@@ -316,6 +316,7 @@ All configuration lives in `appsettings.json` / `appsettings.Development.json`.
 | GET | `/api/workspaces/{id}` | Get a workspace by ID |
 | GET | `/api/workspaces/all` | List workspaces (Admin: all; user: mine) |
 | GET | `/api/workspaces/{id}/all-users` | List workspace members |
+| GET | `/api/workspaces/{id}/my-role` | Get my role in the workspace |
 | POST | `/api/workspaces` | Create a workspace |
 | PUT | `/api/workspaces/{id}` | Update a workspace (**Admin/Owner**) |
 | DELETE | `/api/workspaces/{id}` | Delete a workspace (**Admin/Owner**) |
@@ -378,6 +379,7 @@ All configuration lives in `appsettings.json` / `appsettings.Development.json`.
 | GET | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks/{taskId}/attachments` | List task attachments |
 | GET | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks/{taskId}/attachments/{attachmentId}` | Get attachment by ID |
 | GET | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks/{taskId}/attachments/by-name/{name}` | Get attachment by file name |
+| GET | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks/{taskId}/attachments/{attachmentId}/download` | Download an attachment |
 | DELETE | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks/{taskId}/attachments/{attachmentId}` | Delete an attachment (**Admin/Owner/ProjectManager**) |
 
 #### ReportsController — `/api/workspaces/{workSpaceId}/reports`
@@ -389,7 +391,7 @@ All configuration lives in `appsettings.json` / `appsettings.Development.json`.
 | GET | `/api/workspaces/{workSpaceId}/reports/members/{memberId}/performance` | Member performance in workspace (**Admin/Owner/ProjectManager**) |
 | GET | `/api/workspaces/{workSpaceId}/reports/projects/{projectId}/members/{memberId}/performance` | Member performance in project |
 | GET | `/api/workspaces/{workSpaceId}/reports` | Workspace overview report (**Admin/Owner/ProjectManager**) |
-| GET | `/api/workspaces/{workSpaceId}/reports/pdf` | Download workspace report PDF (**Admin/Owner/ProjectManager**) |
+| GET | `/api/workspaces/{workSpaceId}/reports/pdf/download` | Download workspace report PDF (**Admin/Owner/ProjectManager**) |
 
 #### NotificationsController — `/api/notifications`
 
@@ -607,7 +609,15 @@ List the members of a workspace. Accessible by **Admin** or any workspace member
 }
 ```
 
-#### 3.4 POST `/api/workspaces` 🔒
+#### 3.4 GET `/api/workspaces/{id}/my-role` 🔒
+Get the current user's role in a workspace. Accessible by **Admin** or any workspace member.
+
+**Response:** `200 OK` with a `WorkSpaceRole` string:
+```
+"Owner"
+```
+
+#### 3.5 POST `/api/workspaces` 🔒
 Create a workspace. The creator becomes its **Owner**.
 
 **Body:**
@@ -616,13 +626,13 @@ Create a workspace. The creator becomes its **Owner**.
 ```
 **Response:** `201 Created` with the `WorkSpaceDto` and a `Location` header to `GET /api/workspaces/{id}`.
 
-#### 3.5 PUT `/api/workspaces/{id}` 🔒 **Admin or Owner**
+#### 3.6 PUT `/api/workspaces/{id}` 🔒 **Admin or Owner**
 Update a workspace.
 
 **Body:** `{ "name": "Acme Corp 2", "description": "Updated" }`
 **Response:** `204 No Content`.
 
-#### 3.6 DELETE `/api/workspaces/{id}` 🔒 **Admin or Owner**
+#### 3.7 DELETE `/api/workspaces/{id}` 🔒 **Admin or Owner**
 Delete (soft-delete) a workspace.
 
 **Response:** `204 No Content`.
@@ -949,7 +959,12 @@ Get an attachment by file name.
 
 **Response:** `200 OK` with a `TaskAttachmentDto`.
 
-#### 8.5 DELETE `/{attachmentId}` 🔒 *Admin/Owner/ProjectManager*
+#### 8.5 GET `/{attachmentId}/download` 🔒
+Download an attachment file.
+
+**Response:** `200 OK` — file stream with the appropriate content type.
+
+#### 8.6 DELETE `/{attachmentId}` 🔒 *Admin/Owner/ProjectManager*
 Delete an attachment.
 
 **Response:** `204 No Content`.
@@ -1015,11 +1030,12 @@ Full workspace overview report.
   "totalInProgressTasks": 4,
   "totalReviewTasks": 2,
   "totalDoneTasks": 8,
+  "CompletionPercentage": 60,
   "memberPerformances": [ { "id": "...", "name": "John Doe", "assignedCount": 12, "inProgressCount": 3, "doneCount": 7 } ]
 }
 ```
 
-#### 9.6 GET `/pdf` 🔒 *Manage*
+#### 9.6 GET `/pdf/download` 🔒 *Manage*
 Download the workspace report as a PDF.
 
 **Response:** `200 OK` — `application/pdf` file named `workspace-report.pdf`.

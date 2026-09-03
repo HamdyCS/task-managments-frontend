@@ -751,6 +751,63 @@
         "description": "حاول تعديل معايير البحث."
       },
       "loading": "جاري تحميل المزيد..."
+    },
+    "reports": {
+      "title": "التقارير",
+      "noWorkspace": {
+        "title": "لم يتم اختيار مساحة عمل",
+        "description": "اختر مساحة عمل من القائمة المنسدلة لعرض التقارير."
+      },
+      "tabs": {
+        "overview": "نظرة عامة",
+        "projects": "المشاريع",
+        "members": "الأعضاء"
+      },
+      "stats": {
+        "totalProjects": "إجمالي المشاريع",
+        "totalMembers": "إجمالي الأعضاء",
+        "totalTasks": "إجمالي المهام",
+        "completedTasks": "المهام المكتملة",
+        "acrossWorkspace": "في مساحة العمل هذه",
+        "ofTotal": "من {{total}} مهمة مكتملة"
+      },
+      "taskStatus": "حالة المهام",
+      "taskPriority": "أولوية المهام",
+      "memberPerformance": "أداء الأعضاء",
+      "projectTaskStatus": "حالة مهام المشروع",
+      "projectTaskPriority": "أولوية مهام المشروع",
+      "projectMemberPerformance": "أداء أعضاء المشروع",
+      "selectProject": "اختر المشروع",
+      "selectMember": "اختر العضو",
+      "selectProjectFirst": "اختر مشروعًا لعرض تقريره.",
+      "selectMemberFirst": "اختر عضوًا لعرض أدائه.",
+      "downloadButton": "تحميل تقرير مساحة العمل",
+      "downloadSuccess": "تم تحميل التقرير بنجاح.",
+      "downloadError": "فشل تحميل التقرير.",
+      "noProjects": "لا توجد مشاريع في مساحة العمل هذه.",
+      "noMembers": "لا يوجد أعضاء في مساحة العمل هذه.",
+      "noTasks": "لا توجد مهام لعرضها.",
+      "noPerformanceData": "لا توجد بيانات أداء متاحة.",
+      "status": {
+        "Backlog": "المهام المؤجلة",
+        "Todo": "المهام",
+        "InProgress": "قيد التنفيذ",
+        "Review": "المراجعة",
+        "Done": "مكتملة"
+      },
+      "priority": {
+        "Low": "منخفضة",
+        "Medium": "متوسطة",
+        "High": "عالية",
+        "Critical": "حرجة"
+      },
+      "table": {
+        "member": "العضو",
+        "assigned": "المعينة",
+        "inProgress": "قيد التنفيذ",
+        "done": "المكتملة",
+        "completion": "نسبة الإنجاز"
+      }
     }
   },
   "footer": {
