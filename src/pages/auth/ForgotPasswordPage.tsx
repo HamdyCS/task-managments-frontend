@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import useSendOtp from "../../hooks/auth/useSendOtp";
-import useResetPassword from "../../hooks/auth/useResetPassword";
+import useForgetPassword from "../../hooks/auth/useForgetPassword";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   setForgotPasswordNewPassword,
   clearForgotPasswordNewPassword,
 } from "../../store/auth/authSlice";
-import { ResetPasswordStep } from "../../components/auth/forgotPassword/ResetPasswordStep";
+import { CreateNewPasswordStep } from "../../components/auth/forgotPassword/CreateNewPasswordStep";
 import { SendOtpStep } from "../../components/auth/forgotPassword/SendOtpStep";
 import { CheckOtpStep } from "../../components/auth/forgotPassword/CheckOtpStep";
 import { SuccessStep } from "../../components/auth/forgotPassword/SuccessStep";
@@ -47,7 +47,7 @@ export function ForgotPasswordPage() {
     },
   });
 
-  const resetPasswordMutation = useResetPassword({
+  const forgetPasswordMutation = useForgetPassword({
     onSuccess: () => {
       toast.success(t("forgotPassword.success.title"));
       setStep("success");
@@ -58,7 +58,7 @@ export function ForgotPasswordPage() {
     },
   });
 
-  const handleResetPasswordSubmit = (newPassword: string) => {
+  const handleForgetPasswordSubmit = (newPassword: string) => {
     dispatch(setForgotPasswordNewPassword(newPassword));
     setStep("sendOtp");
   };
@@ -69,7 +69,7 @@ export function ForgotPasswordPage() {
   };
 
   const handleOtpSubmit = (otpValue: string) => {
-    resetPasswordMutation.mutateAsync({
+    forgetPasswordMutation.mutateAsync({
       email,
       newPassword: reduxNewPassword,
       otp: otpValue,
@@ -87,7 +87,7 @@ export function ForgotPasswordPage() {
           exit="exit"
           transition={{ duration: 0.3 }}
         >
-          <ResetPasswordStep onSubmit={handleResetPasswordSubmit} />
+          <CreateNewPasswordStep onSubmit={handleForgetPasswordSubmit} />
         </motion.div>
       )}
 
@@ -118,7 +118,7 @@ export function ForgotPasswordPage() {
         >
           <CheckOtpStep
             email={email}
-            isPending={resetPasswordMutation.isPending}
+            isPending={forgetPasswordMutation.isPending}
             onSubmit={handleOtpSubmit}
           />
         </motion.div>

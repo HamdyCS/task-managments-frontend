@@ -1,4 +1,4 @@
-import { api } from "../api/Axios";
+import { authApi } from "../api/Axios";
 import config from "../config";
 import type PaginationResultDto from "../dtos/workspace/PaginationResultDto";
 import type WorkSpaceDto from "../dtos/workspace/WorkSpaceDto";
@@ -11,23 +11,24 @@ export async function getUserWorkspaces(
   page = 1,
   pageSize = 100,
 ): Promise<PaginationResultDto<WorkSpaceDto>> {
-  const { data } = await api.get<PaginationResultDto<WorkSpaceDto>>(
+  const { data } = await authApi.get<PaginationResultDto<WorkSpaceDto>>(
     config.workspace.all(page, pageSize),
   );
   return data;
 }
 
-export async function getWorkspaceById(
-  id: number,
-): Promise<WorkSpaceDto> {
-  const { data } = await api.get<WorkSpaceDto>(config.workspace.single(id));
+export async function getWorkspaceById(id: number): Promise<WorkSpaceDto> {
+  const { data } = await authApi.get<WorkSpaceDto>(config.workspace.single(id));
   return data;
 }
 
 export async function createWorkspace(
   dto: CreateWorkspaceDto,
 ): Promise<WorkSpaceDto> {
-  const { data } = await api.post<WorkSpaceDto>(config.workspace.create, dto);
+  const { data } = await authApi.post<WorkSpaceDto>(
+    config.workspace.create,
+    dto,
+  );
   return data;
 }
 
@@ -35,18 +36,21 @@ export async function updateWorkspace(
   id: number,
   dto: UpdateWorkspaceDto,
 ): Promise<WorkSpaceDto> {
-  const { data } = await api.put<WorkSpaceDto>(config.workspace.update(id), dto);
+  const { data } = await authApi.put<WorkSpaceDto>(
+    config.workspace.update(id),
+    dto,
+  );
   return data;
 }
 
 export async function deleteWorkspace(id: number): Promise<void> {
-  await api.delete(config.workspace.delete(id));
+  await authApi.delete(config.workspace.delete(id));
 }
 
 export async function getWorkspaceDashboard(
   workspaceId: number,
 ): Promise<DashboardDto> {
-  const { data } = await api.get<DashboardDto>(
+  const { data } = await authApi.get<DashboardDto>(
     config.workspace.dashboard(workspaceId),
   );
   return data;
@@ -55,7 +59,7 @@ export async function getWorkspaceDashboard(
 export async function getWorkspaceRole(
   workspaceId: number,
 ): Promise<WorkSpaceRole> {
-  const { data } = await api.get<WorkSpaceRole>(
+  const { data } = await authApi.get<WorkSpaceRole>(
     config.workspace.myRole(workspaceId),
   );
   return data;

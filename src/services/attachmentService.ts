@@ -1,4 +1,4 @@
-import { api } from "../api/Axios";
+import { authApi } from "../api/Axios";
 import config from "../config";
 import type { TaskAttachmentDto } from "../dtos/task/TaskDto";
 
@@ -7,7 +7,7 @@ export async function getTaskAttachments(
   projectId: number,
   taskId: number,
 ): Promise<TaskAttachmentDto[]> {
-  const { data } = await api.get<TaskAttachmentDto[]>(
+  const { data } = await authApi.get<TaskAttachmentDto[]>(
     config.task.attachments(workspaceId, projectId, taskId),
   );
   return data;
@@ -21,7 +21,7 @@ export async function uploadAttachment(
 ): Promise<TaskAttachmentDto> {
   const formData = new FormData();
   formData.append("File", file);
-  const { data } = await api.post<TaskAttachmentDto>(
+  const { data } = await authApi.post<TaskAttachmentDto>(
     config.task.attachments(workspaceId, projectId, taskId),
     formData,
     {
@@ -37,7 +37,7 @@ export async function deleteAttachment(
   taskId: number,
   attachmentId: number,
 ): Promise<void> {
-  await api.delete(
+  await authApi.delete(
     config.task.attachment(workspaceId, projectId, taskId, attachmentId),
   );
 }

@@ -1,4 +1,4 @@
-import { api } from "../api/Axios";
+import { authApi } from "../api/Axios";
 import config from "../config";
 import type WorkSpaceReportDto from "../dtos/reports/WorkSpaceReportDto";
 import type MemberPerformanceDto from "../dtos/reports/MemberPerformanceDto";
@@ -10,7 +10,7 @@ import type {
 export async function getWorkspaceReport(
   workspaceId: number,
 ): Promise<WorkSpaceReportDto> {
-  const { data } = await api.get<WorkSpaceReportDto>(
+  const { data } = await authApi.get<WorkSpaceReportDto>(
     config.reports.workspace(workspaceId),
   );
   return data;
@@ -20,7 +20,7 @@ export async function getProjectTasksByStatus(
   workspaceId: number,
   projectId: number,
 ): Promise<TaskByStatusDto[]> {
-  const { data } = await api.get<TaskByStatusDto[]>(
+  const { data } = await authApi.get<TaskByStatusDto[]>(
     config.reports.projectTasksByStatus(workspaceId, projectId),
   );
   return data;
@@ -30,7 +30,7 @@ export async function getProjectTasksByPriority(
   workspaceId: number,
   projectId: number,
 ): Promise<TaskByPriorityDto[]> {
-  const { data } = await api.get<TaskByPriorityDto[]>(
+  const { data } = await authApi.get<TaskByPriorityDto[]>(
     config.reports.projectTasksByPriority(workspaceId, projectId),
   );
   return data;
@@ -41,7 +41,7 @@ export async function getProjectMemberPerformance(
   projectId: number,
   memberId: string,
 ): Promise<MemberPerformanceDto> {
-  const { data } = await api.get<MemberPerformanceDto>(
+  const { data } = await authApi.get<MemberPerformanceDto>(
     config.reports.projectMemberPerformance(workspaceId, projectId, memberId),
   );
   return data;
@@ -51,7 +51,7 @@ export async function getMemberPerformance(
   workspaceId: number,
   memberId: string,
 ): Promise<MemberPerformanceDto> {
-  const { data } = await api.get<MemberPerformanceDto>(
+  const { data } = await authApi.get<MemberPerformanceDto>(
     config.reports.memberPerformance(workspaceId, memberId),
   );
   return data;

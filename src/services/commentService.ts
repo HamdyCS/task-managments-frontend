@@ -1,4 +1,4 @@
-import { api } from "../api/Axios";
+import {  authApi } from "../api/Axios";
 import config from "../config";
 import type PaginationResultDto from "../dtos/workspace/PaginationResultDto";
 import type TaskCommentDto from "../dtos/task/TaskCommentDto";
@@ -10,7 +10,7 @@ export async function getTaskComments(
   pageNumber: number = 1,
   pageSize: number = 20,
 ): Promise<PaginationResultDto<TaskCommentDto>> {
-  const { data } = await api.get<PaginationResultDto<TaskCommentDto>>(
+  const { data } = await authApi.get<PaginationResultDto<TaskCommentDto>>(
     `${config.task.comments(workspaceId, projectId, taskId)}?pageNumber=${pageNumber}&pageSize=${pageSize}`,
   );
   return data;
@@ -22,7 +22,7 @@ export async function addComment(
   taskId: number,
   comment: string,
 ): Promise<TaskCommentDto> {
-  const { data } = await api.post<TaskCommentDto>(
+  const { data } = await authApi.post<TaskCommentDto>(
     config.task.comments(workspaceId, projectId, taskId),
     { comment },
   );
@@ -36,7 +36,7 @@ export async function updateComment(
   commentId: number,
   comment: string,
 ): Promise<TaskCommentDto> {
-  const { data } = await api.put<TaskCommentDto>(
+  const { data } = await authApi.put<TaskCommentDto>(
     config.task.comment(workspaceId, projectId, taskId, commentId),
     { comment },
   );
@@ -49,7 +49,7 @@ export async function deleteComment(
   taskId: number,
   commentId: number,
 ): Promise<void> {
-  await api.delete(
+  await authApi.delete(
     config.task.comment(workspaceId, projectId, taskId, commentId),
   );
 }

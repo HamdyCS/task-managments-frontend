@@ -275,7 +275,7 @@ export default function DashboardNavbar({ onMenuClick }: DashboardNavbarProps) {
                   {isMenuOpen && (
                     <div className="absolute top-full rtl:left-0 ltr:right-0 mt-2 w-48 bg-popover border border-border rounded-xl shadow-lg py-1 z-50">
                       <Link
-                        to="/settings"
+                        to="/dashboard/account"
                         onClick={() => setIsMenuOpen(false)}
                         className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-popover-foreground hover:bg-accent transition-colors cursor-pointer"
                       >

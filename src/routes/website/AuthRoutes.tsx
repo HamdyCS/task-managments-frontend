@@ -5,6 +5,8 @@ import { VerifyEmailPage } from "../../pages/auth/VerifyEmailPage";
 import { ConfirmEmailPage } from "../../pages/auth/ConfirmEmailPage";
 import { AuthCallbackPage } from "../../pages/auth/AuthCallbackPage";
 import { ForgotPasswordPage } from "../../pages/auth/ForgotPasswordPage";
+import ChangeEmailPage from "../../pages/auth/ChangeEmailPage";
+import ResetPasswordPage from "../../pages/auth/ResetPasswordPage";
 import AuthLayout from "../../layouts/AuthLayout";
 import RequireGuest from "./RequireGuest";
 
@@ -34,6 +36,14 @@ const AuthRoutes: RouteObject[] = [
           {
             path: "/forgot-password",
             element: <ForgotPasswordPage />,
+          },
+          {
+            path: "/change-email",
+            element: <ChangeEmailPage />,
+          },
+          {
+            path: "/reset-password",
+            element: <ResetPasswordPage />,
           },
         ],
       },

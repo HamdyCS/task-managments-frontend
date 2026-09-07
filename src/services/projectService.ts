@@ -1,4 +1,4 @@
-import { api } from "../api/Axios";
+import {  authApi } from "../api/Axios";
 import config from "../config";
 import type PaginationResultDto from "../dtos/workspace/PaginationResultDto";
 import type ProjectDto from "../dtos/project/ProjectDto";
@@ -10,7 +10,7 @@ export async function getWorkspaceProjects(
   pageNumber = 1,
   pageSize = 20,
 ): Promise<PaginationResultDto<ProjectDto>> {
-  const { data } = await api.get<PaginationResultDto<ProjectDto>>(
+  const { data } = await authApi.get<PaginationResultDto<ProjectDto>>(
     config.project.all(workspaceId, pageNumber, pageSize),
   );
   return data;
@@ -20,7 +20,7 @@ export async function getProjectById(
   workspaceId: number,
   projectId: number,
 ): Promise<ProjectDto> {
-  const { data } = await api.get<ProjectDto>(
+  const { data } = await authApi.get<ProjectDto>(
     config.project.single(workspaceId, projectId),
   );
   return data;
@@ -30,7 +30,7 @@ export async function createProject(
   workspaceId: number,
   dto: CreateProjectDto,
 ): Promise<ProjectDto> {
-  const { data } = await api.post<ProjectDto>(
+  const { data } = await authApi.post<ProjectDto>(
     config.project.create(workspaceId),
     dto,
   );
@@ -42,7 +42,7 @@ export async function updateProject(
   projectId: number,
   dto: UpdateProjectDto,
 ): Promise<ProjectDto> {
-  const { data } = await api.put<ProjectDto>(
+  const { data } = await authApi.put<ProjectDto>(
     config.project.update(workspaceId, projectId),
     dto,
   );
@@ -53,5 +53,5 @@ export async function deleteProject(
   workspaceId: number,
   projectId: number,
 ): Promise<void> {
-  await api.delete(config.project.delete(workspaceId, projectId));
+  await authApi.delete(config.project.delete(workspaceId, projectId));
 }

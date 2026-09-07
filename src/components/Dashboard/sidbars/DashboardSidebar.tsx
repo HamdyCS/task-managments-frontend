@@ -13,6 +13,7 @@ import {
   FiPlus,
   FiX,
   FiBriefcase,
+  FiSettings,
 } from "react-icons/fi";
 import { useAppSelector } from "../../../store/hooks";
 import useCreateWorkspace from "../../../hooks/workspace/useCreateWorkspace";
@@ -24,6 +25,7 @@ interface NavItem {
   label: string;
   to: string;
   section: string;
+  end: boolean;
 }
 
 interface DashboardSidebarProps {
@@ -52,7 +54,6 @@ export default function DashboardSidebar({
     },
   });
 
-
   const navSections: { id: string; title: string; items: NavItem[] }[] = [
     {
       id: "main",
@@ -65,6 +66,7 @@ export default function DashboardSidebar({
             ? `/dashboard?workspaceId=${workspaceId}`
             : "/dashboard",
           section: "dashboard",
+          end: true,
         },
         {
           icon: <FiCheckSquare size={20} />,
@@ -73,6 +75,7 @@ export default function DashboardSidebar({
             ? `/dashboard/tasks?workspaceId=${workspaceId}`
             : "/dashboard/tasks",
           section: "tasks",
+          end: true,
         },
         {
           icon: <FiBell size={20} />,
@@ -81,6 +84,14 @@ export default function DashboardSidebar({
             ? `/dashboard/notifications?workspaceId=${workspaceId}`
             : "/dashboard/notifications",
           section: "notifications",
+          end: true,
+        },
+        {
+          icon: <FiSettings size={20} />,
+          label: t("dashboard.sidebar.settings"),
+          to: "/dashboard/account",
+          section: "settings",
+          end: false,
         },
       ],
     },
@@ -95,6 +106,7 @@ export default function DashboardSidebar({
             ? `/dashboard/projects?workspaceId=${workspaceId}`
             : "/dashboard/projects",
           section: "projects",
+          end: true,
         },
         {
           icon: <FiUsers size={20} />,
@@ -103,12 +115,14 @@ export default function DashboardSidebar({
             ? `/dashboard/team?workspaceId=${workspaceId}`
             : "/dashboard/team",
           section: "team",
+          end: true,
         },
         {
           icon: <FiBriefcase size={20} />,
           label: t("dashboard.sidebar.workspaces"),
           to: "/dashboard/workspaces",
           section: "workspaces",
+          end: true,
         },
       ],
     },
@@ -123,6 +137,7 @@ export default function DashboardSidebar({
             ? `/dashboard/reports?workspaceId=${workspaceId}`
             : "/dashboard/reports",
           section: "reports",
+          end: true,
         },
       ],
     },
@@ -155,24 +170,26 @@ export default function DashboardSidebar({
               <div className="px-6 mb-2 mt-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                 {section.title}
               </div>
-              {section.items.map((item) => (
-                <NavLink
-                  key={item.section}
-                  to={item.to}
-                  end
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 px-4 py-2 mb-1 ltr:rounded-r-lg ltr:border-l-4 rtl:rounded-l-lg rtl:border-r-4 transition-colors duration-200 ${
-                      isActive
-                        ? "bg-primary/10 text-primary border-primary"
-                        : "text-muted-foreground hover:text-card-foreground hover:bg-muted border-transparent"
-                    }`
-                  }
-                  onClick={onClose}
-                >
-                  {item.icon}
-                  <span className="text-sm font-medium">{item.label}</span>
-                </NavLink>
-              ))}
+              {section.items.map((item) => {
+                return (
+                  <NavLink
+                    key={item.section}
+                    to={item.to}
+                    end={item.end}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-4 py-2 mb-1 ltr:rounded-r-lg ltr:border-l-4 rtl:rounded-l-lg rtl:border-r-4 transition-colors duration-200 ${
+                        isActive
+                          ? "bg-primary/10 text-primary border-primary"
+                          : "text-muted-foreground hover:text-card-foreground hover:bg-muted border-transparent"
+                      }`
+                    }
+                    onClick={onClose}
+                  >
+                    {item.icon}
+                    <span className="text-sm font-medium">{item.label}</span>
+                  </NavLink>
+                );
+              })}
             </div>
           );
         })}

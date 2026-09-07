@@ -1,4 +1,4 @@
-import { api, authApi } from "../api/Axios";
+import { authApi } from "../api/Axios";
 import config from "../config";
 import type PaginationResultDto from "../dtos/workspace/PaginationResultDto";
 import type TaskDto from "../dtos/task/TaskDto";

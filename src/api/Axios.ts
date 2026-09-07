@@ -8,6 +8,12 @@ export const authApi = axios.create({
   withCredentials: true,
 });
 
+//for refresh token only
+export const refreshTokenApi = axios.create({
+  baseURL: config.BaseApiURl,
+  withCredentials: true,
+});
+
 //for all endpoints need access token and refresh token
 export const api = axios.create({
   baseURL: config.BaseApiURl,
@@ -39,7 +45,7 @@ function processQueue(error: any | null) {
   failedQueue = [];
 }
 
-api.interceptors.response.use(
+authApi.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     //get original request
@@ -65,7 +71,7 @@ api.interceptors.response.use(
       })
         .then(() => {
           //retry request
-          return api(originalRequest);
+          return authApi(originalRequest);
         })
         .catch((err) => {
           //send error
@@ -87,7 +93,7 @@ api.interceptors.response.use(
       processQueue(null);
 
       //retry request
-      return api(originalRequest);
+      return authApi(originalRequest);
     } catch (error) {
       //process queue with error
       processQueue(error);

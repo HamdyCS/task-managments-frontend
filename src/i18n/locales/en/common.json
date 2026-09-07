@@ -239,6 +239,31 @@
     "success": "Signed in successfully",
     "redirecting": "Redirecting to sign in..."
   },
+  "changeEmail": {
+    "verifying": "Verifying your email change",
+    "verifyingMessage": "Please wait while we verify your email change request.",
+    "success": "Email changed successfully",
+    "successMessage": "Your email address has been updated successfully.",
+    "error": "Verification failed",
+    "errorMessage": "This verification link is invalid or has expired. Please try again.",
+    "backToSettings": "Back to Account Settings",
+    "goHome": "Go to Home"
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "subtitle": "Enter your new password below.",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "submit": "Reset Password",
+    "resetting": "Resetting your password",
+    "resettingMessage": "Please wait while we reset your password.",
+    "success": "Password reset successful",
+    "successMessage": "Your password has been updated successfully. You can now sign in with your new password.",
+    "error": "Failed to reset password",
+    "invalidLink": "This reset link is invalid or has expired. Please request a new one.",
+    "goToSignIn": "Go to Sign In",
+    "goHome": "Go to Home"
+  },
   "forgotPassword": {
     "sendOtp": {
       "title": "Forgot your password?",
@@ -751,6 +776,86 @@
         "description": "Try adjusting your search criteria."
       },
       "loading": "Loading more..."
+    },
+    "accountSettings": {
+      "title": "Account Settings",
+      "subtitle": "Manage your profile, email, password, and account preferences.",
+      "tabs": {
+        "profile": "Profile",
+        "email": "Email",
+        "password": "Password",
+        "dangerZone": "Danger Zone"
+      },
+      "personalInfo": {
+        "title": "Personal Information",
+        "description": "Your name and date of birth are visible to your team members.",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "dateOfBirth": "Date of Birth",
+        "save": "Save Changes",
+        "success": "Profile updated successfully",
+        "error": "Failed to update profile"
+      },
+      "email": {
+        "title": "Email Address",
+        "description": "Change the email address associated with your account.",
+        "currentEmail": "Current Email",
+        "changeEmail": "Change Email",
+        "changeEmailTitle": "Change Email Address",
+        "newEmail": "New Email",
+        "sendConfirmation": "Send Confirmation",
+        "cancel": "Cancel",
+        "checkYourEmail": "Check your email",
+        "checkYourEmailMessage": "We've sent a confirmation link to your new email address. Please check your inbox and click the link to verify.",
+        "error": "Failed to send change email request"
+      },
+      "password": {
+        "title": "Password & Security",
+        "description": "Update your password to keep your account secure.",
+        "updatePassword": "Update Password",
+        "sendResetEmail": "Send Reset Email",
+        "emailHint": "We'll send a reset link to your current email.",
+        "checkYourEmail": "Check your email",
+        "checkYourEmailMessage": "We've sent a password reset link to your email address. Please check your inbox and click the link to reset your password.",
+        "error": "Failed to send password reset email"
+      },
+      "deleteAccount": {
+        "title": "Delete Account",
+        "description": "Permanently delete your account and all associated data. This action cannot be undone.",
+        "deleteButton": "Delete Account",
+        "confirmMessage": "Are you sure you want to delete your account? This action is permanent and cannot be undone. All your data will be permanently removed.",
+        "confirm": "Confirm Delete",
+        "cancel": "Cancel",
+        "sending email": "Sending deletion email...",
+        "email sent": "A deletion confirmation email has been sent to your email address.",
+        "check your email": "Check your email",
+        "check your email message": "We've sent a deletion confirmation link to your email. Please check your inbox and click the link to permanently delete your account.",
+        "error sending email": "Failed to send deletion email",
+        "success": "Account deleted successfully",
+        "error": "Failed to delete account",
+        "invalid link": "Invalid or expired link",
+        "invalid link message": "This deletion link is invalid or has expired. Please request a new one from your account settings.",
+        "confirm delete title": "Are you sure you want to delete your account?",
+        "confirm delete message": "This action is permanent and cannot be undone. Your account and all associated data will be permanently removed.",
+        "confirm delete button": "Yes, delete my account"
+      },
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "dateOfBirthRequired": "Date of birth is required",
+        "dateOfBirthInvalid": "Please enter a valid date",
+        "ageMinimum": "You must be at least 18 years old",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email",
+        "emailSameAsCurrent": "New email cannot be the same as current email",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "repeatPasswordRequired": "Please confirm your password",
+        "passwordMismatch": "Passwords do not match",
+        "otpRequired": "Verification code is required",
+        "otpLength": "Verification code must be 6 digits",
+        "otpNumeric": "Verification code must contain only numbers"
+      }
     },
     "reports": {
       "title": "Reports",

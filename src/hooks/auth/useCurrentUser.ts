@@ -15,16 +15,11 @@ export default function useCurrentUser() {
   >({
     queryKey: ["currentUser"],
     queryFn: getCurrentUser,
-    retry: false,
-    staleTime: 0,
   });
 
   useEffect(() => {
-    if (isSuccess && data !== undefined) {
+    if (!isPending && isSuccess && data !== undefined) {
       appDispatch(setUser(data));
-    }
-    if (isError) {
-      appDispatch(clearUser());
     }
   }, [data, isError, isSuccess, error, isPending]);
 

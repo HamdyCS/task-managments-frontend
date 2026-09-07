@@ -1,4 +1,4 @@
-import { api } from "../api/Axios";
+import { authApi } from "../api/Axios";
 import config from "../config";
 import type PaginationResultDto from "../dtos/workspace/PaginationResultDto";
 import type WorkSpaceUserDto from "../dtos/workspace/WorkSpaceUserDto";
@@ -8,7 +8,7 @@ export async function getWorkspaceUsers(
   page: number,
   pageSize: number,
 ): Promise<PaginationResultDto<WorkSpaceUserDto>> {
-  const { data } = await api.get<PaginationResultDto<WorkSpaceUserDto>>(
+  const { data } = await authApi.get<PaginationResultDto<WorkSpaceUserDto>>(
     config.workspace.allUsers(workspaceId, page, pageSize),
   );
   return data;

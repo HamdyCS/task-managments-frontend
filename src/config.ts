@@ -17,6 +17,19 @@ const config = {
       resendOtp: `/auth/forget-password/resend-otp`,
       reset: `/auth/forget-password`,
     },
+    updateProfile: `/auth`,
+    changeEmail: {
+      sendEmail: `/auth/change-email/send-email`,
+      confirm: `/auth/change-email`,
+    },
+    resetPassword: {
+      sendEmail: `/auth/reset-password/send-email`,
+      reset: `/auth/reset-password`,
+    },
+    deleteAccount: {
+      sendEmail: `/auth/delete-account/send-email`,
+      delete: `/auth/delete-account`,
+    },
   },
   workspace: {
     all: (page: number, pageSize: number) =>

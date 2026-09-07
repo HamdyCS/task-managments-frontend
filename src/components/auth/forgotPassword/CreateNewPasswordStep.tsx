@@ -7,11 +7,11 @@ import { FiArrowRight, FiArrowLeft, FiEye, FiEyeOff } from "react-icons/fi";
 import Button from "../../ui/Button";
 import { PASSWORD_REGEX } from "../../../common/Regex";
 
-interface ResetPasswordStepProps {
+interface CreateNewPasswordStepProps {
   onSubmit: (newPassword: string) => void;
 }
 
-export function ResetPasswordStep({ onSubmit }: ResetPasswordStepProps) {
+export function CreateNewPasswordStep({ onSubmit }: CreateNewPasswordStepProps) {
   const { t } = useTranslation();
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
