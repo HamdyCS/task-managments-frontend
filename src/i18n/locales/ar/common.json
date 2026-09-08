@@ -913,6 +913,53 @@
         "done": "المكتملة",
         "completion": "نسبة الإنجاز"
       }
+    },
+    "admin": {
+      "title": "لوحة تحكم المسؤول",
+      "subtitle": "نظرة عامة على نشاط المنصة والإحصائيات",
+      "badge": "مسؤول",
+      "sidebar": {
+        "admin": "الإدارة",
+        "overview": "نظرة عامة",
+        "users": "المستخدمون",
+        "workspaces": "مساحات العمل",
+        "reports": "التقارير",
+        "logout":"تسجيل الخروج"
+      },
+      "kpi": {
+        "totalUsers": "إجمالي المستخدمين",
+        "admins": "مسؤولون",
+        "newUsers": "مستخدمون جدد",
+        "last30Days": "آخر 30 يومًا",
+        "totalWorkspaces": "إجمالي مساحات العمل",
+        "newLower": "جديد",
+        "totalProjects": "إجمالي المشاريع",
+        "totalTasks": "إجمالي المهام",
+        "acrossPlatform": "عبر المنصة",
+        "totalWorkspacesSub": "جميع مساحات العمل",
+        "totalProjectsSub": "جميع المشاريع",
+        "totalTasksSub": "جميع المهام"
+      },
+      "tasksOverview": {
+        "title": "نظرة عامة على المهام",
+        "totalTasks": "إجمالي المهام",
+        "noTasks": "لا توجد مهام"
+      },
+      "recentActivity": {
+        "title": "النشاط الأخير",
+        "empty": "لا يوجد نشاط حديث"
+      },
+      "last30Days": {
+        "title": "آخر 30 يومًا",
+        "subtitle": "الإضافات الجديدة عبر المنصة",
+        "users": "مستخدمون جدد",
+        "workspaces": "مساحات عمل جديدة",
+        "projects": "مشاريع جديدة"
+      },
+      "error": {
+        "title": "حدث خطأ ما",
+        "description": "فشل تحميل بيانات لوحة التحكم. يرجى المحاولة مرة أخرى لاحقًا."
+      }
     }
   },
   "footer": {

@@ -91,7 +91,11 @@ export function Navbar() {
               {currentUser ? (
                 <Button
                   text={t("nav.dashboard")}
-                  to="/dashboard"
+                  to={
+                    currentUser.role === "Admin"
+                      ? "/admin/dashboard"
+                      : "/dashboard"
+                  }
                   type="link"
                   className="text-sm"
                 />

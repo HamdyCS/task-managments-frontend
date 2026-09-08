@@ -122,6 +122,11 @@ const config = {
       `/notifications/all/unread?pageNumber=${page}&pageSize=${pageSize}`,
     markRead: (id: number) => `/notifications/${id}/read`,
   },
+  admin: {
+    dashboard: `/admin/dashboard`,
+    recentActivities: (page: number, pageSize: number) =>
+      `/admin/dashboard/recent-activities?pageNumber=${page}&pageSize=${pageSize}`,
+  },
   reports: {
     workspace: (workspaceId: number) =>
       `/workspaces/${workspaceId}/reports`,

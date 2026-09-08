@@ -913,6 +913,53 @@
         "done": "Done",
         "completion": "Completion"
       }
+    },
+    "admin": {
+      "title": "Admin Dashboard",
+      "subtitle": "Overview of platform activity and statistics",
+      "badge": "Admin",
+      "sidebar": {
+        "admin": "Admin",
+        "overview": "Overview",
+        "users": "Users",
+        "workspaces": "Workspaces",
+        "reports": "Reports",
+        "logout": "Logout"
+      },
+      "kpi": {
+        "totalUsers": "Total Users",
+        "admins": "admins",
+        "newUsers": "New Users",
+        "last30Days": "Last 30 days",
+        "totalWorkspaces": "Total Workspaces",
+        "newLower": "new",
+        "totalProjects": "Total Projects",
+        "totalTasks": "Total Tasks",
+        "acrossPlatform": "Across the platform",
+        "totalWorkspacesSub": "All workspaces",
+        "totalProjectsSub": "All projects",
+        "totalTasksSub": "All tasks"
+      },
+      "tasksOverview": {
+        "title": "Tasks Overview",
+        "totalTasks": "Total Tasks",
+        "noTasks": "No tasks found"
+      },
+      "recentActivity": {
+        "title": "Recent Activity",
+        "empty": "No recent activity"
+      },
+      "last30Days": {
+        "title": "Last 30 Days",
+        "subtitle": "New additions across the platform",
+        "users": "New Users",
+        "workspaces": "New Workspaces",
+        "projects": "New Projects"
+      },
+      "error": {
+        "title": "Something went wrong",
+        "description": "Failed to load dashboard data. Please try again later."
+      }
     }
   },
   "footer": {

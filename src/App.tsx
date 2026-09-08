@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 import WebSiteRoutes from "./routes/website/WebSiteRoutes";
 import AuthRoutes from "./routes/website/AuthRoutes";
 import dashboard from "./routes/dashboard/DashboardRoutes";
+import adminDashboard from "./routes/dashboard/AdminDashboardRoutes";
 import AuthProvider from "./providers/AuthProvider";
 import LanguageProvider from "./providers/LanguageProvider";
 import ThemeProvider from "./providers/ThemeProvider";
@@ -14,6 +15,7 @@ function App() {
     },
     ...AuthRoutes,
     ...dashboard,
+    ...adminDashboard,
   ]);
 
   return (
