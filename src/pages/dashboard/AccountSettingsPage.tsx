@@ -18,16 +18,23 @@ interface Tab {
   danger?: boolean;
 }
 
-const tabs: Tab[] = [
-  { id: "profile", labelKey: "dashboard.accountSettings.tabs.profile", icon: <FiUser className="w-4 h-4" />, to: "/dashboard/account/profile" },
-  { id: "email", labelKey: "dashboard.accountSettings.tabs.email", icon: <FiMail className="w-4 h-4" />, to: "/dashboard/account/email" },
-  { id: "password", labelKey: "dashboard.accountSettings.tabs.password", icon: <FiLock className="w-4 h-4" />, to: "/dashboard/account/password" },
-  { id: "danger", labelKey: "dashboard.accountSettings.tabs.dangerZone", icon: <FiTrash2 className="w-4 h-4" />, to: "/dashboard/account/danger", danger: true },
-];
+interface AccountSettingsPageProps {
+  basePath?: string;
+}
 
-export default function AccountSettingsPage() {
+function getTabs(basePath: string): Tab[] {
+  return [
+    { id: "profile", labelKey: "dashboard.accountSettings.tabs.profile", icon: <FiUser className="w-4 h-4" />, to: `${basePath}/profile` },
+    { id: "email", labelKey: "dashboard.accountSettings.tabs.email", icon: <FiMail className="w-4 h-4" />, to: `${basePath}/email` },
+    { id: "password", labelKey: "dashboard.accountSettings.tabs.password", icon: <FiLock className="w-4 h-4" />, to: `${basePath}/password` },
+    { id: "danger", labelKey: "dashboard.accountSettings.tabs.dangerZone", icon: <FiTrash2 className="w-4 h-4" />, to: `${basePath}/danger`, danger: true },
+  ];
+}
+
+export default function AccountSettingsPage({ basePath = "/dashboard/account" }: AccountSettingsPageProps) {
   const { t } = useTranslation();
   const location = useLocation();
+  const tabs = getTabs(basePath);
 
   return (
     <div className="space-y-6 pb-6">

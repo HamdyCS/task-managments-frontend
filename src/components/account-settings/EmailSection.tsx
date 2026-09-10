@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiMail, FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import useCurrentUser from "../../hooks/auth/useCurrentUser";
@@ -51,9 +51,11 @@ export default function EmailSection() {
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => navigate("/dashboard/account/email/change-email")}
+            <Link
+              to={
+                (user?.role === "Admin" ? "/admin/dashboard" : "/dashboard") +
+                "/account/email/change-email"
+              }
               className="flex items-center gap-2 px-3.5 py-2 text-sm font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
             >
               {t("dashboard.accountSettings.email.changeEmail")}
@@ -62,7 +64,7 @@ export default function EmailSection() {
               ) : (
                 <FiArrowRight className="w-4 h-4" />
               )}
-            </button>
+            </Link>
           </div>
         </motion.div>
       </div>

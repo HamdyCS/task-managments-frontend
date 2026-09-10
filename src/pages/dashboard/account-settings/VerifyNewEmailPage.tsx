@@ -3,10 +3,13 @@ import { useTranslation } from "react-i18next";
 import { useSearchParams, Link } from "react-router-dom";
 import useConfirmChangeEmail from "../../../hooks/auth/useConfirmChangeEmail";
 import AccountActionResult from "../../../components/account-settings/AccountActionResult";
+import useCurrentUser from "../../../hooks/auth/useCurrentUser";
 
 export default function VerifyNewEmailPage() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
+  const { data: user } = useCurrentUser();
+  const basePath = user?.role === "Admin" ? "/admin/dashboard" : "/dashboard";
   const token = searchParams.get("token");
   const email = searchParams.get("email");
 
@@ -31,7 +34,7 @@ export default function VerifyNewEmailPage() {
         />
         <div className="flex justify-center">
           <Link
-            to="/dashboard/account/email"
+            to={`${basePath}/account/email`}
             className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
           >
             {t("changeEmail.backToSettings")}
@@ -61,7 +64,7 @@ export default function VerifyNewEmailPage() {
         />
         <div className="flex justify-center">
           <Link
-            to="/dashboard/account/email"
+            to={`${basePath}/account/email`}
             className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
           >
             {t("changeEmail.backToSettings")}
@@ -80,7 +83,7 @@ export default function VerifyNewEmailPage() {
       />
       <div className="flex justify-center">
         <Link
-          to="/dashboard/account/email"
+          to={`${basePath}/account/email`}
           className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
         >
           {t("changeEmail.backToSettings")}

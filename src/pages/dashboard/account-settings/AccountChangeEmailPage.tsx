@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiMail } from "react-icons/fi";
 import ChangeEmailForm from "../../../components/account-settings/ChangeEmailForm";
+import useCurrentUser from "../../../hooks/auth/useCurrentUser";
 
 export default function AccountChangeEmailPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { data: user } = useCurrentUser();
+  const basePath = user?.role === "Admin" ? "/admin/dashboard" : "/dashboard";
 
   return (
     <div className="bg-card border border-border rounded-xl">
@@ -32,7 +35,7 @@ export default function AccountChangeEmailPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <ChangeEmailForm onCancel={() => navigate("/dashboard/account/email")} />
+          <ChangeEmailForm onCancel={() => navigate(`${basePath}/account/email`)} />
         </motion.div>
       </div>
     </div>

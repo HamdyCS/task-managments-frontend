@@ -42,7 +42,7 @@ const dashboard: RouteObject[] = [
       { path: "notifications", element: <NotificationsPage /> },
       {
         path: "account",
-        element: <AccountSettingsPage />,
+        element: <AccountSettingsPage basePath="/dashboard/account" />,
         children: [
           { index: true, element: <Navigate to="profile" replace /> },
           { path: "profile", element: <AccountProfilePage /> },

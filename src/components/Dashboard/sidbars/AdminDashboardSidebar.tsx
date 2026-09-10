@@ -71,7 +71,7 @@ export default function AdminDashboardSidebar({
     {
       icon: <FiSettings size={20} />,
       label: t("dashboard.sidebar.settings"),
-      to: "/admin/settings",
+      to: "/admin/dashboard/account",
       section: "settings",
       end: false,
     },
