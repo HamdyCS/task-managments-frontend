@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import { fadeInUp } from "../../animations";
-import { NotFoundIllustration } from "../../components/website/notFound/NotFoundIllustration";
+import { NotFoundIllustration } from "../../components/website/not-found/NotFoundIllustration";
 
 export default function AdminDashboardNotFoundPage() {
   const { t } = useTranslation();

@@ -1,20 +1,20 @@
 import { Navigate } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
-import AdminDashboardPage from "../../pages/dashboard/AdminDashboardPage";
-import AdminUsersPage from "../../pages/dashboard/AdminUsersPage";
-import AdminWorkspacesPage from "../../pages/dashboard/AdminWorkspacesPage";
+import AdminDashboardPage from "../../pages/admin-dashboard/AdminDashboardPage";
+import AdminUsersPage from "../../pages/admin-dashboard/AdminUsersPage";
+import AdminWorkspacesPage from "../../pages/admin-dashboard/AdminWorkspacesPage";
 import AdminDashboardLayout from "../../components/Dashboard/layout/AdminDashboardLayout";
 import RequireRole from "../RequireRole";
-import AccountSettingsPage from "../../pages/dashboard/AccountSettingsPage";
-import AccountProfilePage from "../../pages/dashboard/account-settings/AccountProfilePage";
-import AccountEmailPage from "../../pages/dashboard/account-settings/AccountEmailPage";
-import AccountChangeEmailPage from "../../pages/dashboard/account-settings/AccountChangeEmailPage";
-import AccountPasswordPage from "../../pages/dashboard/account-settings/AccountPasswordPage";
-import AccountDangerPage from "../../pages/dashboard/account-settings/AccountDangerPage";
-import DeleteAccountConfirmPage from "../../pages/dashboard/account-settings/DeleteAccountConfirmPage";
-import VerifyNewEmailPage from "../../pages/dashboard/account-settings/VerifyNewEmailPage";
-import UpdatePasswordPage from "../../pages/dashboard/account-settings/UpdatePasswordPage";
-import AdminDashboardNotFoundPage from "../../pages/dashboard/AdminDashboardNotFoundPage";
+import AccountSettingsPage from "../../pages/auth/account-settings/AccountSettingsPage";
+import AccountProfilePage from "../../pages/auth/account-settings/AccountProfilePage";
+import AccountEmailPage from "../../pages/auth/account-settings/AccountEmailPage";
+import AccountChangeEmailPage from "../../pages/auth/account-settings/AccountChangeEmailPage";
+import AccountPasswordPage from "../../pages/auth/account-settings/AccountPasswordPage";
+import AccountDangerPage from "../../pages/auth/account-settings/AccountDangerPage";
+import DeleteAccountConfirmPage from "../../pages/auth/account-settings/DeleteAccountConfirmPage";
+import VerifyNewEmailPage from "../../pages/auth/account-settings/VerifyNewEmailPage";
+import UpdatePasswordPage from "../../pages/auth/account-settings/UpdatePasswordPage";
+import AdminDashboardNotFoundPage from "../../pages/admin-dashboard/AdminDashboardNotFoundPage";
 
 const adminDashboard: RouteObject[] = [
   {

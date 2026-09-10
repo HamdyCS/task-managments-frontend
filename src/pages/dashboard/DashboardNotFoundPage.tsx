@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import { fadeInUp } from "../../animations";
 import { useSearchParams } from "react-router-dom";
-import { NotFoundIllustration } from "../../components/website/notFound/NotFoundIllustration";
+import { NotFoundIllustration } from "../../components/website/not-found/NotFoundIllustration";
 
 export default function DashboardNotFoundPage() {
   const { t } = useTranslation();

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
-import { NotFoundIllustration } from "../components/website/notFound/NotFoundIllustration";
+import { NotFoundIllustration } from "../components/website/not-found/NotFoundIllustration";
 import { fadeInUp } from "../animations";
 
 export function NotFoundPage() {
