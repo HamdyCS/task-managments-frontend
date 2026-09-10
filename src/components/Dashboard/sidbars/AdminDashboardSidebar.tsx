@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,6 +13,7 @@ import {
 } from "react-icons/fi";
 import useLogout from "../../../hooks/auth/useLogout";
 import logo from "../../../assets/logo.png";
+import ConfirmDialog from "../../ui/ConfirmDialog";
 
 interface NavItem {
   icon: React.ReactNode;
@@ -31,7 +33,8 @@ export default function AdminDashboardSidebar({
   onClose,
 }: AdminDashboardSidebarProps) {
   const { t, i18n } = useTranslation();
-  const { mutateAsync: logout } = useLogout();
+  const { mutateAsync: logout, isPending } = useLogout();
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
   const navItems: NavItem[] = [
     {
@@ -132,7 +135,7 @@ export default function AdminDashboardSidebar({
           </NavLink>
         ))}
         <button
-          onClick={() => logout()}
+          onClick={() => setIsLogoutDialogOpen(true)}
           className="w-full flex items-center gap-3 px-4 py-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 ltr:rounded-r-lg ltr:border-l-4 rtl:rounded-l-lg rtl:border-r-4 border-transparent transition-colors duration-200 cursor-pointer"
         >
           <FiLogOut size={20} />
@@ -180,6 +183,15 @@ export default function AdminDashboardSidebar({
           </>
         )}
       </AnimatePresence>
+      <ConfirmDialog
+        open={isLogoutDialogOpen}
+        onClose={() => setIsLogoutDialogOpen(false)}
+        onConfirm={() => logout()}
+        title={t("dashboard.logoutConfirm.title")}
+        confirmText={t("dashboard.logoutConfirm.continue")}
+        cancelText={t("dashboard.logoutConfirm.cancel")}
+        isLoading={isPending}
+      />
     </>
   );
 }
