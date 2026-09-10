@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 import AdminDashboardPage from "../../pages/dashboard/AdminDashboardPage";
 import AdminUsersPage from "../../pages/dashboard/AdminUsersPage";
+import AdminWorkspacesPage from "../../pages/dashboard/AdminWorkspacesPage";
 import AdminDashboardLayout from "../../components/Dashboard/layout/AdminDashboardLayout";
 import RequireRole from "../RequireRole";
 import AccountSettingsPage from "../../pages/dashboard/AccountSettingsPage";
@@ -16,17 +17,18 @@ import UpdatePasswordPage from "../../pages/dashboard/account-settings/UpdatePas
 
 const adminDashboard: RouteObject[] = [
   {
-    path: "/admin",
+    path: "/admin/dashboard",
     element: (
       <RequireRole role="Admin">
         <AdminDashboardLayout />
       </RequireRole>
     ),
     children: [
-      { path: "dashboard", element: <AdminDashboardPage /> },
+      { index: true, element: <AdminDashboardPage /> },
       { path: "users", element: <AdminUsersPage /> },
+      { path: "workspaces", element: <AdminWorkspacesPage /> },
       {
-        path: "dashboard/account",
+        path: "account",
         element: <AccountSettingsPage basePath="/admin/dashboard/account" />,
         children: [
           { index: true, element: <Navigate to="profile" replace /> },

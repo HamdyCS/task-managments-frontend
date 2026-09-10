@@ -131,6 +131,21 @@ const config = {
         `/users/all?pageNumber=${page}&pageSize=${pageSize}`,
     },
     registerAdmin: `/auth/register-admin`,
+    workspaces: {
+      overviews: (
+        pageNumber: number,
+        pageSize: number,
+        ownerName?: string,
+        workSpaceName?: string,
+      ) => {
+        let url = `/workspaces/overviews?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+        if (ownerName) url += `&ownerName=${encodeURIComponent(ownerName)}`;
+        if (workSpaceName)
+          url += `&workSpaceName=${encodeURIComponent(workSpaceName)}`;
+        return url;
+      },
+      details: (id: number) => `/workspaces/${id}/details`,
+    },
   },
   reports: {
     workspace: (workspaceId: number) =>

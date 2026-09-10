@@ -995,6 +995,49 @@
           "success": "Admin registered successfully. Please confirm email.",
           "error": "Registration failed. Please try again."
         }
+      },
+      "workspaces": {
+        "title": "Workspaces Management",
+        "subtitle": "View and manage all workspaces on the platform",
+        "loading": "Loading workspaces...",
+        "filters": {
+          "searchWorkspace": "Search by workspace name...",
+          "searchOwner": "Search by owner name...",
+          "reset": "Reset"
+        },
+        "table": {
+          "workspace": "Workspace",
+          "owner": "Owner",
+          "members": "Members",
+          "projects": "Projects",
+          "tasks": "Tasks",
+          "created": "Created",
+          "actions": "Actions"
+        },
+        "actions": {
+          "viewWorkspace": "View Workspace",
+          "viewMembers": "View Members",
+          "viewProjects": "View Projects"
+        },
+        "empty": {
+          "title": "No workspaces found",
+          "filtered": "No workspaces match your search"
+        },
+        "details": {
+          "title": "Workspace Details",
+          "overview": "Overview",
+          "workspace": "Workspace",
+          "owner": "Owner",
+          "membersCount": "Members",
+          "projectsCount": "Projects",
+          "tasksCount": "Tasks",
+          "completion": "Completion",
+          "membersSection": "Members",
+          "projectsSection": "Projects",
+          "noMembers": "No members found",
+          "noProjects": "No projects found",
+          "loading": "Loading workspace details..."
+        }
       }
     }
   },

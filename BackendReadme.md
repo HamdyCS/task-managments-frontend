@@ -261,8 +261,8 @@ All configuration lives in `appsettings.json` / `appsettings.Development.json`.
 | # | Controller | Base route | APIs |
 |---|------------|------------|------|
 | 1 | `AuthController` | `/api/auth` | `POST register-user` · `POST register-admin` · `POST confirm-email` · `POST login` · `POST refresh-token` · `POST logout` · `GET ""` · `PUT ""` · `POST forget-password/send-otp` · `POST forget-password/resend-otp` · `POST forget-password` · `POST reset-password/send-email` · `POST reset-password` · `POST change-email/send-email` · `POST change-email` · `POST delete-account/send-email` · `DELETE delete-account` · `GET login-user-with-google` · `GET login-user-by-provider-callback` |
-| 2 | `UsersController` | `/api/users` | `GET {id}` · `GET all` · `DELETE {id}` |
-| 3 | `WorkSpacesController` | `/api/workspaces` | `GET {id}` · `GET all` · `GET {id}/all-users` · `GET {id}/my-role` · `POST ""` · `PUT {id}` · `DELETE {id}` |
+| 2 | `UsersController` | `/api/users` | `GET {id}` · `GET all` · `GET admin-users` · `GET regular-users` · `DELETE {id}` |
+| 3 | `WorkSpacesController` | `/api/workspaces` | `GET {id}` · `GET all` · `GET {id}/all-users` · `GET {id}/my-role` · `POST ""` · `PUT {id}` · `DELETE {id}` · `GET overviews` · `GET {id}/details` |
 | 4 | `WorkSpaceInvitesController` | `/api/workspace-invites` | `GET {id}` · `GET all-my-invites` · `GET all-my-send-invites` · `POST ""` · `DELETE {id}` · `PATCH {id}/accept` · `PATCH {id}/reject` |
 | 5 | `ProjectsController` | `/api/workspaces/{workspaceId}/projects` | `POST ""` · `GET {projectId}` · `GET ""` · `PUT {projectId}` · `PATCH {projectId}/status` · `DELETE {projectId}` |
 | 6 | `ProjectsTasksController` | `/api/workspaces/{workspaceId}/projects/{projectId}/tasks` | `POST ""` · `GET {taskId}` · `GET {taskId}/me` · `GET ""` · `GET users/{userId}` · `GET me` · `PUT {taskId}` · `DELETE {taskId}` · `POST {taskId}/assignments` · `DELETE {taskId}/assignments/{assignedUserId}` · `PATCH {taskId}/status` · `PATCH {taskId}/me/status` |
@@ -307,6 +307,8 @@ All configuration lives in `appsettings.json` / `appsettings.Development.json`.
 |--------|----------|-------------|
 | GET | `/api/users/{id}` | Get a user by ID |
 | GET | `/api/users/all` | List all users (**Admin**) |
+| GET | `/api/users/admin-users` | List all admin users (**Admin**) |
+| GET | `/api/users/regular-users` | List all regular users (**Admin**) |
 | DELETE | `/api/users/{id}` | Delete a user (**Admin**) |
 
 #### WorkSpacesController — `/api/workspaces`
@@ -320,6 +322,8 @@ All configuration lives in `appsettings.json` / `appsettings.Development.json`.
 | POST | `/api/workspaces` | Create a workspace |
 | PUT | `/api/workspaces/{id}` | Update a workspace (**Admin/Owner**) |
 | DELETE | `/api/workspaces/{id}` | Delete a workspace (**Admin/Owner**) |
+| GET | `/api/workspaces/overviews` | List workspace overviews with stats (**Admin**) |
+| GET | `/api/workspaces/{id}/details` | Get full workspace details (**Admin**) |
 
 #### WorkSpaceInvitesController — `/api/workspace-invites`
 
@@ -564,7 +568,17 @@ List all users (paginated).
 
 **Response:** `200 OK` with a `PaginationResultDto<UserDto>`.
 
-#### 2.3 DELETE `/api/users/{id}` 🔒 **Admin**
+#### 2.3 GET `/api/users/admin-users?pageNumber=&pageSize=` 🔒 **Admin**
+List all admin users only (paginated).
+
+**Response:** `200 OK` with a `PaginationResultDto<UserDto>`.
+
+#### 2.4 GET `/api/users/regular-users?pageNumber=&pageSize=` 🔒 **Admin**
+List all regular users (non-admin) only (paginated).
+
+**Response:** `200 OK` with a `PaginationResultDto<UserDto>`.
+
+#### 2.5 DELETE `/api/users/{id}` 🔒 **Admin**
 Delete a user account.
 
 **Response:** `204 No Content`.
@@ -636,6 +650,66 @@ Update a workspace.
 Delete (soft-delete) a workspace.
 
 **Response:** `204 No Content`.
+
+#### 3.8 GET `/api/workspaces/overviews?pageNumber=&pageSize=&ownerName=&workSpaceName=` 🔒 **Admin**
+List workspace overviews with aggregated stats (paginated, filterable).
+
+**Query params:**
+| Param | Type | Description |
+|-------|------|-------------|
+| `pageNumber` | int | Page number (default `1`) |
+| `pageSize` | int | Page size (default `10`) |
+| `ownerName` | string | Optional filter by owner name |
+| `workSpaceName` | string | Optional filter by workspace name |
+
+**Response:** `200 OK` with `PaginationResultDto<WorkSpaceOverviewDto>`:
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Acme Corp",
+      "ownersNames": ["John Doe"],
+      "membersCount": 8,
+      "projectsCount": 4,
+      "tasksCount": 25,
+      "createdAt": "2026-01-01T10:00:00Z"
+    }
+  ],
+  "totalCount": 12,
+  "pageNumber": 1,
+  "pageSize": 10,
+  "nextPage": 2,
+  "previousPage": null,
+  "totalPages": 2,
+  "hasNextPage": true,
+  "hasPreviousPage": false
+}
+```
+
+#### 3.9 GET `/api/workspaces/{id}/details` 🔒 **Admin**
+Get full workspace details including overview stats, completion percentage, members, and project names.
+
+**Response:** `200 OK` with a `WorkSpaceDetailsDto`:
+```json
+{
+  "workSpaceOverview": {
+    "id": 1,
+    "name": "Acme Corp",
+    "ownersNames": ["John Doe"],
+    "membersCount": 8,
+    "projectsCount": 4,
+    "tasksCount": 25,
+    "createdAt": "2026-01-01T10:00:00Z"
+  },
+  "completionPercentage": 32.0,
+  "members": [
+    { "id": 1, "fullName": "John Doe" },
+    { "id": 2, "fullName": "Jane Smith" }
+  ],
+  "projectNames": ["Website Redesign", "Mobile App"]
+}
+```
 
 ---
 
@@ -1211,7 +1285,7 @@ All paginated responses use the standard envelope `PaginationResultDto<T>`:
 }
 ```
 
-Affected endpoints: workspace lists (3.2, 3.3), invites (4.2, 4.3), users (2.2), projects (5.3), tasks (6.4, 6.5, 6.6), comments (7.2), notifications (10.2, 10.3), admin dashboard (12.2).
+Affected endpoints: workspace lists (3.2, 3.3, 3.8), invites (4.2, 4.3), users (2.2, 2.3, 2.4), projects (5.3), tasks (6.4, 6.5, 6.6), comments (7.2), notifications (10.2, 10.3), admin dashboard (12.2).
 
 ---
 
