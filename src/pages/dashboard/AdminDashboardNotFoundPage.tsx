@@ -3,12 +3,10 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import { fadeInUp } from "../../animations";
-import { useSearchParams } from "react-router-dom";
 import { NotFoundIllustration } from "../../components/website/notFound/NotFoundIllustration";
 
-export default function DashboardNotFoundPage() {
+export default function AdminDashboardNotFoundPage() {
   const { t } = useTranslation();
-  const [searchParams] = useSearchParams();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] py-8">
@@ -28,11 +26,7 @@ export default function DashboardNotFoundPage() {
         </p>
         <div className="pt-2">
           <Link
-            to={
-              searchParams.get("workspaceId")
-                ? `/dashboard?workspaceId=${searchParams.get("workspaceId")}`
-                : "/dashboard"
-            }
+            to={"/admin/dashboard"}
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl text-base font-semibold hover:opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-primary/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             <MdArrowBack className="w-5 h-5" />

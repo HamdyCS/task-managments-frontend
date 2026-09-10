@@ -14,6 +14,7 @@ import AccountDangerPage from "../../pages/dashboard/account-settings/AccountDan
 import DeleteAccountConfirmPage from "../../pages/dashboard/account-settings/DeleteAccountConfirmPage";
 import VerifyNewEmailPage from "../../pages/dashboard/account-settings/VerifyNewEmailPage";
 import UpdatePasswordPage from "../../pages/dashboard/account-settings/UpdatePasswordPage";
+import AdminDashboardNotFoundPage from "../../pages/dashboard/AdminDashboardNotFoundPage";
 
 const adminDashboard: RouteObject[] = [
   {
@@ -41,6 +42,14 @@ const adminDashboard: RouteObject[] = [
           { path: "danger", element: <AccountDangerPage /> },
           { path: "confirm-delete", element: <DeleteAccountConfirmPage /> },
         ],
+      },
+      {
+        path: "not-found",
+        element: <AdminDashboardNotFoundPage />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/admin/dashboard/not-found" replace />,
       },
     ],
   },

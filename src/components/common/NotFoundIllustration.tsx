@@ -1,9 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  MdAssignment,
-  MdSearchOff,
-  MdOutlineWarning,
-} from "react-icons/md";
+import { MdAssignment, MdSearchOff, MdOutlineWarning } from "react-icons/md";
 
 export default function DashboardNotFoundIllustration() {
   return (
