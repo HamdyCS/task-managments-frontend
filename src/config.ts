@@ -126,6 +126,11 @@ const config = {
     dashboard: `/admin/dashboard`,
     recentActivities: (page: number, pageSize: number) =>
       `/admin/dashboard/recent-activities?pageNumber=${page}&pageSize=${pageSize}`,
+    users: {
+      all: (page: number, pageSize: number) =>
+        `/users/all?pageNumber=${page}&pageSize=${pageSize}`,
+    },
+    registerAdmin: `/auth/register-admin`,
   },
   reports: {
     workspace: (workspaceId: number) =>

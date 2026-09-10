@@ -959,6 +959,42 @@
       "error": {
         "title": "Something went wrong",
         "description": "Failed to load dashboard data. Please try again later."
+      },
+      "users": {
+        "title": "Users Management",
+        "subtitle": "Manage all platform users and administrators",
+        "registerAdmin": "Register Admin",
+        "loading": "Loading users...",
+        "tabs": {
+          "regular": "Regular Users",
+          "all": "All Users"
+        },
+        "admins": {
+          "title": "Admin Users",
+          "subtitle": "Platform administrators",
+          "empty": "No admin users found"
+        },
+        "table": {
+          "name": "Name",
+          "email": "Email",
+          "role": "Role",
+          "dateOfBirth": "Date of Birth"
+        },
+        "role": {
+          "Admin": "Admin",
+          "User": "User"
+        },
+        "empty": {
+          "regular": "No regular users found",
+          "all": "No users found"
+        },
+        "registerModal": {
+          "title": "Register Admin User",
+          "submit": "Register Admin",
+          "cancel": "Cancel",
+          "success": "Admin registered successfully. Please confirm email.",
+          "error": "Registration failed. Please try again."
+        }
       }
     }
   },
