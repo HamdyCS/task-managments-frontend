@@ -14,6 +14,7 @@ import AccountDangerPage from "../../pages/auth/account-settings/AccountDangerPa
 import DeleteAccountConfirmPage from "../../pages/auth/account-settings/DeleteAccountConfirmPage";
 import VerifyNewEmailPage from "../../pages/auth/account-settings/VerifyNewEmailPage";
 import UpdatePasswordPage from "../../pages/auth/account-settings/UpdatePasswordPage";
+import AdminReportsPage from "../../pages/admin-dashboard/AdminReportsPage";
 import AdminDashboardNotFoundPage from "../../pages/admin-dashboard/AdminDashboardNotFoundPage";
 
 const adminDashboard: RouteObject[] = [
@@ -28,6 +29,7 @@ const adminDashboard: RouteObject[] = [
       { index: true, element: <AdminDashboardPage /> },
       { path: "users", element: <AdminUsersPage /> },
       { path: "workspaces", element: <AdminWorkspacesPage /> },
+      { path: "reports", element: <AdminReportsPage /> },
       {
         path: "account",
         element: <AccountSettingsPage basePath="/admin/dashboard/account" />,

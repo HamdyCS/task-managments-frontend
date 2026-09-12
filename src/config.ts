@@ -146,6 +146,33 @@ const config = {
       },
       details: (id: number) => `/workspaces/${id}/details`,
     },
+    reports: {
+      overview: (from?: string, to?: string) => {
+        let url = `/admin/reports/overview`;
+        const params: string[] = [];
+        if (from) params.push(`from=${from}`);
+        if (to) params.push(`to=${to}`);
+        if (params.length > 0) url += `?${params.join("&")}`;
+        return url;
+      },
+      memberPerformances: (
+        pageNumber: number,
+        pageSize: number,
+        memberName?: string,
+      ) => {
+        let url = `/admin/reports/member-performances?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+        if (memberName) url += `&memberName=${encodeURIComponent(memberName)}`;
+        return url;
+      },
+      pdfDownload: (from?: string, to?: string) => {
+        let url = `/admin/reports/overview/pdf/download`;
+        const params: string[] = [];
+        if (from) params.push(`from=${from}`);
+        if (to) params.push(`to=${to}`);
+        if (params.length > 0) url += `?${params.join("&")}`;
+        return url;
+      },
+    },
   },
   reports: {
     workspace: (workspaceId: number) =>

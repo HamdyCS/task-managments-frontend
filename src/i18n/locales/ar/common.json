@@ -996,6 +996,37 @@
           "error": "فشل التسجيل. يرجى المحاولة مرة أخرى."
         }
       },
+      "reports": {
+        "title": "التقارير",
+        "subtitle": "نظرة عامة على تقارير المنصة مع تصفية النطاق الزمني",
+        "datePicker": {
+          "placeholder": "اختر النطاق الزمني",
+          "to": "إلى"
+        },
+        "downloadPdf": "تنزيل PDF",
+        "summaryCards": {
+          "regularUsers": "المستخدمون العاديون",
+          "workspaces": "مساحات العمل",
+          "projects": "المشاريع",
+          "tasks": "المهام"
+        },
+        "taskStatusDistribution": "توزيع حالة المهام",
+        "tasksByPriority": "المهام حسب الأولوية",
+        "memberPerformance": "أداء الأعضاء",
+        "searchMembers": "بحث عن أعضاء...",
+        "loading": "جارٍ تحميل بيانات التقرير...",
+        "loadingMore": "جارٍ تحميل المزيد...",
+        "empty": {
+          "noTaskStatusData": "لا توجد بيانات لحالة المهام",
+          "noTaskPriorityData": "لا توجد بيانات لأولوية المهام",
+          "noMembers": "لم يتم العثور على أعضاء"
+        },
+        "error": {
+          "title": "حدث خطأ ما",
+          "description": "فشل تحميل بيانات التقرير. يرجى المحاولة مرة أخرى لاحقًا.",
+          "memberPerformance": "فشل تحميل بيانات أداء الأعضاء."
+        }
+      },
       "workspaces": {
         "title": "إدارة مساحات العمل",
         "subtitle": "عرض وإدارة جميع مساحات العمل على المنصة",

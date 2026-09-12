@@ -996,6 +996,37 @@
           "error": "Registration failed. Please try again."
         }
       },
+      "reports": {
+        "title": "Reports",
+        "subtitle": "Platform-wide report overview with date range filtering",
+        "datePicker": {
+          "placeholder": "Select date range",
+          "to": "to"
+        },
+        "downloadPdf": "Download PDF",
+        "summaryCards": {
+          "regularUsers": "Regular Users",
+          "workspaces": "Workspaces",
+          "projects": "Projects",
+          "tasks": "Tasks"
+        },
+        "taskStatusDistribution": "Task Status Distribution",
+        "tasksByPriority": "Tasks by Priority",
+        "memberPerformance": "Member Performance",
+        "searchMembers": "Search members...",
+        "loading": "Loading report data...",
+        "loadingMore": "Loading more...",
+        "empty": {
+          "noTaskStatusData": "No task status data available",
+          "noTaskPriorityData": "No task priority data available",
+          "noMembers": "No members found"
+        },
+        "error": {
+          "title": "Something went wrong",
+          "description": "Failed to load report data. Please try again later.",
+          "memberPerformance": "Failed to load member performance data."
+        }
+      },
       "workspaces": {
         "title": "Workspaces Management",
         "subtitle": "View and manage all workspaces on the platform",

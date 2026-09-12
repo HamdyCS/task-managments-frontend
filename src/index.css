@@ -310,3 +310,17 @@ a {
 button {
   cursor: pointer !important;
 }
+
+.rdp-root {
+  --rdp-accent-color: #1717ff;
+  --rdp-accent-background-color: #1717ff;
+
+  --rdp-range_middle-background-color: rgba(23, 23, 255, 0.15);
+  --rdp-range_middle-color: inherit;
+
+  --rdp-range_start-background: #1717ff;
+  --rdp-range_start-color: white;
+
+  --rdp-range_end-background: #1717ff;
+  --rdp-range_end-color: white;
+}
