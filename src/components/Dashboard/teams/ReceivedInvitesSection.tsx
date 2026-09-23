@@ -68,6 +68,7 @@ export default function ReceivedInvitesSection() {
     }
   };
 
+
   return (
     <>
       <div className="bg-card border rounded-xl shadow-sm overflow-hidden">
@@ -124,7 +125,7 @@ export default function ReceivedInvitesSection() {
                     className="hover:bg-muted/50 transition-colors"
                   >
                     <td className="p-4 text-card-foreground font-medium">
-                      {invite.workSpaceName ?? `Workspace #${invite.workSpaceId}`}
+                      {invite.workSpaceName !== "" ? invite.workSpaceName : `Workspace #${invite.workSpaceId}`}
                     </td>
                     <td className="p-4 text-muted-foreground">
                       {formatDate(invite.createdAt)}

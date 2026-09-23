@@ -32,6 +32,14 @@ export default function useDeleteComment(
         ],
       });
       opts.onSuccess?.(_data);
+      queryClient.invalidateQueries({
+        queryKey: [
+          "taskComments",
+          variables.workspaceId,
+          variables.projectId,
+          variables.taskId,
+        ],
+      });
     },
     onError: (error) => {
       opts.onError?.(error);

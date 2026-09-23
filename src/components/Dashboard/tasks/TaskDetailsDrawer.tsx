@@ -76,6 +76,7 @@ export default function TaskDetailsDrawer({
   const currentUserId = user?.id ?? "";
   const isManager =
     workspaceRole === "Owner" || workspaceRole === "ProjectManager";
+  const [taskStatus, setTaskStatus] = useState(task.taskStatus);
 
   const assignedUserId = task.assignments.find((a) => a.isActive)?.assignedToId;
   const assignee = workspaceUsers.find((u) => u.id === assignedUserId);
@@ -92,11 +93,15 @@ export default function TaskDetailsDrawer({
   });
   const { mutateAsync: updateComment, isPending: updatingComment } =
     useUpdateComment({});
-  const { mutateAsync: deleteComment } = useDeleteComment({});
+  const { mutateAsync: deleteComment, isPending: deletingComment } =
+    useDeleteComment({});
 
   const [commentText, setCommentText] = useState("");
   const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
   const [editCommentText, setEditCommentText] = useState("");
+  const [deletingCommentId, setDeletingCommentId] = useState<number | null>(
+    null,
+  );
 
   // Attachments
   const { data: attachments, isLoading: attachmentsLoading } =
@@ -130,7 +135,17 @@ export default function TaskDetailsDrawer({
   };
 
   const handleDeleteComment = async (commentId: number) => {
-    await deleteComment({ workspaceId, projectId, taskId: task.id, commentId });
+    setDeletingCommentId(commentId);
+    try {
+      await deleteComment({
+        workspaceId,
+        projectId,
+        taskId: task.id,
+        commentId,
+      });
+    } finally {
+      setDeletingCommentId(null);
+    }
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -164,6 +179,7 @@ export default function TaskDetailsDrawer({
   return (
     <AnimatePresence>
       <motion.div
+        key="backdrop"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -172,6 +188,7 @@ export default function TaskDetailsDrawer({
         onClick={onClose}
       />
       <motion.div
+        key="drawer"
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
@@ -207,12 +224,15 @@ export default function TaskDetailsDrawer({
               </label>
               {isManager || assignedUserId === currentUserId ? (
                 <select
-                  value={task.taskStatus}
-                  onChange={(e) => onChangeStatus(task, e.target.value)}
+                  value={taskStatus}
+                  onChange={(e) => {
+                    onChangeStatus(task, e.target.value);
+                    setTaskStatus(e.target.value);
+                  }}
                   className="w-full h-9 px-2 bg-muted border border-border rounded-lg text-sm text-card-foreground focus:outline-none focus:border-primary cursor-pointer"
                 >
-                  {STATUSES.map((s) => (
-                    <option key={s} value={s}>
+                  {STATUSES.map((s, index) => (
+                    <option key={index} value={s}>
                       {t(`dashboard.tasks.status.${s}`)}
                     </option>
                   ))}
@@ -453,9 +473,15 @@ export default function TaskDetailsDrawer({
                           workspaceRole === "Owner") && (
                           <button
                             onClick={() => handleDeleteComment(comment.id)}
-                            className="p-1 text-muted-foreground hover:text-destructive transition-colors cursor-pointer"
+                            disabled={deletingComment}
+                            className="p-1 text-muted-foreground hover:text-destructive transition-colors cursor-pointer disabled:cursor-wait"
                           >
-                            <FiTrash2 size={12} />
+                            {deletingComment &&
+                            deletingCommentId === comment.id ? (
+                              <span className="block w-3 h-3 border-2 border-muted-foreground/30 border-t-muted-foreground rounded-full animate-spin" />
+                            ) : (
+                              <FiTrash2 size={12} />
+                            )}
                           </button>
                         )}
                       </div>

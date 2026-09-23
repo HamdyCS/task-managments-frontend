@@ -22,7 +22,6 @@ export default function useLogin(opts: MutationCallBacks<void, AxiosError>) {
       opts.onSuccess?.(data);
     },
     onError: (error) => {
-      console.log("first");
       opts.onError?.(error);
     },
   });

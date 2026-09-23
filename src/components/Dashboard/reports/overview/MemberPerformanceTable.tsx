@@ -10,7 +10,6 @@ interface Props {
 export default function MemberPerformanceTable({ members }: Props) {
   const { t } = useTranslation();
 
-  console.log(members)
   return (
     <motion.div
       variants={fadeIn}
