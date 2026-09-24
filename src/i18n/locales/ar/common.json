@@ -412,6 +412,16 @@
     "tasks": {
       "title": "المهام",
       "subtitle": "إدارة وتتبع المهام عبر مساحة عملك",
+      "taskName": "اسم المهمة",
+      "project": "المشروع",
+      "priorityName": "الأولوية",
+      "statusName": "الحالة",
+      "deadline": "الموعد النهائي",
+      "deadlines": {
+        "overdue": "متأخر",
+        "today": "اليوم",
+        "tomorrow": "غداً"
+      },
       "tabs": {
         "allTasks": "جميع المهام",
         "myTasks": "مهامي"
@@ -522,7 +532,9 @@
         "noAttachments": "لم يتم رفع أي مرفقات.",
         "dragDrop": "اسحب وأفلت أو انقر للرفع",
         "fileTypes": "PDF، JPG، JPEG، PNG (حد أقصى 50 ميغابايت)",
-        "deleteAttachment": "حذف"
+        "deleteAttachment": "حذف",
+        "task": "مهمة",
+        "tasks": "مهمات"
       },
       "empty": {
         "noProjects": {
@@ -924,7 +936,7 @@
         "users": "المستخدمون",
         "workspaces": "مساحات العمل",
         "reports": "التقارير",
-        "logout":"تسجيل الخروج"
+        "logout": "تسجيل الخروج"
       },
       "kpi": {
         "totalUsers": "إجمالي المستخدمين",

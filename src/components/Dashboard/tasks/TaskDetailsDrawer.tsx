@@ -76,7 +76,6 @@ export default function TaskDetailsDrawer({
   const currentUserId = user?.id ?? "";
   const isManager =
     workspaceRole === "Owner" || workspaceRole === "ProjectManager";
-  const [taskStatus, setTaskStatus] = useState(task.taskStatus);
 
   const assignedUserId = task.assignments.find((a) => a.isActive)?.assignedToId;
   const assignee = workspaceUsers.find((u) => u.id === assignedUserId);
@@ -223,20 +222,9 @@ export default function TaskDetailsDrawer({
                 {t("dashboard.tasks.details.status")}
               </label>
               {isManager || assignedUserId === currentUserId ? (
-                <select
-                  value={taskStatus}
-                  onChange={(e) => {
-                    onChangeStatus(task, e.target.value);
-                    setTaskStatus(e.target.value);
-                  }}
-                  className="w-full h-9 px-2 bg-muted border border-border rounded-lg text-sm text-card-foreground focus:outline-none focus:border-primary cursor-pointer"
-                >
-                  {STATUSES.map((s, index) => (
-                    <option key={index} value={s}>
-                      {t(`dashboard.tasks.status.${s}`)}
-                    </option>
-                  ))}
-                </select>
+                <span className="w-full h-9 px-2 bg-muted border border-border rounded-lg text-sm text-card-foreground focus:outline-none focus:border-primary">
+                  {t(`dashboard.tasks.status.${task.taskStatus}`)}
+                </span>
               ) : (
                 <span
                   className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${STATUS_STYLES[task.taskStatus] ?? ""}`}

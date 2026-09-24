@@ -87,7 +87,7 @@ export default function TasksByPriorityChart({ data }: Props) {
         callbacks: {
           label: (context) => {
             const value = context.parsed.y ?? 0;
-            return ` ${value} ${value === 1 ? "task" : "tasks"}`;
+            return ` ${value} ${value === 1 ? t("dashboard.tasks.details.task") : t("dashboard.tasks.details.tasks")}`;
           },
         },
       },

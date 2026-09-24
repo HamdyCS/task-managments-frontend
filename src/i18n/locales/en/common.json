@@ -412,6 +412,16 @@
     "tasks": {
       "title": "Tasks",
       "subtitle": "Manage and track tasks across your workspace",
+      "taskName": "Task Name",
+      "project": "Project",
+      "priority": "Priority",
+      "status": "Status",
+      "deadline": "Deadline",
+      "deadlines": {
+        "overdue": "Overdue",
+        "today": "Today",
+        "tomorrow": "Tomorrow"
+      },
       "tabs": {
         "allTasks": "All Tasks",
         "myTasks": "My Tasks"
@@ -522,7 +532,9 @@
         "noAttachments": "No attachments uploaded.",
         "dragDrop": "Drag and drop or click to upload",
         "fileTypes": "PDF, JPG, JPEG, PNG (max 50 MB)",
-        "deleteAttachment": "Delete"
+        "deleteAttachment": "Delete",
+        "task": "task",
+        "tasks": "tasks"
       },
       "empty": {
         "noProjects": {

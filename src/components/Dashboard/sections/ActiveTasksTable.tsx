@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../animations";
 import type { ActiveTask } from "../../../dtos/workspace/DashboardDto";
+import {t} from "i18next";
 
 interface Props {
   tasks: ActiveTask[];
@@ -31,9 +32,9 @@ function formatDeadline(deadline: string): string {
   const diffMs = date.getTime() - now.getTime();
   const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
 
-  if (diffDays < 0) return "Overdue";
-  if (diffDays === 0) return "Today";
-  if (diffDays === 1) return "Tomorrow";
+  if (diffDays < 0) return t("dashboard.tasks.deadlines.overdue");
+  if (diffDays === 0) return t("dashboard.tasks.deadlines.today");
+  if (diffDays === 1) return t("dashboard.tasks.deadlines.tomorrow");
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
@@ -77,11 +78,21 @@ export default function ActiveTasksTable({ tasks, workspaceId }: Props) {
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-muted border-b text-muted-foreground text-xs uppercase tracking-wider">
-              <th className="p-4 font-medium">Task Name</th>
-              <th className="p-4 font-medium">Project</th>
-              <th className="p-4 font-medium">Priority</th>
-              <th className="p-4 font-medium">Status</th>
-              <th className="p-4 font-medium text-right">Deadline</th>
+              <th className="p-4 font-medium">
+                {t("dashboard.tasks.taskName")}
+              </th>
+              <th className="p-4 font-medium">
+                {t("dashboard.tasks.project")}
+              </th>
+              <th className="p-4 font-medium">
+                {t("dashboard.tasks.priorityName")}
+              </th>
+              <th className="p-4 font-medium">
+                {t("dashboard.tasks.statusName")}
+              </th>
+              <th className="p-4 font-medium text-right">
+                {t("dashboard.tasks.deadline")}
+              </th>
             </tr>
           </thead>
           <tbody className="text-sm divide-y divide-border/50">
@@ -115,14 +126,14 @@ export default function ActiveTasksTable({ tasks, workspaceId }: Props) {
                     <span
                       className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${PRIORITY_STYLES[task.priority] ?? "bg-muted text-muted-foreground"}`}
                     >
-                      {task.priority}
+                      {t(`dashboard.tasks.priority.${task.priority}`)}
                     </span>
                   </td>
                   <td className="p-4">
                     <span
                       className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_STYLES[task.status] ?? "bg-muted text-muted-foreground"}`}
                     >
-                      {task.status}
+                      {t(`dashboard.tasks.status.${task.status}`)}
                     </span>
                   </td>
                   <td

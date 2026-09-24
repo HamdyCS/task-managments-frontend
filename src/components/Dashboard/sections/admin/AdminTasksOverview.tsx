@@ -26,14 +26,6 @@ const ALL_STATUSES = [
   "Done",
 ] as const;
 
-const STATUS_LABELS: Record<string, string> = {
-  Backlog: "Backlog",
-  Todo: "To Do",
-  InProgress: "In Progress",
-  Review: "Review",
-  Done: "Done",
-};
-
 const STATUS_COLORS = [
   "#64748B", // Backlog - Slate
   "#3B82F6", // Todo - Blue
@@ -72,7 +64,7 @@ export default function AdminTasksOverview({ data }: Props) {
   const totalCount = normalized.reduce((sum, item) => sum + item.count, 0);
 
   const chartData: ChartData<"doughnut"> = {
-    labels: normalized.map((item) => STATUS_LABELS[item.status] ?? item.status),
+    labels: normalized.map((item) => t(`dashboard.reports.status.${item.status}`)),
     datasets: [
       {
         data: normalized.map((item) => item.count),
@@ -116,7 +108,7 @@ export default function AdminTasksOverview({ data }: Props) {
           label: (context) => {
             const value = context.parsed ?? 0;
             const pct = totalCount > 0 ? Math.round((value / totalCount) * 100) : 0;
-            return ` ${value} tasks (${pct}%)`;
+            return ` ${value} ${value === 1 ? t("dashboard.tasks.details.task") : t("dashboard.tasks.details.tasks")} (${pct}%)`;
           },
         },
       },
@@ -161,7 +153,7 @@ export default function AdminTasksOverview({ data }: Props) {
                   style={{ backgroundColor: STATUS_COLORS[i] }}
                 />
                 <span className="text-sm text-muted-foreground flex-1 min-w-0 truncate">
-                  {STATUS_LABELS[item.status]}
+                  {t(`dashboard.reports.status.${item.status}`)}
                 </span>
                 <span className="text-sm font-medium text-card-foreground tabular-nums">
                   {item.count}

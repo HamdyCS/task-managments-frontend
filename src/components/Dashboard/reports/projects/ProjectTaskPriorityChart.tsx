@@ -45,9 +45,7 @@ export default function ProjectTaskPriorityChart({ data, isLoading }: Props) {
   };
 
   /** Build a lookup map from the API response for O(1) access. */
-  const countMap = new Map(
-    data.map((item) => [item.taskPriority, item.count]),
-  );
+  const countMap = new Map(data.map((item) => [item.taskPriority, item.count]));
 
   /** Ensure all priorities appear in the chart, defaulting missing ones to 0. */
   const normalized = ALL_PRIORITIES.map((priority) => ({
@@ -99,7 +97,7 @@ export default function ProjectTaskPriorityChart({ data, isLoading }: Props) {
         callbacks: {
           label: (context) => {
             const value = context.parsed.y ?? 0;
-            return ` ${value} ${value === 1 ? "task" : "tasks"}`;
+            return ` ${value} ${value === 1 ? t("dashboard.tasks.details.task") : t("dashboard.tasks.details.tasks")}`;
           },
         },
       },

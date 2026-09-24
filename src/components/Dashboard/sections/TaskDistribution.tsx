@@ -57,7 +57,7 @@ export default function TaskDistribution({ data, workspaceId }: Props) {
   const normalized = normalizeData(data);
 
   const chartData: ChartData<"bar"> = {
-    labels: normalized.map((item) => item.status),
+    labels: normalized.map((item) => t(`dashboard.tasks.status.${item.status}`)),
 
     datasets: [
       {
@@ -136,13 +136,13 @@ export default function TaskDistribution({ data, workspaceId }: Props) {
 
         callbacks: {
           title: (items) => {
-            return items[0]?.label ?? "";
+            return t(`dashboard.tasks.status.${items[0]?.label}`) ?? "";
           },
 
           label: (context) => {
             const value = context.parsed.y ?? 0;
 
-            return ` ${value} ${value === 1 ? "task" : "tasks"}`;
+            return ` ${value} ${value === 1 ? t("dashboard.tasks.details.task") : t("dashboard.tasks.details.tasks")}`;
           },
         },
       },

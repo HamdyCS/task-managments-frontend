@@ -106,9 +106,8 @@ export default function ProjectTaskStatusChart({ data, isLoading }: Props) {
         callbacks: {
           label: (context) => {
             const value = context.parsed ?? 0;
-            const pct =
-              total > 0 ? ((value / total) * 100).toFixed(1) : "0";
-            return ` ${value} tasks (${pct}%)`;
+            const pct = total > 0 ? ((value / total) * 100).toFixed(1) : "0";
+            return ` ${value} ${value === 1 ? t("dashboard.tasks.details.task") : t("dashboard.tasks.details.tasks")} (${pct}%)`;
           },
         },
       },
